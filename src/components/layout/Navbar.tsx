@@ -211,7 +211,7 @@ const Navbar = () => {
             </Link>
           ))}
           <Link to="/contact" className="custom-get-started" onClick={closeMenu}>
-            Get Quatation
+            Grow My Brand
           </Link>
         </div>
       </header>
