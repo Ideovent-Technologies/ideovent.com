@@ -35,7 +35,6 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/verify/:certId" element={<CertificateVerify />} />
-          <Route path="/ii" element={<InternshipPage/>} />
 
           <Route path="/admin/qrcodes" element={<QRCodeList />} />
         </Routes>
