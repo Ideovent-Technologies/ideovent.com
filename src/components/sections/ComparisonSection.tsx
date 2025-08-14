@@ -63,10 +63,26 @@ const ComparisonSection = () => {
   ];
 
   const stats = [
-    { label: "Projects Delivered", value: 120, icon: <Package className="w-6 h-6 text-white" /> },
-    { label: "Happy Clients", value: 95, icon: <Users className="w-6 h-6 text-white" /> },
-    { label: "Years of Experience", value: 10, icon: <Clock className="w-6 h-6 text-white" /> },
-    { label: "Countries Served", value: 8, icon: <Globe className="w-6 h-6 text-white" /> },
+    {
+      label: "Projects Delivered",
+      value: 120,
+      icon: <Package className="w-6 h-6 text-white" />,
+    },
+    {
+      label: "Happy Clients",
+      value: 95,
+      icon: <Users className="w-6 h-6 text-white" />,
+    },
+    {
+      label: "Years of Experience",
+      value: 10,
+      icon: <Clock className="w-6 h-6 text-white" />,
+    },
+    {
+      label: "Countries Served",
+      value: 8,
+      icon: <Globe className="w-6 h-6 text-white" />,
+    },
   ];
 
   const [activeIndex, setActiveIndex] = useState(0);
@@ -234,75 +250,74 @@ const ComparisonSection = () => {
 
           <div className="grid lg:grid-cols-2 gap-10 h-[calc(100%-6rem)]">
             {/* LEFT - Comparison Cards */}
-            <div className="p-4 overflow-y-auto custom-scrollbar">
-              <motion.h3
-                className="text-2xl font-extrabold mb-6 text-gray-900 text-center"
-                variants={headingVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
-                <motion.span variants={wordVariants}>The</motion.span>
-                <motion.span
-                  className="relative bg-clip-text text-transparent"
-                  style={{
-                    backgroundImage: `linear-gradient(to right, ${primary}, ${secondary})`,
-                  }}
-                  variants={wordVariants}
-                >
-                  {" "}
-                  Ideovent
-                </motion.span>
-                <motion.span variants={wordVariants}> Advantage</motion.span>
-              </motion.h3>
-              <div className="space-y-4">
-                {features.map((row, i) => (
-                  <motion.div
-                    key={i}
-                    variants={comparisonRowVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.5 }}
-                    className="bg-white/20 backdrop-blur-sm rounded-2xl p-4 shadow-inner"
-                  >
-                    <h4 className="font-semibold text-lg text-gray-800 mb-4">
-                      {row.title}
-                    </h4>
-                    <div className="grid grid-cols-2 gap-3">
-                      <motion.div
-                        variants={ideoventCardVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.5 }}
-                        whileHover={{ scale: 1.05 }}
-                        className="rounded-xl p-3 text-center shadow-lg transition-transform duration-300"
-                        style={{
-                          backgroundImage: `linear-gradient(to bottom right, ${primary}e0, ${secondary}e0)`,
-                        }}
-                      >
-                        <CheckCircle className="w-6 h-6 text-white mx-auto mb-1" />
-                        <p className="text-white font-semibold text-sm">
-                          {row.good}
-                        </p>
-                      </motion.div>
+<div className="p-4 overflow-y-auto custom-scrollbar">
+  <motion.h3
+    className="text-2xl font-extrabold mb-6 text-gray-900 text-center"
+    variants={headingVariants}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true }}
+  >
+    <motion.span variants={wordVariants}>The</motion.span>
+    <motion.span
+      className="relative bg-clip-text text-transparent"
+      style={{
+        backgroundImage: `linear-gradient(to right, ${primary}, ${secondary})`,
+      }}
+      variants={wordVariants}
+    >
+      {" "}
+      Ideovent
+    </motion.span>
+    <motion.span variants={wordVariants}> Advantage</motion.span>
+  </motion.h3>
 
-                      <motion.div
-                        variants={othersCardVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.5 }}
-                        className="rounded-xl p-3 text-center bg-gray-100 border border-gray-200 shadow-inner"
-                      >
-                        <XCircle className="w-6 h-6 text-red-500 mx-auto mb-1" />
-                        <p className="text-gray-600 font-semibold text-sm">
-                          {row.bad}
-                        </p>
-                      </motion.div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+  <div className="space-y-4">
+    {features.map((row, i) => (
+      <motion.div
+        key={i}
+        variants={comparisonRowVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.5 }}
+        className="bg-white/20 backdrop-blur-sm rounded-2xl p-4 shadow-inner"
+      >
+        <h4 className="font-semibold text-lg text-gray-800 mb-4">{row.title}</h4>
+
+        <div className="grid grid-cols-2 gap-3">
+          {/* Ideovent Card */}
+          <motion.div
+            variants={ideoventCardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.5 }}
+            whileHover={{ scale: 1.05 }}
+            className="rounded-xl p-3 flex items-center justify-center gap-2 shadow-lg transition-transform duration-300"
+            style={{
+              backgroundImage: `linear-gradient(to bottom right, ${primary}e0, ${secondary}e0)`,
+            }}
+          >
+            <CheckCircle className="w-6 h-6 text-white" />
+            <p className="text-white font-semibold text-sm">{row.good}</p>
+          </motion.div>
+
+          {/* Other Card */}
+          <motion.div
+            variants={othersCardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.5 }}
+            className="rounded-xl p-3 flex items-center justify-center gap-2 bg-gray-100 border border-gray-200 shadow-inner"
+          >
+            <XCircle className="w-6 h-6 text-red-500" />
+            <p className="text-gray-600 font-semibold text-sm">{row.bad}</p>
+          </motion.div>
+        </div>
+      </motion.div>
+    ))}
+  </div>
+</div>
+
 
             {/* RIGHT - Statistics and Feature Carousel */}
             <div className="p-4 flex flex-col justify-between">
@@ -315,7 +330,10 @@ const ComparisonSection = () => {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.2 }}
-                    whileHover={{ y: -5, boxShadow: `0 10px 15px -3px ${primary}33, 0 4px 6px -2px ${primary}11` }}
+                    whileHover={{
+                      y: -5,
+                      boxShadow: `0 10px 15px -3px ${primary}33, 0 4px 6px -2px ${primary}11`,
+                    }}
                     transition={{
                       duration: 0.6,
                       delay: i * 0.1,
@@ -348,86 +366,86 @@ const ComparisonSection = () => {
               </div>
 
               {/* Feature Carousel */}
-             {/* Feature Carousel */}
-<div className="h-full flex flex-col justify-center perspective-[1000px] p-4 sm:p-8">
-  <AnimatePresence mode="wait">
-    <motion.div
-      key={features[activeIndex].title}
-  className="w-full flex flex-col items-center p-8 bg-white/70 backdrop-blur-3xl rounded-[2rem] shadow-2xl relative transition-all duration-700"
-  style={{
-    transformStyle: "preserve-3d",
-    // Soft, multi-layered shading for a floating effect
-    boxShadow: `0 10px 30px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(255,255,255,0.8), 0 0 0 1px rgba(0,0,0,0.05)`,
-  }}
-  variants={carouselCardVariants}
-  initial="initial"
-  animate="animate"
-  exit="exit"
-  whileHover={{ 
-    scale: 1.03, 
-    boxShadow: `0 20px 40px rgba(0,0,0,0.15), inset 0 0 0 1px rgba(255,255,255,0.9), 0 0 0 1px rgba(0,0,0,0.1)` 
-  }}
-  transition={{ duration: 0.3 }}
->
-      {/* Pulsing Gradient Glow Effect - This now serves as the "border" light source */}
-      <div
-        className="absolute inset-0 rounded-[2rem] animate-border-glow"
-        style={{
-          background: `radial-gradient(circle at center, rgba(2, 123, 255, 0.1), transparent 70%)`,
-          filter: 'blur(35px)',
-          zIndex: -1,
-          opacity: 0.8,
-        }}
-      />
+              {/* Feature Carousel */}
+              <div className="h-full flex flex-col justify-center perspective-[1000px] p-4 sm:p-8">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={features[activeIndex].title}
+                    className="w-full flex flex-col items-center p-8 bg-white/70 backdrop-blur-3xl rounded-[2rem] shadow-2xl relative transition-all duration-700"
+                    style={{
+                      transformStyle: "preserve-3d",
+                      // Soft, multi-layered shading for a floating effect
+                      boxShadow: `0 10px 30px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(255,255,255,0.8), 0 0 0 1px rgba(0,0,0,0.05)`,
+                    }}
+                    variants={carouselCardVariants}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    whileHover={{
+                      scale: 1.03,
+                      boxShadow: `0 20px 40px rgba(0,0,0,0.15), inset 0 0 0 1px rgba(255,255,255,0.9), 0 0 0 1px rgba(0,0,0,0.1)`,
+                    }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {/* Pulsing Gradient Glow Effect - This now serves as the "border" light source */}
+                    <div
+                      className="absolute inset-0 rounded-[2rem] animate-border-glow"
+                      style={{
+                        background: `radial-gradient(circle at center, rgba(2, 123, 255, 0.1), transparent 70%)`,
+                        filter: "blur(35px)",
+                        zIndex: -1,
+                        opacity: 0.8,
+                      }}
+                    />
 
-      {/* Icon Container */}
-      <motion.div
-        variants={contentVariants}
-        transition={{
-          type: "spring",
-          stiffness: 250,
-          damping: 20,
-        }}
-        className="flex-shrink-0 flex items-center justify-center w-20 h-20 rounded-full shadow-2xl mb-6 transform hover:scale-110 transition-transform duration-300 cursor-pointer"
-        style={{
-          backgroundImage: `linear-gradient(to bottom right, #0090F1, #3693FF)`,
-          boxShadow: `0 10px 20px #027BFF80`,
-        }}
-      >
-        {features[activeIndex].icon}
-      </motion.div>
+                    {/* Icon Container */}
+                    <motion.div
+                      variants={contentVariants}
+                      transition={{
+                        type: "spring",
+                        stiffness: 250,
+                        damping: 20,
+                      }}
+                      className="flex-shrink-0 flex items-center justify-center w-20 h-20 rounded-full shadow-2xl mb-6 transform hover:scale-110 transition-transform duration-300 cursor-pointer"
+                      style={{
+                        backgroundImage: `linear-gradient(to bottom right, #0090F1, #3693FF)`,
+                        boxShadow: `0 10px 20px #027BFF80`,
+                      }}
+                    >
+                      {features[activeIndex].icon}
+                    </motion.div>
 
-      {/* Text Content */}
-      <div className="text-center">
-        <motion.h3
-          variants={contentVariants}
-          transition={{
-            type: "spring",
-            stiffness: 250,
-            damping: 20,
-            delay: 0.1,
-          }}
-          className="font-extrabold text-2xl md:text-3xl text-gray-900 mb-2"
-        >
-          {features[activeIndex].title}
-        </motion.h3>
+                    {/* Text Content */}
+                    <div className="text-center">
+                      <motion.h3
+                        variants={contentVariants}
+                        transition={{
+                          type: "spring",
+                          stiffness: 250,
+                          damping: 20,
+                          delay: 0.1,
+                        }}
+                        className="font-extrabold text-2xl md:text-3xl text-gray-900 mb-2"
+                      >
+                        {features[activeIndex].title}
+                      </motion.h3>
 
-        <motion.p
-          variants={contentVariants}
-          transition={{
-            type: "spring",
-            stiffness: 250,
-            damping: 20,
-            delay: 0.2,
-          }}
-          className="text-gray-600 leading-relaxed text-sm md:text-base font-light px-4 max-w-lg"
-        >
-          {features[activeIndex].desc}
-        </motion.p>
-      </div>
-    </motion.div>
-  </AnimatePresence>
-</div>
+                      <motion.p
+                        variants={contentVariants}
+                        transition={{
+                          type: "spring",
+                          stiffness: 250,
+                          damping: 20,
+                          delay: 0.2,
+                        }}
+                        className="text-gray-600 leading-relaxed text-sm md:text-base font-light px-4 max-w-lg"
+                      >
+                        {features[activeIndex].desc}
+                      </motion.p>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
             </div>
           </div>
         </motion.div>
