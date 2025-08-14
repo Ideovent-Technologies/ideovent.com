@@ -96,10 +96,16 @@ const Footer = () => {
                  Salempur, Deoria, Uttar Pradesh, 274509
                 </span>
               </li>
-              <li className="flex items-center">
-                <Phone size={20} className="mr-3 text-primary" />
-                <span className="text-secondary-foreground/80">+91 9410707967</span>
-              </li>
+              <li className="flex items-start flex-col">
+  <div className="flex items-center">
+    <Phone size={20} className="mr-3 text-primary" />
+    <span className="text-secondary-foreground/80">+91 9410707967</span>
+  </div>
+  <div className="flex items-center ml-[28px]">
+    <span className="text-secondary-foreground/80">&nbsp; +91 8541831946</span>
+  </div>
+</li>
+
               <li className="flex items-center">
                 <Mail size={20} className="mr-3 text-primary" />
                 <span className="text-secondary-foreground/80">contact@ideovent.com</span>

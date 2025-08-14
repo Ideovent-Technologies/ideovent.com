@@ -188,7 +188,7 @@ const Navbar = () => {
               </Link>
             ))}
             <Link to="/contact" className="custom-get-started">
-              Get Quotation
+              Grow My Brand
             </Link>
           </nav>
 

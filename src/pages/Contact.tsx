@@ -91,15 +91,20 @@ const Contact = () => {
           <div className="container">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="bg-white rounded-xl shadow-sm p-8 hover:shadow-md transition-shadow text-center">
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
-                  <Phone className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Call Us</h3>
-                <p className="text-muted-foreground mb-4">Mon-Fri from 8am to 5pm</p>
-                <a href="tel:+919410707967" className="text-primary font-medium hover:underline">
-                +91 9410707967
-                </a>
-              </div>
+  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
+    <Phone className="w-8 h-8 text-primary" />
+  </div>
+  <h3 className="text-xl font-semibold mb-2">Call Us</h3>
+  <p className="text-muted-foreground mb-4">Mon-Fri from 8am to 5pm</p>
+
+  <a href="tel:+919410707967" className="text-primary font-medium hover:underline block">
+    +91 9410707967
+  </a>
+  <a href="tel:999999999" className="text-primary font-medium hover:underline block mt-1">
+    &nbsp; +91 8541831946
+  </a>
+</div>
+
               
               <div className="bg-white rounded-xl shadow-sm p-8 hover:shadow-md transition-shadow text-center">
                 <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">

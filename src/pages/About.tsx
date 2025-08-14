@@ -62,13 +62,19 @@ const About = () => {
       image: "animeshprofile.jpeg"
     },
     {
-      name: "Abhilasha Kumari",
-      role: "Co-Founder & CTO",
-      bio: "Full-stack developer specializing in React.js and modern web technologies.",
+      name: "Dipti Kumari",
+      role: "CHRO",
+      bio: "Dipti Kumari, CHRO, leads our HR strategy and fosters a positive workplace culture.",
       image: "https://img.freepik.com/premium-vector/avatar-profile-icon-flat-style-female-user-profile-vector-illustration-isolated-background-women-profile-sign-business-concept_157943-38866.jpg?semt=ais_hybrid"
     },
     
-   
+   {
+      name: "Alam",
+      role: "SDE",
+      bio: "Alam, SDE, develops innovative and efficient software solutions that power our products.",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwgT2eHovk83Kd0D870HAoiPDi4IQLN9jQjg&s"
+    },
+    
     // {
     //   name: "Sarah Wilson",
     //   role: "Marketing Specialist",
