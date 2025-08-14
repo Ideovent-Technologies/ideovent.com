@@ -190,7 +190,7 @@ const ComparisonSection = () => {
           animation: gradient-border 4s ease-in-out infinite;
         }
       `}</style>
-      <section className="relative h-screen flex items-center justify-center p-4 bg-gradient-to-b from-blue-50 via-white to-blue-50 overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-blue-50 via-white to-blue-50 overflow-hidden">
         {/* Floating Gradient Blobs */}
         <div className="absolute inset-0 pointer-events-none">
           <motion.div
@@ -219,10 +219,10 @@ const ComparisonSection = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="relative w-full max-w-7xl h-full max-h-[850px] bg-white/10 backdrop-blur-3xl rounded-3xl shadow-2xl p-8 lg:p-12 overflow-hidden"
+          className="relative w-full max-w-7xl min-h-[850px] bg-white/10 backdrop-blur-3xl rounded-3xl shadow-2xl p-6 md:p-8 lg:p-12 overflow-hidden"
         >
           <motion.h2
-            className="text-3xl lg:text-4xl font-extrabold text-gray-900 text-center mb-10"
+            className="text-3xl lg:text-4xl font-extrabold text-gray-900 text-center mb-8 lg:mb-10"
             variants={headingVariants}
             initial="hidden"
             whileInView="visible"
@@ -249,11 +249,11 @@ const ComparisonSection = () => {
             </motion.span>
           </motion.h2>
 
-          <div className="grid lg:grid-cols-2 gap-10 h-[calc(100%-6rem)]">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 h-[calc(100%-6rem)]">
             {/* LEFT - Comparison Cards */}
-            <div className="p-4 overflow-y-auto custom-scrollbar">
+            <div className="p-2 md:p-4 overflow-y-auto custom-scrollbar">
               <motion.h3
-                className="text-2xl font-extrabold mb-6 text-gray-900 text-center"
+                className="text-xl md:text-2xl font-extrabold mb-6 text-gray-900 text-center"
                 variants={headingVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -287,7 +287,7 @@ const ComparisonSection = () => {
                       {row.title}
                     </h4>
 
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {/* Ideovent Card */}
                       <motion.div
                         variants={ideoventCardVariants}
@@ -295,12 +295,13 @@ const ComparisonSection = () => {
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.5 }}
                         whileHover={{ scale: 1.05 }}
-                        className="rounded-xl p-3 flex items-center justify-center gap-2 shadow-lg transition-transform duration-300"
+                        transition={{ duration: 0.3 }}
+                        className="rounded-xl p-3 flex items-center justify-center gap-2 shadow-lg transition-transform duration-300 text-center sm:text-left"
                         style={{
                           backgroundImage: `linear-gradient(to bottom right, ${primary}e0, ${secondary}e0)`,
                         }}
                       >
-                        <CheckCircle className="w-6 h-6 text-white" />
+                        <CheckCircle className="w-6 h-6 text-white flex-shrink-0" />
                         <p className="text-white font-semibold text-sm">
                           {row.good}
                         </p>
@@ -312,9 +313,9 @@ const ComparisonSection = () => {
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.5 }}
-                        className="rounded-xl p-3 flex items-center justify-center gap-2 bg-gray-100 border border-gray-200 shadow-inner"
+                        className="rounded-xl p-3 flex items-center justify-center gap-2 bg-gray-100 border border-gray-200 shadow-inner text-center sm:text-left"
                       >
-                        <XCircle className="w-6 h-6 text-red-500" />
+                        <XCircle className="w-6 h-6 text-red-500 flex-shrink-0" />
                         <p className="text-gray-600 font-semibold text-sm">
                           {row.bad}
                         </p>
@@ -326,9 +327,9 @@ const ComparisonSection = () => {
             </div>
 
             {/* RIGHT - Statistics and Feature Carousel */}
-            <div className="p-4 flex flex-col justify-between">
+            <div className="p-2 md:p-4 flex flex-col justify-between">
               {/* Statistics */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+              <div className="grid grid-cols-2 lg:grid-cols-2 gap-4 mb-8">
                 {stats.map((stat, i) => (
                   <motion.div
                     key={i}
@@ -357,14 +358,14 @@ const ComparisonSection = () => {
                       </div>
                     </div>
                     <p
-                      className="text-3xl font-extrabold bg-clip-text text-transparent"
+                      className="text-2xl md:text-3xl font-extrabold bg-clip-text text-transparent"
                       style={{
                         backgroundImage: `linear-gradient(to right, ${primary}, ${secondary})`,
                       }}
                     >
                       <CountUp end={stat.value} duration={2.5} />+
                     </p>
-                    <p className="text-gray-700 font-medium text-xs mt-1">
+                    <p className="text-gray-700 font-medium text-xs md:text-sm mt-1">
                       {stat.label}
                     </p>
                   </motion.div>
@@ -372,11 +373,11 @@ const ComparisonSection = () => {
               </div>
 
               {/* Feature Carousel */}
-              <div className="h-full flex flex-col justify-center perspective-[1000px] p-4 sm:p-8">
+              <div className="h-full flex flex-col justify-center perspective-[1000px] p-2 sm:p-4 lg:p-8">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={features[activeIndex].title}
-                    className="w-full flex flex-col items-center p-8 bg-white/70 backdrop-blur-3xl rounded-[2rem] shadow-2xl relative transition-all duration-700"
+                    className="w-full flex flex-col items-center p-6 md:p-8 bg-white/70 backdrop-blur-3xl rounded-[2rem] shadow-2xl relative transition-all duration-700"
                     style={{
                       transformStyle: "preserve-3d",
                       boxShadow: `0 10px 30px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(255,255,255,0.8), 0 0 0 1px rgba(0,0,0,0.05)`,
@@ -411,7 +412,7 @@ const ComparisonSection = () => {
                         stiffness: 250,
                         damping: 20,
                       }}
-                      className="flex-shrink-0 flex items-center justify-center w-20 h-20 rounded-full shadow-2xl mb-6 transform hover:scale-110 transition-transform duration-300 cursor-pointer"
+                      className="flex-shrink-0 flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full shadow-2xl mb-4 md:mb-6 transform hover:scale-110 transition-transform duration-300 cursor-pointer"
                       style={{
                         backgroundImage: `linear-gradient(to bottom right, #0090F1, #3693FF)`,
                         boxShadow: `0 10px 20px #027BFF80`,
@@ -430,7 +431,7 @@ const ComparisonSection = () => {
                           damping: 20,
                           delay: 0.1,
                         }}
-                        className="font-extrabold text-2xl md:text-3xl text-gray-900 mb-2"
+                        className="font-extrabold text-xl md:text-3xl text-gray-900 mb-2"
                       >
                         {features[activeIndex].title}
                       </motion.h3>
@@ -443,7 +444,7 @@ const ComparisonSection = () => {
                           damping: 20,
                           delay: 0.2,
                         }}
-                        className="text-gray-600 leading-relaxed text-sm md:text-base font-light px-4 max-w-lg"
+                        className="text-gray-600 leading-relaxed text-sm md:text-base font-light px-2 md:px-4 max-w-lg"
                       >
                         {features[activeIndex].desc}
                       </motion.p>
