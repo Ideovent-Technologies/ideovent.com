@@ -88,11 +88,12 @@ const ComparisonSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1);
 
+  // This useEffect hook is the core of the continuous automatic movement
   useEffect(() => {
     const interval = setInterval(() => {
-      setDirection(1);
+      setDirection(1); // Ensures the 3D flip animation always goes in one direction
       setActiveIndex((prevIndex) => (prevIndex + 1) % features.length);
-    }, 4500);
+    }, 4500); // Cycles every 4.5 seconds
     return () => clearInterval(interval);
   }, [features.length]);
 
@@ -250,74 +251,79 @@ const ComparisonSection = () => {
 
           <div className="grid lg:grid-cols-2 gap-10 h-[calc(100%-6rem)]">
             {/* LEFT - Comparison Cards */}
-<div className="p-4 overflow-y-auto custom-scrollbar">
-  <motion.h3
-    className="text-2xl font-extrabold mb-6 text-gray-900 text-center"
-    variants={headingVariants}
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: true }}
-  >
-    <motion.span variants={wordVariants}>The</motion.span>
-    <motion.span
-      className="relative bg-clip-text text-transparent"
-      style={{
-        backgroundImage: `linear-gradient(to right, ${primary}, ${secondary})`,
-      }}
-      variants={wordVariants}
-    >
-      {" "}
-      Ideovent
-    </motion.span>
-    <motion.span variants={wordVariants}> Advantage</motion.span>
-  </motion.h3>
+            <div className="p-4 overflow-y-auto custom-scrollbar">
+              <motion.h3
+                className="text-2xl font-extrabold mb-6 text-gray-900 text-center"
+                variants={headingVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
+                <motion.span variants={wordVariants}>The</motion.span>
+                <motion.span
+                  className="relative bg-clip-text text-transparent"
+                  style={{
+                    backgroundImage: `linear-gradient(to right, ${primary}, ${secondary})`,
+                  }}
+                  variants={wordVariants}
+                >
+                  {" "}
+                  Ideovent
+                </motion.span>
+                <motion.span variants={wordVariants}> Advantage</motion.span>
+              </motion.h3>
 
-  <div className="space-y-4">
-    {features.map((row, i) => (
-      <motion.div
-        key={i}
-        variants={comparisonRowVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.5 }}
-        className="bg-white/20 backdrop-blur-sm rounded-2xl p-4 shadow-inner"
-      >
-        <h4 className="font-semibold text-lg text-gray-800 mb-4">{row.title}</h4>
+              <div className="space-y-4">
+                {features.map((row, i) => (
+                  <motion.div
+                    key={i}
+                    variants={comparisonRowVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.5 }}
+                    className="bg-white/20 backdrop-blur-sm rounded-2xl p-4 shadow-inner"
+                  >
+                    <h4 className="font-semibold text-lg text-gray-800 mb-4">
+                      {row.title}
+                    </h4>
 
-        <div className="grid grid-cols-2 gap-3">
-          {/* Ideovent Card */}
-          <motion.div
-            variants={ideoventCardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
-            whileHover={{ scale: 1.05 }}
-            className="rounded-xl p-3 flex items-center justify-center gap-2 shadow-lg transition-transform duration-300"
-            style={{
-              backgroundImage: `linear-gradient(to bottom right, ${primary}e0, ${secondary}e0)`,
-            }}
-          >
-            <CheckCircle className="w-6 h-6 text-white" />
-            <p className="text-white font-semibold text-sm">{row.good}</p>
-          </motion.div>
+                    <div className="grid grid-cols-2 gap-3">
+                      {/* Ideovent Card */}
+                      <motion.div
+                        variants={ideoventCardVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.5 }}
+                        whileHover={{ scale: 1.05 }}
+                        className="rounded-xl p-3 flex items-center justify-center gap-2 shadow-lg transition-transform duration-300"
+                        style={{
+                          backgroundImage: `linear-gradient(to bottom right, ${primary}e0, ${secondary}e0)`,
+                        }}
+                      >
+                        <CheckCircle className="w-6 h-6 text-white" />
+                        <p className="text-white font-semibold text-sm">
+                          {row.good}
+                        </p>
+                      </motion.div>
 
-          {/* Other Card */}
-          <motion.div
-            variants={othersCardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
-            className="rounded-xl p-3 flex items-center justify-center gap-2 bg-gray-100 border border-gray-200 shadow-inner"
-          >
-            <XCircle className="w-6 h-6 text-red-500" />
-            <p className="text-gray-600 font-semibold text-sm">{row.bad}</p>
-          </motion.div>
-        </div>
-      </motion.div>
-    ))}
-  </div>
-</div>
-
+                      {/* Other Card */}
+                      <motion.div
+                        variants={othersCardVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.5 }}
+                        className="rounded-xl p-3 flex items-center justify-center gap-2 bg-gray-100 border border-gray-200 shadow-inner"
+                      >
+                        <XCircle className="w-6 h-6 text-red-500" />
+                        <p className="text-gray-600 font-semibold text-sm">
+                          {row.bad}
+                        </p>
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
 
             {/* RIGHT - Statistics and Feature Carousel */}
             <div className="p-4 flex flex-col justify-between">
@@ -366,7 +372,6 @@ const ComparisonSection = () => {
               </div>
 
               {/* Feature Carousel */}
-              {/* Feature Carousel */}
               <div className="h-full flex flex-col justify-center perspective-[1000px] p-4 sm:p-8">
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -374,13 +379,13 @@ const ComparisonSection = () => {
                     className="w-full flex flex-col items-center p-8 bg-white/70 backdrop-blur-3xl rounded-[2rem] shadow-2xl relative transition-all duration-700"
                     style={{
                       transformStyle: "preserve-3d",
-                      // Soft, multi-layered shading for a floating effect
                       boxShadow: `0 10px 30px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(255,255,255,0.8), 0 0 0 1px rgba(0,0,0,0.05)`,
                     }}
                     variants={carouselCardVariants}
                     initial="initial"
                     animate="animate"
                     exit="exit"
+                    custom={direction}
                     whileHover={{
                       scale: 1.03,
                       boxShadow: `0 20px 40px rgba(0,0,0,0.15), inset 0 0 0 1px rgba(255,255,255,0.9), 0 0 0 1px rgba(0,0,0,0.1)`,
