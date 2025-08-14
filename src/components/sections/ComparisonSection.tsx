@@ -1,7 +1,19 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import CountUp from "react-countup";
-import { CheckCircle, Zap, Palette, Headphones, XCircle, Lightbulb } from "lucide-react";
+import {
+  CheckCircle,
+  Zap,
+  Palette,
+  Headphones,
+  XCircle,
+  Lightbulb,
+  Package,
+  Users,
+  Clock,
+  Globe,
+  Plus,
+} from "lucide-react";
 
 const ComparisonSection = () => {
   const primary = "#027BFF";
@@ -10,225 +22,417 @@ const ComparisonSection = () => {
   const features = [
     {
       title: "Creative Excellence",
-      desc: "Designs that speak — Crafted to impress, engage, and convert.",
-      icon: <Palette className="w-6 h-6 text-white" />,
-      bad: "Cookie-cutter templates with no personality",
+      desc: "Designs that speak — Crafted to impress, engage, and convert",
+      icon: <Palette className="w-8 h-8 text-white" />,
+      good: "Designs that speak",
+      bad: "Cookie-cutter templates",
+      auraColor: primary, // New property for the aura effect
     },
     {
       title: "Unmatched Speed",
-      desc: "Your vision delivered faster than you expect.",
-      icon: <Zap className="w-6 h-6 text-white" />,
-      bad: "Delays, missed deadlines, and endless excuses",
+      desc: "Your vision delivered faster than you expect",
+      icon: <Zap className="w-8 h-8 text-white" />,
+      good: "Unmatched speed",
+      bad: "Delays, missed deadlines",
+      auraColor: "#E040FB", // A new color for variety
     },
     {
       title: "Innovation First",
-      desc: "Solutions tailored uniquely for your brand.",
-      icon: <Lightbulb className="w-6 h-6 text-white" />,
-      bad: "Generic solutions that fail to stand out",
+      desc: "Solutions tailored uniquely for your brand",
+      icon: <Lightbulb className="w-8 h-8 text-white" />,
+      good: "Innovation first",
+      bad: "Generic solutions",
+      auraColor: secondary,
     },
     {
       title: "Always There for You",
-      desc: "Dedicated support, anytime, every time.",
-      icon: <Headphones className="w-6 h-6 text-white" />,
-      bad: "Support that disappears after delivery",
+      desc: "Dedicated support, anytime, every time",
+      icon: <Headphones className="w-8 h-8 text-white" />,
+      good: "Always there for you",
+      bad: "Disappearing support",
+      auraColor: "#FFC107",
+    },
+    {
+      title: "Future-ready Technology",
+      desc: "Built for performance, built to last",
+      icon: <Plus className="w-8 h-8 text-white" />,
+      good: "Future-ready technology",
+      bad: "Outdated technology",
+      auraColor: primary,
     },
   ];
 
   const stats = [
-    { label: "Projects Delivered", value: 120, icon: "📦" },
-    { label: "Happy Clients", value: 95, icon: "😊" },
-    { label: "Years of Experience", value: 10, icon: "⏳" },
-    { label: "Countries Served", value: 8, icon: "🌍" },
+    { label: "Projects Delivered", value: 120, icon: <Package className="w-6 h-6 text-white" /> },
+    { label: "Happy Clients", value: 95, icon: <Users className="w-6 h-6 text-white" /> },
+    { label: "Years of Experience", value: 10, icon: <Clock className="w-6 h-6 text-white" /> },
+    { label: "Countries Served", value: 8, icon: <Globe className="w-6 h-6 text-white" /> },
   ];
 
-  const StatusChip = ({ type, text }: { type: "good" | "bad"; text: string }) => {
-    if (type === "good") {
-      return (
-        <motion.span
-          whileHover={{ scale: 1.1 }}
-          className="inline-flex items-center gap-2 px-3 py-1 bg-green-100 text-green-700 font-bold rounded-full shadow-sm"
-        >
-          <CheckCircle className="w-4 h-4" /> {text}
-        </motion.span>
-      );
-    }
-    return (
-      <motion.span
-        animate={{ x: [0, -2, 2, -2, 0] }}
-        transition={{ duration: 0.4, repeat: Infinity, repeatDelay: 2 }}
-        className="inline-flex items-center gap-2 px-3 py-1 bg-red-100 text-red-600 font-medium rounded-full shadow-sm"
-      >
-        <XCircle className="w-4 h-4" /> {text}
-      </motion.span>
-    );
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDirection(1);
+      setActiveIndex((prevIndex) => (prevIndex + 1) % features.length);
+    }, 4500);
+    return () => clearInterval(interval);
+  }, [features.length]);
+
+  const comparisonRowVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
+  const carouselCardVariants = {
+    initial: (direction) => ({
+      opacity: 0,
+      scale: 0.8,
+      rotateY: direction > 0 ? 90 : -90,
+      x: direction > 0 ? -10 : 10,
+    }),
+    animate: {
+      opacity: 1,
+      scale: 1,
+      rotateY: 0,
+      x: 0,
+      transition: {
+        type: "tween",
+        duration: 0.6,
+        ease: "easeInOut",
+        when: "beforeChildren",
+      },
+    },
+    exit: (direction) => ({
+      opacity: 0,
+      scale: 0.8,
+      rotateY: direction > 0 ? -90 : 90,
+      x: direction > 0 ? 10 : -10,
+      transition: {
+        duration: 0.4,
+      },
+    }),
+  };
+
+  const contentVariants = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -20 },
+  };
+
+  const headingVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05,
+      },
+    },
+  };
+
+  const wordVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  const ideoventCardVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { opacity: 1, x: 0 },
+  };
+
+  const othersCardVariants = {
+    hidden: { opacity: 0, x: 20 },
+    visible: { opacity: 1, x: 0 },
+  };
+
+  const statCardVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15,
+      },
+    },
   };
 
   return (
-    <section className="relative py-20 bg-gradient-to-b from-blue-50 via-white to-blue-50 overflow-hidden">
-      {/* Floating Gradient Blobs */}
-      <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          className="absolute w-72 h-72"
-          style={{
-            background: `${primary}33`,
-            borderRadius: "9999px",
-            filter: "blur(80px)",
-            top: "-100px",
-            left: "-100px",
-          }}
-          animate={{ x: [0, 50, 0], y: [0, -50, 0] }}
-          transition={{ repeat: Infinity, duration: 10 }}
-        />
-        <motion.div
-          className="absolute w-60 h-60"
-          style={{
-            background: `${secondary}33`,
-            borderRadius: "9999px",
-            filter: "blur(80px)",
-            bottom: "-80px",
-            right: "-80px",
-          }}
-          animate={{ x: [0, -50, 0], y: [0, 50, 0] }}
-          transition={{ repeat: Infinity, duration: 12 }}
-        />
-      </div>
+    <>
+      <style>{`
+        @keyframes gradient-border {
+          0% { border-image-slice: 1; border-image-source: linear-gradient(to right, ${primary}, ${secondary}, ${primary}); }
+          50% { border-image-slice: 1; border-image-source: linear-gradient(to right, ${secondary}, ${primary}, ${secondary}); }
+          100% { border-image-slice: 1; border-image-source: linear-gradient(to right, ${primary}, ${secondary}, ${primary}); }
+        }
+        .gradient-border-animated {
+          border-width: 2px;
+          border-style: solid;
+          animation: gradient-border 4s ease-in-out infinite;
+        }
+      `}</style>
+      <section className="relative h-screen flex items-center justify-center p-4 bg-gradient-to-b from-blue-50 via-white to-blue-50 overflow-hidden">
+        {/* Floating Gradient Blobs */}
+        <div className="absolute inset-0 pointer-events-none">
+          <motion.div
+            className="absolute w-72 h-72 rounded-full blur-3xl opacity-30"
+            style={{
+              background: primary,
+              top: "-100px",
+              left: "-100px",
+            }}
+            animate={{ x: [0, 50, 0], y: [0, -50, 0] }}
+            transition={{ repeat: Infinity, duration: 10 }}
+          />
+          <motion.div
+            className="absolute w-60 h-60 rounded-full blur-3xl opacity-30"
+            style={{
+              background: secondary,
+              bottom: "-80px",
+              right: "-80px",
+            }}
+            animate={{ x: [0, -50, 0], y: [0, 50, 0] }}
+            transition={{ repeat: Infinity, duration: 12 }}
+          />
+        </div>
 
-      <div className="relative container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
-        {/* LEFT - Features */}
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="relative w-full max-w-7xl h-full max-h-[850px] bg-white/10 backdrop-blur-3xl rounded-3xl shadow-2xl p-8 lg:p-12 overflow-hidden"
         >
-          <h2 className="text-4xl font-extrabold mb-8 text-gray-900">
-            Why Choose{" "}
-            <span
+          <motion.h2
+            className="text-3xl lg:text-4xl font-extrabold text-gray-900 text-center mb-10"
+            variants={headingVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {"Why Choose "}
+            <motion.span
               className="relative bg-clip-text text-transparent"
               style={{
                 backgroundImage: `linear-gradient(to right, ${primary}, ${secondary})`,
               }}
+              variants={wordVariants}
             >
-              Ideovent Technologies?
-              <span
-                className="absolute left-0 -bottom-1 w-full h-1 rounded-full"
-                style={{
-                  backgroundImage: `linear-gradient(to right, ${primary}, ${secondary})`,
-                }}
-              ></span>
-            </span>
-          </h2>
+              Ideovent
+            </motion.span>
+            <motion.span
+              className="relative bg-clip-text text-transparent"
+              style={{
+                backgroundImage: `linear-gradient(to right, ${primary}, ${secondary})`,
+              }}
+              variants={wordVariants}
+            >
+              Technologies?
+            </motion.span>
+          </motion.h2>
 
-          <ul className="space-y-6">
-            {features.map((item, i) => (
-              <motion.li
-                key={i}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                whileHover={{ scale: 1.03, rotate: 1 }}
-                className="flex items-start gap-5 p-5 bg-white/70 backdrop-blur-lg rounded-2xl border shadow-lg hover:shadow-2xl transition-all duration-300"
-                style={{
-                  borderColor: `${primary}20`,
-                }}
+          <div className="grid lg:grid-cols-2 gap-10 h-[calc(100%-6rem)]">
+            {/* LEFT - Comparison Cards */}
+            <div className="p-4 overflow-y-auto custom-scrollbar">
+              <motion.h3
+                className="text-2xl font-extrabold mb-6 text-gray-900 text-center"
+                variants={headingVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
               >
-                <motion.div
-                  whileHover={{ rotate: 8, scale: 1.1 }}
-                  className="flex items-center justify-center w-12 h-12 rounded-full shadow-md"
-                  style={{
-                    backgroundImage: `linear-gradient(to bottom right, ${primary}, ${secondary})`,
-                  }}
-                >
-                  {item.icon}
-                </motion.div>
-
-                <div>
-                  <h3 className="font-semibold text-lg mb-1 text-gray-900">
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">{item.desc}</p>
-                </div>
-              </motion.li>
-            ))}
-          </ul>
-        </motion.div>
-
-        {/* RIGHT - Comparison + Stats */}
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
-          className="flex flex-col gap-4"
-        >
-          {/* Table */}
-          <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden text-sm">
-            <table className="w-full text-left">
-              <thead
-                style={{
-                  backgroundImage: `linear-gradient(to right, ${primary}, ${secondary})`,
-                }}
-                className="text-white text-sm"
-              >
-                <tr>
-                  <th className="p-3 font-semibold">Feature</th>
-                  <th className="p-3 font-semibold">Ideovent</th>
-                  <th className="p-3 font-semibold">Others</th>
-                </tr>
-              </thead>
-              <tbody>
-                {features.map((row, i) => (
-                  <tr
-                    key={i}
-                    className="border-t border-gray-100 hover:bg-gray-50 transition-all"
-                  >
-                    <td className="p-3 font-medium text-gray-800">{row.title}</td>
-                    <td className="p-3">
-                      <StatusChip type="good" text="Good" />
-                    </td>
-                    <td className="p-3">
-                      <StatusChip type="bad" text={row.bad} />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-8">
-            {stats.map((stat, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ scale: 1.07 }}
-                className="relative bg-white/60 backdrop-blur-lg rounded-2xl p-6 shadow-lg text-center"
-                style={{
-                  border: `1px solid ${primary}30`,
-                }}
-              >
-                <div className="flex justify-center mb-3">
-                  <div
-                    className="w-12 h-12 flex items-center justify-center rounded-full text-white text-xl shadow-lg"
-                    style={{
-                      backgroundImage: `linear-gradient(to top right, ${primary}, ${secondary})`,
-                    }}
-                  >
-                    {stat.icon}
-                  </div>
-                </div>
-                <p
-                  className="text-4xl font-extrabold bg-clip-text text-transparent"
+                <motion.span variants={wordVariants}>The</motion.span>
+                <motion.span
+                  className="relative bg-clip-text text-transparent"
                   style={{
                     backgroundImage: `linear-gradient(to right, ${primary}, ${secondary})`,
                   }}
+                  variants={wordVariants}
                 >
-                  <CountUp end={stat.value} duration={2.5} />+
-                </p>
-                <p className="text-gray-700 font-medium mt-2">{stat.label}</p>
-              </motion.div>
-            ))}
+                  {" "}
+                  Ideovent
+                </motion.span>
+                <motion.span variants={wordVariants}> Advantage</motion.span>
+              </motion.h3>
+              <div className="space-y-4">
+                {features.map((row, i) => (
+                  <motion.div
+                    key={i}
+                    variants={comparisonRowVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.5 }}
+                    className="bg-white/20 backdrop-blur-sm rounded-2xl p-4 shadow-inner"
+                  >
+                    <h4 className="font-semibold text-lg text-gray-800 mb-4">
+                      {row.title}
+                    </h4>
+                    <div className="grid grid-cols-2 gap-3">
+                      <motion.div
+                        variants={ideoventCardVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.5 }}
+                        whileHover={{ scale: 1.05 }}
+                        className="rounded-xl p-3 text-center shadow-lg transition-transform duration-300"
+                        style={{
+                          backgroundImage: `linear-gradient(to bottom right, ${primary}e0, ${secondary}e0)`,
+                        }}
+                      >
+                        <CheckCircle className="w-6 h-6 text-white mx-auto mb-1" />
+                        <p className="text-white font-semibold text-sm">
+                          {row.good}
+                        </p>
+                      </motion.div>
+
+                      <motion.div
+                        variants={othersCardVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.5 }}
+                        className="rounded-xl p-3 text-center bg-gray-100 border border-gray-200 shadow-inner"
+                      >
+                        <XCircle className="w-6 h-6 text-red-500 mx-auto mb-1" />
+                        <p className="text-gray-600 font-semibold text-sm">
+                          {row.bad}
+                        </p>
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* RIGHT - Statistics and Feature Carousel */}
+            <div className="p-4 flex flex-col justify-between">
+              {/* Statistics */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                {stats.map((stat, i) => (
+                  <motion.div
+                    key={i}
+                    variants={statCardVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.2 }}
+                    whileHover={{ y: -5, boxShadow: `0 10px 15px -3px ${primary}33, 0 4px 6px -2px ${primary}11` }}
+                    transition={{
+                      duration: 0.6,
+                      delay: i * 0.1,
+                    }}
+                    className="text-center p-4 bg-white/50 backdrop-blur-md rounded-2xl shadow-md transition-all cursor-pointer"
+                  >
+                    <div className="flex justify-center mb-2">
+                      <div
+                        className="w-10 h-10 flex items-center justify-center rounded-full shadow-lg"
+                        style={{
+                          backgroundImage: `linear-gradient(to top right, ${primary}, ${secondary})`,
+                        }}
+                      >
+                        {stat.icon}
+                      </div>
+                    </div>
+                    <p
+                      className="text-3xl font-extrabold bg-clip-text text-transparent"
+                      style={{
+                        backgroundImage: `linear-gradient(to right, ${primary}, ${secondary})`,
+                      }}
+                    >
+                      <CountUp end={stat.value} duration={2.5} />+
+                    </p>
+                    <p className="text-gray-700 font-medium text-xs mt-1">
+                      {stat.label}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Feature Carousel */}
+             {/* Feature Carousel */}
+<div className="h-full flex flex-col justify-center perspective-[1000px] p-4 sm:p-8">
+  <AnimatePresence mode="wait">
+    <motion.div
+      key={features[activeIndex].title}
+  className="w-full flex flex-col items-center p-8 bg-white/70 backdrop-blur-3xl rounded-[2rem] shadow-2xl relative transition-all duration-700"
+  style={{
+    transformStyle: "preserve-3d",
+    // Soft, multi-layered shading for a floating effect
+    boxShadow: `0 10px 30px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(255,255,255,0.8), 0 0 0 1px rgba(0,0,0,0.05)`,
+  }}
+  variants={carouselCardVariants}
+  initial="initial"
+  animate="animate"
+  exit="exit"
+  whileHover={{ 
+    scale: 1.03, 
+    boxShadow: `0 20px 40px rgba(0,0,0,0.15), inset 0 0 0 1px rgba(255,255,255,0.9), 0 0 0 1px rgba(0,0,0,0.1)` 
+  }}
+  transition={{ duration: 0.3 }}
+>
+      {/* Pulsing Gradient Glow Effect - This now serves as the "border" light source */}
+      <div
+        className="absolute inset-0 rounded-[2rem] animate-border-glow"
+        style={{
+          background: `radial-gradient(circle at center, rgba(2, 123, 255, 0.1), transparent 70%)`,
+          filter: 'blur(35px)',
+          zIndex: -1,
+          opacity: 0.8,
+        }}
+      />
+
+      {/* Icon Container */}
+      <motion.div
+        variants={contentVariants}
+        transition={{
+          type: "spring",
+          stiffness: 250,
+          damping: 20,
+        }}
+        className="flex-shrink-0 flex items-center justify-center w-20 h-20 rounded-full shadow-2xl mb-6 transform hover:scale-110 transition-transform duration-300 cursor-pointer"
+        style={{
+          backgroundImage: `linear-gradient(to bottom right, #0090F1, #3693FF)`,
+          boxShadow: `0 10px 20px #027BFF80`,
+        }}
+      >
+        {features[activeIndex].icon}
+      </motion.div>
+
+      {/* Text Content */}
+      <div className="text-center">
+        <motion.h3
+          variants={contentVariants}
+          transition={{
+            type: "spring",
+            stiffness: 250,
+            damping: 20,
+            delay: 0.1,
+          }}
+          className="font-extrabold text-2xl md:text-3xl text-gray-900 mb-2"
+        >
+          {features[activeIndex].title}
+        </motion.h3>
+
+        <motion.p
+          variants={contentVariants}
+          transition={{
+            type: "spring",
+            stiffness: 250,
+            damping: 20,
+            delay: 0.2,
+          }}
+          className="text-gray-600 leading-relaxed text-sm md:text-base font-light px-4 max-w-lg"
+        >
+          {features[activeIndex].desc}
+        </motion.p>
+      </div>
+    </motion.div>
+  </AnimatePresence>
+</div>
+            </div>
           </div>
         </motion.div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
