@@ -98,7 +98,7 @@ const Navbar = () => {
           .custom-dropdown {
             position: relative;
           }
-
+          
           /* Dropdown Menu */
           .custom-dropdown-menu {
             position: absolute;
@@ -106,18 +106,39 @@ const Navbar = () => {
             left: 0;
             background: white;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            display: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            display: flex;
             flex-direction: column;
-            min-width: 200px;
+            min-width: 220px;
             padding: 10px 0;
             z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
           }
 
-          /* Show on Hover */
-          .custom-dropdown:hover .custom-dropdown-menu {
-            display: flex;
-          }
+         /* Show on Hover */
+.custom-dropdown:hover .custom-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); /* smooth "wow" effect */
+}
+
+/* Hidden by default */
+.custom-dropdown-menu {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px) scale(0.95); /* starts slightly lower & smaller */
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  transform-origin: top center; /* looks like it grows from the top */
+  background: white; /* optional */
+  border-radius: 12px; /* softer look */
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15); /* floating effect */
+  padding: 0.5rem 1rem;
+}
+
 
           /* Dropdown Links */
           .custom-dropdown-menu a {
