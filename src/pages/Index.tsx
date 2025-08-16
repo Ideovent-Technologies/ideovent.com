@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import Hero from '../components/sections/Hero';
-import Services from '../components/sections/Services';
+// import Services from '../components/sections/Services';
 import Testimonials from '../components/sections/Testimonials';
 import ContactForm from '../components/sections/ContactForm';
 import Navbar from '../components/layout/Navbar';
@@ -19,7 +19,7 @@ const Index = () => {
       <Navbar />
       <main className="flex-grow">
         <Hero />
-        <Services />
+        {/* <Services /> */}
         <ServicesSection/>
         <ComparisonSection /> {/* New section here */}
         <Testimonials />

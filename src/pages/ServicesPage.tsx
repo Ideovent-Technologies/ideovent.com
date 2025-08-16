@@ -1,15 +1,41 @@
-
-import { useEffect, useState, useRef } from 'react';
-import Navbar from '../components/layout/Navbar';
-import Footer from '../components/layout/Footer';
-import ParallaxSection from '../components/ui/ParallaxSection';
-import {Button} from '../components/ui/button';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Code, PenTool, Globe, ShoppingCart, Monitor, ArrowUpRight, Smartphone, Database, Server } from 'lucide-react';
+import { cn } from '@/lib/utils'; // Assuming a utility for class merging
+
+// A simple mock for a reusable Button component
+const Button = ({ children, className, variant = 'default', ...props }) => {
+  const baseClasses = 'px-6 py-3 rounded-full font-medium transition-all duration-300';
+  const variants = {
+    default: 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg',
+    outline: 'bg-transparent text-blue-600 border-2 border-blue-600 hover:bg-blue-50'
+  };
+  return (
+    <button className={cn(baseClasses, variants[variant], className)} {...props}>
+      {children}
+    </button>
+  );
+};
+
+// A simple mock for a ParallaxSection component
+const ParallaxSection = ({ children, bgImage, className, height = 'min-h-[60vh]' }) => {
+  return (
+    <div
+      className={cn("relative overflow-hidden bg-cover bg-fixed bg-center", height, className)}
+      style={{ backgroundImage: `url(${bgImage})` }}
+    >
+      {children}
+    </div>
+  );
+};
+
+// A simple mock for the Navbar and Footer components
+const Navbar = () => <div className="p-4 bg-white/30 backdrop-blur-sm fixed w-full z-50 shadow-md"></div>;
+const Footer = () => <div className="py-12 bg-gray-900 text-gray-50 text-center">Footer Content</div>;
 
 const ServicesPage = () => {
   const [activeSection, setActiveSection] = useState('web');
-  const servicesRef = useRef<HTMLDivElement>(null);
-  
+
   useEffect(() => {
     window.scrollTo(0, 0);
     document.title = "Our Services - Ideovent Technologies";
@@ -18,19 +44,19 @@ const ServicesPage = () => {
   const services = {
     web: [
       {
-        icon: <Code className="w-12 h-12 text-primary transition-all duration-300 group-hover:text-white" />,
+        icon: <Code size={28} />,
         title: "Website Development",
         description: "Custom websites built with React.js, WordPress, or other technologies tailored to your needs. We focus on creating fast, responsive, and user-friendly websites that drive results.",
         features: ["Responsive Web Design", "E-commerce Solutions", "Progressive Web Apps", "CMS Integration", "Performance Optimization"]
       },
       {
-        icon: <Server className="w-12 h-12 text-primary transition-all duration-300 group-hover:text-white" />,
+        icon: <Server size={28} />,
         title: "Web Application Development",
         description: "Powerful web applications that solve complex business problems and streamline operations. We use modern frameworks and technologies to build scalable solutions.",
         features: ["Custom Dashboard Development", "Real-time Applications", "Enterprise Solutions", "Database Design & Integration", "API Development"]
       },
       {
-        icon: <Database className="w-12 h-12 text-primary transition-all duration-300 group-hover:text-white" />,
+        icon: <Database size={28} />,
         title: "CMS Development",
         description: "Custom content management systems that make it easy to update and manage your website. We build solutions that are tailored to your specific needs.",
         features: ["WordPress Development", "Headless CMS Solutions", "Custom CMS Development", "CMS Migration", "Content Strategy"]
@@ -38,13 +64,13 @@ const ServicesPage = () => {
     ],
     design: [
       {
-        icon: <PenTool className="w-12 h-12 text-primary transition-all duration-300 group-hover:text-white" />,
+        icon: <PenTool size={28} />,
         title: "UI/UX Design",
         description: "User-centered design that enhances user experience and engagement with your brand. We create intuitive interfaces that keep users coming back.",
         features: ["User Research", "Wireframing & Prototyping", "Interface Design", "Usability Testing", "Design Systems"]
       },
       {
-        icon: <Monitor className="w-12 h-12 text-primary transition-all duration-300 group-hover:text-white" />,
+        icon: <Monitor size={28} />,
         title: "Brand Identity",
         description: "Comprehensive brand identity design that helps you stand out in the market. We create cohesive brand experiences across all customer touchpoints.",
         features: ["Logo Design", "Visual Identity", "Brand Guidelines", "Marketing Collateral", "Brand Strategy"]
@@ -52,13 +78,13 @@ const ServicesPage = () => {
     ],
     marketing: [
       {
-        icon: <Globe className="w-12 h-12 text-primary transition-all duration-300 group-hover:text-white" />,
+        icon: <Globe size={28} />,
         title: "SEO & Digital Marketing",
         description: "Optimize your online presence and reach your target audience effectively. We help you get found by the right people at the right time.",
         features: ["Search Engine Optimization", "Content Marketing", "Social Media Strategy", "Email Marketing", "Analytics & Reporting"]
       },
       {
-        icon: <ShoppingCart className="w-12 h-12 text-primary transition-all duration-300 group-hover:text-white" />,
+        icon: <ShoppingCart size={28} />,
         title: "E-Commerce Marketing",
         description: "Specialized marketing strategies for online stores that drive traffic and increase conversions. We help you sell more products online.",
         features: ["Conversion Rate Optimization", "Product Listing Optimization", "Shopping Feed Management", "Abandoned Cart Recovery", "Customer Retention"]
@@ -66,7 +92,7 @@ const ServicesPage = () => {
     ],
     mobile: [
       {
-        icon: <Smartphone className="w-12 h-12 text-primary transition-all duration-300 group-hover:text-white" />,
+        icon: <Smartphone size={28} />,
         title: "Mobile App Development",
         description: "Native and cross-platform mobile applications that provide seamless experiences on iOS and Android devices. We build apps that users love.",
         features: ["iOS & Android Development", "React Native Apps", "Mobile UI/UX Design", "App Store Optimization", "App Maintenance & Support"]
@@ -75,7 +101,7 @@ const ServicesPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="bg-gray-50 font-[Inter] min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
         {/* Hero Section */}
@@ -85,31 +111,57 @@ const ServicesPage = () => {
           height="min-h-[60vh]"
         >
           <div className="absolute inset-0 bg-black/50" />
-          <div className="container relative z-10 text-center py-20">
-            <div className="inline-block bg-primary text-white px-4 py-2 rounded-full text-sm font-medium mb-4">
+          <motion.div
+            className="container relative z-10 text-center py-20"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="inline-block bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium mb-4">
               Our Services
             </div>
-            <h1 className="mb-4">What We Offer</h1>
-            <p className="max-w-3xl mx-auto text-lg">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 drop-shadow-lg">
+              What We Offer
+            </h1>
+            <p className="max-w-3xl mx-auto text-lg md:text-xl drop-shadow-md">
               Comprehensive digital solutions to help your business thrive in the digital world.
             </p>
-          </div>
+          </motion.div>
         </ParallaxSection>
 
         {/* Services Tabs */}
-        <section ref={servicesRef} className="section bg-white">
-          <div className="container">
+        <section className="section py-16 bg-white">
+          <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4">
+              <motion.div
+                className="inline-block bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
                 Our Expertise
-              </div>
-              <h2>Elevate Your Business With Our <span className="text-primary">Services</span></h2>
-              <p className="text-lg text-muted-foreground mt-4">
+              </motion.div>
+              <motion.h2
+                className="text-3xl md:text-4xl font-semibold mb-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                Elevate Your Business With Our <span className="text-blue-600">Services</span>
+              </motion.h2>
+              <motion.p
+                className="text-lg text-gray-600 mt-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                viewport={{ once: true }}
+              >
                 We offer a wide range of digital solutions tailored to your specific needs.
-              </p>
+              </motion.p>
             </div>
 
-            {/* Service Categories */}
+            {/* Service Categories (Improved) */}
             <div className="flex flex-wrap justify-center gap-4 mb-12">
               {[
                 { id: 'web', label: 'Web Development' },
@@ -117,87 +169,133 @@ const ServicesPage = () => {
                 { id: 'marketing', label: 'Marketing' },
                 { id: 'mobile', label: 'Mobile Apps' }
               ].map((category) => (
-                <button
+                <motion.button
                   key={category.id}
-                  className={`px-6 py-3 rounded-full transition-all ${
-                    activeSection === category.id
-                      ? 'bg-primary text-white shadow-lg shadow-primary/20'
-                      : 'bg-gray-100 hover:bg-gray-200'
-                  }`}
+                  className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2
+                    ${activeSection === category.id
+                      ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20'
+                      : 'bg-transparent text-gray-700 hover:bg-gray-100 border border-gray-300'
+                    }`}
                   onClick={() => setActiveSection(category.id)}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   {category.label}
-                </button>
+                </motion.button>
               ))}
             </div>
 
-            {/* Service Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {services[activeSection as keyof typeof services].map((service, index) => (
-                <div 
-                  key={index} 
-                  className="group bg-white border border-gray-100 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
-                >
-                  <div className="p-8">
-                    <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary transition-all duration-300">
+            {/* Service Cards (Glassmorphism & Animated) */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeSection}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              >
+                {services[activeSection].map((service, index) => (
+                  <motion.div
+                    key={index}
+                    className="group relative rounded-3xl p-8 text-left flex flex-col items-start
+                      bg-white/30 backdrop-blur-xl border border-white/40 shadow-lg
+                      hover:shadow-2xl transition-all duration-500 transform
+                      hover:-translate-y-4 hover:scale-[1.03] perspective-1000"
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                  >
+                    <div className="relative z-10 w-16 h-16 rounded-2xl flex items-center justify-center mb-5
+                      bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-lg">
                       {service.icon}
                     </div>
-                    <h3 className="text-2xl font-semibold mb-4">{service.title}</h3>
-                    <p className="text-muted-foreground mb-6">{service.description}</p>
-                    <div className="space-y-2 mb-6">
+                    <h3 className="text-2xl font-bold mb-2 text-gray-900 drop-shadow-sm">
+                      {service.title}
+                    </h3>
+                    <p className="text-gray-700 flex-grow leading-relaxed mb-6">
+                      {service.description}
+                    </p>
+                    <div className="space-y-2 mb-6 w-full">
                       {service.features.map((feature, i) => (
-                        <div key={i} className="flex items-center">
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-primary mr-2" viewBox="0 0 20 20" fill="currentColor">
+                        <div key={i} className="flex items-center text-gray-700">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600 mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
                           <span>{feature}</span>
                         </div>
                       ))}
                     </div>
-                    <div className="pt-4 border-t border-gray-100">
-                      <a href="#" className="inline-flex items-center text-primary font-medium">
+                    <div className="pt-4 border-t border-gray-100 w-full">
+                      <a href="#" className="inline-flex items-center text-blue-600 font-semibold group-hover:text-blue-700 transition-colors">
                         Learn More
-                        <ArrowUpRight className="ml-2 h-4 w-4" />
+                        <ArrowUpRight className="ml-2 h-4 w-4 transform transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                       </a>
                     </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </AnimatePresence>
           </div>
         </section>
-        
+
         {/* CTA Section */}
-        <section className="bg-accent py-20">
-          <div className="container">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-semibold mb-6">Ready to Start Your Project?</h2>
-              <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+        <section className="bg-gray-900 py-20 text-white">
+          <div className="container mx-auto px-4">
+            <motion.div
+              className="max-w-4xl mx-auto text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Start Your Project?</h2>
+              <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
                 Get in touch with our team to discuss how we can help bring your vision to life.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <Button to="/contact" size="lg" className="rounded-full shadow-lg shadow-primary/20">
+                <Button className="rounded-full shadow-lg">
                   Get a Free Consultation
                 </Button>
-                <Button href="tel:+919410707967" variant="outline" size="lg" className="rounded-full">
+                <Button variant="outline" className="rounded-full">
                   Call Us Now
                 </Button>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
 
         {/* Process Section */}
-        <section className="section bg-white">
-          <div className="container">
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4">
+              <motion.div
+                className="inline-block bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
                 Our Process
-              </div>
-              <h2>How We <span className="text-primary">Work</span></h2>
-              <p className="text-lg text-muted-foreground mt-4">
+              </motion.div>
+              <motion.h2
+                className="text-3xl md:text-4xl font-semibold mb-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                How We <span className="text-blue-600">Work</span>
+              </motion.h2>
+              <motion.p
+                className="text-lg text-gray-600 mt-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                viewport={{ once: true }}
+              >
                 Our proven approach ensures we deliver high-quality solutions that meet your needs.
-              </p>
+              </motion.p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -223,21 +321,21 @@ const ServicesPage = () => {
                   description: "We launch your project and provide ongoing support to ensure its success."
                 }
               ].map((step, index) => (
-                <div key={index} className="relative group">
-                  <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 h-full group-hover:-translate-y-2 transition-transform duration-300">
-                    <div className="text-5xl font-bold text-primary/20 mb-4">{step.step}</div>
-                    <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-                    <p className="text-muted-foreground">{step.description}</p>
-                  </div>
+                <motion.div
+                  key={index}
+                  className="relative group bg-white rounded-3xl p-8 h-full shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="text-5xl font-bold text-gray-200 mb-4">{step.step}</div>
+                  <h3 className="text-xl font-bold mb-2">{step.title}</h3>
+                  <p className="text-gray-600">{step.description}</p>
                   {index < 3 && (
-                    <div className="hidden md:block absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2 z-10">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary/40">
-                        <path d="m5 12h14"></path>
-                        <path d="m12 5 7 7-7 7"></path>
-                      </svg>
-                    </div>
+                    <div className="hidden lg:block absolute w-24 h-px top-1/2 left-[calc(100%+8px)] -translate-y-1/2 border-t-2 border-dashed border-gray-300"></div>
                   )}
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>

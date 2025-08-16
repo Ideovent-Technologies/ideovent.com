@@ -192,6 +192,18 @@ const ComparisonSection = () => {
             </div>
           </div>
         </div>
+
+        {/* Discover Now Button */}
+        <div className="mt-8 flex justify-center">
+          <motion.a
+            href="/services" // Connects to the services page
+            className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-white bg-primary hover:bg-blue-600 transition-colors duration-300"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Discover Now
+          </motion.a>
+        </div>
       </motion.div>
     </section>
   );

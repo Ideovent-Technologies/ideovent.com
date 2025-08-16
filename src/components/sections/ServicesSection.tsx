@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import {
   Code2,
   Globe,
@@ -16,52 +17,61 @@ import {
 // Note: Local file imports like this do not resolve in this environment. Using a placeholder URL instead.
 import servicesImage from "../../assets/servicesimage.png";
 
-// Define the services data
+// Define the services data, including a new 'path' field for routing
 const services = [
   {
     title: "Software Development",
     desc: "We provide custom software development for your business, Billing, Inventory and every custom solution.",
     icon: <Code2 size={28} />,
+    path: "/services/software"
   },
   {
     title: "Website Development",
     desc: "We provide website design & development to make your business online to drive more customers and sales.",
     icon: <Globe size={28} />,
+    path: "/services/website"
   },
   {
     title: "Mobile App Development",
     desc: "We provide Android & iOS app development. Turn your idea into reality and start your startup with us.",
     icon: <Smartphone size={28} />,
+    path: "/services/mobile"
   },
   {
     title: "Digital Marketing",
     desc: "We provide the best digital marketing services to drive more traffic on your mobile app or website.",
     icon: <Megaphone size={28} />,
+    path: "/services/marketing"
   },
   {
     title: "Graphics Design",
     desc: "We provide graphics design to stay connected with your customers using banners, offers & more.",
     icon: <Image size={28} />,
+    path: "/services/graphics"
   },
   {
     title: "Domain & Hosting",
     desc: "We provide domain, hosting and reliable servers to never let your business down.",
     icon: <Server size={28} />,
+    path: "/services/domain"
   },
   {
     title: "ERP & CRM Development",
     desc: "We provide ERP & CRM to automate your business with fast execution and precise strategies.",
     icon: <Layers size={28} />,
+    path: "/services/erp-crm"
   },
   {
     title: "Maintenance Services",
     desc: "We provide annual maintenance services for websites, software, ERP, CRM & mobile apps.",
     icon: <Wrench size={28} />,
+    path: "/services/maintenance"
   },
   {
     title: "Explore More Services",
     desc: "We provide IT training, internships, MLM software and many more services to discover.",
     icon: <Boxes size={28} />,
+    path: "/services/more"
   },
 ];
 
@@ -110,52 +120,53 @@ const ServicesSection = () => {
             }
 
             return (
-             <motion.div
-  key={idx}
-  className="group relative bg-white/30 backdrop-blur-xl rounded-2xl border border-white/40 
-             shadow-[0_8px_20px_rgba(0,0,0,0.15)] 
-             hover:shadow-[0_20px_50px_rgba(0,0,0,0.25)] 
-             p-6 text-left flex flex-col items-start
-             transition-all duration-500 transform 
-             hover:-translate-y-4 hover:rotate-[1.5deg] hover:scale-[1.03] perspective-1000"
-  initial={{ opacity: 0, y: 40 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.6, delay: idx * 0.1 }}
-  viewport={{ once: true }}
->
-  {/* Glassy highlight overlay */}
-  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/60 to-transparent opacity-50 pointer-events-none"></div>
+              <motion.div
+                key={idx}
+                className="group relative bg-white/30 backdrop-blur-xl rounded-2xl border border-white/40 
+              shadow-[0_8px_20px_rgba(0,0,0,0.15)] 
+              hover:shadow-[0_20px_50px_rgba(0,0,0,0.25)] 
+              p-6 text-left flex flex-col items-start
+              transition-all duration-500 transform 
+              hover:-translate-y-4 hover:rotate-[1.5deg] hover:scale-[1.03] perspective-1000"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                viewport={{ once: true }}
+              >
+                {/* Glassy highlight overlay */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/60 to-transparent opacity-50 pointer-events-none"></div>
 
-  {/* Animated Icon */}
-  <motion.div
-    className="flex items-center justify-center w-16 h-16 rounded-2xl 
-               bg-gradient-to-tr from-blue-600 to-blue-400 
-               text-white shadow-lg mb-5 backdrop-blur-sm 
-               group-hover:shadow-blue-400/50"
-    animate={{ y: [0, -6, 0] }} // floating effect
-    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-    whileHover={{ rotate: 12, scale: 1.2 }}
-  >
-    {service.icon}
-  </motion.div>
+                {/* Animated Icon */}
+                <motion.div
+                  className="flex items-center justify-center w-16 h-16 rounded-2xl 
+                bg-gradient-to-tr from-blue-600 to-blue-400 
+                text-white shadow-lg mb-5 backdrop-blur-sm 
+                group-hover:shadow-blue-400/50"
+                  animate={{ y: [0, -6, 0] }} // floating effect
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  whileHover={{ rotate: 12, scale: 1.2 }}
+                >
+                  {service.icon}
+                </motion.div>
 
-  {/* Card Content */}
-  <h3 className="text-xl font-bold mb-2 text-gray-900 drop-shadow-sm">
-    {service.title}
-  </h3>
-  <p className="text-gray-700 text-sm flex-grow leading-relaxed">
-    {service.desc}
-  </p>
+                {/* Card Content */}
+                <h3 className="text-xl font-bold mb-2 text-gray-900 drop-shadow-sm">
+                  {service.title}
+                </h3>
+                <p className="text-gray-700 text-sm flex-grow leading-relaxed">
+                  {service.desc}
+                </p>
 
-  {/* Button */}
-  <motion.button
-    whileHover={{ x: 6 }}
-    className="mt-5 text-blue-600 font-semibold flex items-center gap-1"
-  >
-    Discover now →
-  </motion.button>
-</motion.div>
-
+                {/* Use Link to create a clickable button that navigates */}
+                <Link to={service.path}>
+                  <motion.button
+                    whileHover={{ x: 6 }}
+                    className="mt-5 text-blue-600 font-semibold flex items-center gap-1"
+                  >
+                    Discover now →
+                  </motion.button>
+                </Link>
+              </motion.div>
             );
           })}
         </div>
