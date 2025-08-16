@@ -6,6 +6,7 @@ import ContactForm from '../components/sections/ContactForm';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import ComparisonSection from '../components/sections/ComparisonSection';
+import ServicesSection from "../components/sections/ServicesSection";
 
 const Index = () => {
   useEffect(() => {
@@ -19,6 +20,7 @@ const Index = () => {
       <main className="flex-grow">
         <Hero />
         <Services />
+        <ServicesSection/>
         <ComparisonSection /> {/* New section here */}
         <Testimonials />
         <ContactForm />
