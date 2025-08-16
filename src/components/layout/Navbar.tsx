@@ -297,7 +297,7 @@ const Navbar = () => {
                 Services
               </Link>
               <div className="custom-dropdown-menu">
-                <Link to="/services/software" onClick={closeMenu}>Software Development</Link>
+                <Link to="/services/software-development" onClick={closeMenu}>Software Development</Link>
                 <Link to="/services/website" onClick={closeMenu}>Website Development</Link>
                 <Link to="/services/mobile" onClick={closeMenu}>Mobile App Development</Link>
                 <Link to="/services/marketing" onClick={closeMenu}>Digital Marketing</Link>
@@ -343,7 +343,7 @@ const Navbar = () => {
               Services <ChevronDown size={16} />
             </button>
             <div className={`mobile-services-dropdown ${mobileServicesOpen ? "" : "closed"}`}>
-              <Link to="/services/software" onClick={closeMenu}>Software Development</Link>
+              <Link to="/services/softwar-development" onClick={closeMenu}>Software Development</Link>
               <Link to="/services/website" onClick={closeMenu}>Website Development</Link>
               <Link to="/services/mobile" onClick={closeMenu}>Mobile App Development</Link>
               <Link to="/services/marketing" onClick={closeMenu}>Digital Marketing</Link>

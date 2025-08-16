@@ -23,7 +23,7 @@ const services = [
     title: "Software Development",
     desc: "We provide custom software development for your business, Billing, Inventory and every custom solution.",
     icon: <Code2 size={28} />,
-    path: "/services/software"
+    path: "/services/software-development"
   },
   {
     title: "Website Development",
