@@ -134,7 +134,7 @@ export const softwareData: ServiceData = {
         "Dedicated support and maintenance",
         "Custom-tailored solutions for any industry",
       ],
-      image: "https://cdn.pixabay.com/photo/2015/05/31/13/45/teamwork-791293_1280.jpg",
+      image: "https://www.ideovent.com/ideovent.png",
     },
   ],
 
