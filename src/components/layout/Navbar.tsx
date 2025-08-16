@@ -118,27 +118,31 @@ const Navbar = () => {
             transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
           }
 
-         /* Show on Hover */
+         /* Hidden by default */
+.custom-dropdown-menu {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px) scale(0.95);
+  transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  transform-origin: top center;
+
+  /* Glassmorphism styling */
+  background: rgba(255, 255, 255, 0.7); /* semi-transparent */
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  padding: 0.75rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Show on Hover */
 .custom-dropdown:hover .custom-dropdown-menu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0) scale(1);
-  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); /* smooth "wow" effect */
 }
-
-/* Hidden by default */
-.custom-dropdown-menu {
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px) scale(0.95); /* starts slightly lower & smaller */
-  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-  transform-origin: top center; /* looks like it grows from the top */
-  background: white; /* optional */
-  border-radius: 12px; /* softer look */
-  box-shadow: 0 8px 24px rgba(0,0,0,0.15); /* floating effect */
-  padding: 0.5rem 1rem;
-}
-
 
           /* Dropdown Links */
           .custom-dropdown-menu a {
