@@ -79,7 +79,7 @@ export const otherServicesList: OtherService[] = [
 ];
 
 export const softwareData: ServiceData = {
-  title: "Custom Software Solutions",
+  title: "Tailored Software Solutions That Drive Growth",
   subtitle: "Tailored to Empower Your Business",
   description:
     "At Ideovent, we craft tailored software solutions that help your business scale, automate processes, and achieve its full potential...",
@@ -95,7 +95,7 @@ export const softwareData: ServiceData = {
   ],
 
   cta: {
-    text: "Let’s Build Your Custom Software",
+    text: "Get a Free Software Consultation",
     link: "/contact",
     secondary: { text: "Explore Our Portfolio", link: "/portfolio" },
   },

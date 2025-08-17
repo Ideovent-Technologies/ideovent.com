@@ -113,81 +113,88 @@ const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
       <Navbar />
 
       {/* HERO SECTION */}
-      <section className="relative w-full min-h-screen px-4 sm:px-6 lg:px-24 py-16 lg:py-24 bg-gradient-to-br from-[#f0f5ff] to-[#e6ecff] rounded-3xl overflow-hidden flex flex-col lg:flex-row items-center">
-        {/* Left Content */}
-        <div className="relative z-10 w-full lg:w-1/2 mb-10 lg:mb-0">
-          {/* Animated Heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 50, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-gray-900 leading-tight mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#2562EA] to-[#6B8DFF]"
-          >
-            {title}
-          </motion.h1>
 
-          {/* Subtitle */}
-          {subtitle && (
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.7 }}
-              className="text-xl sm:text-2xl lg:text-3xl font-semibold text-[#2562EA] mb-6"
-            >
-              {subtitle}
-            </motion.h2>
-          )}
+<section className="relative w-full min-h-screen px-4 sm:px-6 lg:px-24 py-16 lg:py-24 bg-gradient-to-br from-[#f0f5ff] to-[#e6ecff] rounded-3xl overflow-hidden flex flex-col lg:flex-row items-center">
+  {/* Left Content */}
+  <div className="relative z-10 w-full lg:w-1/2 mb-10 lg:mb-0">
+    {/* Animated Heading */}
+    <motion.h1
+      initial={{ opacity: 0, y: 50, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-gray-900 leading-tight mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#2562EA] to-[#6B8DFF]"
+    >
+      Tailored Software Solutions That Drive Growth
+    </motion.h1>
 
-          {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.7 }}
-            className="text-base sm:text-lg lg:text-xl text-gray-700 mb-8 max-w-full sm:max-w-xl leading-relaxed"
-          >
-            {description}
-          </motion.p>
+    {/* Subtitle */}
+    {subtitle && (
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.7 }}
+        className="text-xl sm:text-2xl lg:text-3xl font-semibold text-[#2562EA] mb-6"
+      >
+        {subtitle}
+      </motion.h2>
+    )}
 
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.7, duration: 0.6 }}
-            className="flex flex-wrap gap-4 sm:gap-6"
-          >
-            <a
-              href="/contact"
-              className="px-6 py-3 sm:px-8 sm:py-4 rounded-3xl bg-gradient-to-r from-[#2562EA] to-[#6B8DFF] text-white font-semibold text-lg sm:text-xl transform hover:-translate-y-1 hover:scale-105 transition-all duration-300"
-            >
-              Get Started
-            </a>
-            <a
-              href="/services"
-              className="px-6 py-3 sm:px-8 sm:py-4 rounded-3xl bg-white text-[#2562EA] font-semibold text-lg sm:text-xl transform hover:-translate-y-1 hover:scale-105 transition-all duration-300"
-            >
-              Learn More
-            </a>
-          </motion.div>
-        </div>
+    {/* Description */}
+    <motion.p
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.5, duration: 0.7 }}
+      className="text-base sm:text-lg lg:text-xl text-gray-700 mb-8 max-w-full sm:max-w-xl leading-relaxed"
+    >
+      {description}
+    </motion.p>
 
-        {/* Right Image */}
-        <motion.div
-          className="w-full lg:w-1/2 relative"
-          initial={{ opacity: 0, x: 50, scale: 0.95 }}
-          animate={{ opacity: 1, x: 0, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <motion.img
-            src={image}
-            alt={title}
-            className="w-full rounded-3xl object-cover transform hover:scale-105 transition-transform duration-500"
-            whileHover={{ scale: 1.07, rotate: 1 }}
-          />
-          {/* Subtle Glow */}
-          <div className="absolute -top-10 -left-10 w-32 h-32 bg-[#6B8DFF] rounded-full opacity-20 blur-3xl animate-blob"></div>
-          <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-[#2562EA] rounded-full opacity-20 blur-3xl animate-blob animation-delay-2000"></div>
-        </motion.div>
-      </section>
+    {/* CTA Buttons */}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.7, duration: 0.6 }}
+      className="flex flex-wrap gap-4 sm:gap-6"
+    >
+      <a
+        href="/contact"
+        className="px-6 py-3 sm:px-8 sm:py-4 rounded-3xl bg-gradient-to-r from-[#2562EA] to-[#6B8DFF] text-white font-semibold text-lg sm:text-xl transform hover:-translate-y-1 hover:scale-105 transition-all duration-300"
+      >
+        Get Started
+      </a>
+      <a
+        href="/consultation"
+        className="px-6 py-3 sm:px-8 sm:py-4 rounded-3xl bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold text-lg sm:text-xl transform hover:-translate-y-1 hover:scale-105 transition-all duration-300"
+      >
+        Get a Free Software Consultation
+      </a>
+    </motion.div>
+  </div>
+
+  {/* Right Image Carousel */}
+  <motion.div
+  className="w-full lg:w-1/2 relative"
+  initial={{ opacity: 0, x: 50, scale: 0.95 }}
+  animate={{ opacity: 1, x: 0, scale: 1 }}
+  transition={{ duration: 0.8, ease: "easeOut" }}
+>
+  <div className="relative w-full rounded-3xl overflow-hidden shadow-xl">
+    <video
+      src="https://cdn.pixabay.com/video/2019/05/06/23355-334950213_large.mp4"
+      autoPlay
+      loop
+      muted
+      playsInline
+      className="w-full h-full object-cover rounded-3xl"
+    />
+    {/* Subtle Glow */}
+    <div className="absolute -top-10 -left-10 w-32 h-32 bg-[#6B8DFF] rounded-full opacity-20 blur-3xl animate-blob"></div>
+    <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-[#2562EA] rounded-full opacity-20 blur-3xl animate-blob animation-delay-2000"></div>
+  </div>
+</motion.div>
+
+</section>
+
 
       {/* BULLET POINTS SECTION */}
       <section className="px-6 lg:px-24 py-20 bg-gray-50">
