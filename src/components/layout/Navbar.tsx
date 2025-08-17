@@ -30,10 +30,23 @@ const Navbar = () => {
     { name: "Contact", path: "/contact" },
   ];
 
+  const serviceItems = [
+    { name: "Software Development", path: "/services/software-development" },
+    { name: "Website Development", path: "/services/website" },
+    { name: "Mobile App Development", path: "/services/mobile" },
+    { name: "Digital Marketing", path: "/services/marketing" },
+    { name: "Graphics Design", path: "/services/graphics" },
+    { name: "Domain & Hosting", path: "/services/domain" },
+    { name: "ERP & CRM Development", path: "/services/erp-crm" },
+    { name: "Maintenance Services", path: "/services/maintenance" },
+    { name: "Explore More Services", path: "/services/more" },
+  ];
+
   return (
     <>
       <style>
         {`
+          /* Base Navbar */
           .custom-navbar {
             position: fixed;
             top: 0;
@@ -74,6 +87,7 @@ const Navbar = () => {
             object-fit: contain;
           }
 
+          /* Desktop Navigation */
           .custom-nav-links {
             display: flex;
             gap: 20px;
@@ -94,55 +108,40 @@ const Navbar = () => {
             color: #007bff;
           }
 
-          /* Dropdown Container */
+          /* Desktop Dropdown Container */
           .custom-dropdown {
             position: relative;
           }
           
-          /* Dropdown Menu */
+          /* Desktop Dropdown Menu */
           .custom-dropdown-menu {
             position: absolute;
             top: 100%;
             left: 0;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px) saturate(150%);
+            -webkit-backdrop-filter: blur(12px) saturate(150%);
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            padding: 0.75rem 1.25rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
             display: flex;
             flex-direction: column;
             min-width: 220px;
-            padding: 10px 0;
             z-index: 100;
             opacity: 0;
             visibility: hidden;
-            transform: translateY(10px);
-            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+            transform: translateY(10px) scale(0.95);
+            transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+            transform-origin: top center;
           }
 
-         /* Hidden by default */
-.custom-dropdown-menu {
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px) scale(0.95);
-  transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
-  transform-origin: top center;
-
-  /* Glassmorphism styling */
-  background: rgba(255, 255, 255, 0.7); /* semi-transparent */
-  backdrop-filter: blur(12px) saturate(150%);
-  -webkit-backdrop-filter: blur(12px) saturate(150%);
-  
-  border-radius: 16px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-  padding: 0.75rem 1.25rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-/* Show on Hover */
-.custom-dropdown:hover .custom-dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0) scale(1);
-}
+          /* Show on Hover */
+          .custom-dropdown:hover .custom-dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+          }
 
           /* Dropdown Links */
           .custom-dropdown-menu a {
@@ -185,68 +184,114 @@ const Navbar = () => {
           }
 
           .custom-mobile-menu {
-            position: absolute;
-            top: 100%;
+            position: fixed;
+            top: 0;
             left: 0;
             right: 0;
-            background: rgba(0, 0, 0, 0.9);
+            bottom: 0;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(10px);
-            padding: 20px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            text-align: center;
-            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-            opacity: 0;
-            pointer-events: none;
+            align-items: center;
+            padding-top: 100px; /* Space for the logo/header */
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            transform: translateY(-100%);
+            z-index: 40;
+            overflow-y: auto;
           }
-
+          
           .custom-mobile-menu.open {
-            opacity: 1;
-            pointer-events: auto;
             transform: translateY(0);
           }
 
-          .custom-mobile-menu a, .custom-mobile-menu button {
-            font-size: 18px;
+          .mobile-menu-item {
+            font-size: 20px;
             font-weight: 500;
             color: white;
             text-decoration: none;
+            width: 100%;
+            text-align: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: color 0.3s ease;
+          }
+
+          .mobile-menu-item:hover, .mobile-menu-item.active {
+            color: #007bff;
+          }
+
+          .mobile-menu-item button {
             background: none;
             border: none;
+            color: white;
+            font-size: 20px;
+            font-weight: 500;
             cursor: pointer;
-            transition: color 0.3s;
+            width: 100%;
+            text-align: center;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
 
-          .custom-mobile-menu a:hover {
-            color: #007bff;
-          }
-          .custom-mobile-menu button:hover {
-            color: #007bff;
+          .mobile-menu-item button .chevron {
+            transition: transform 0.3s ease;
           }
 
-          /* Mobile submenu */
+          .mobile-menu-item button.active .chevron {
+            transform: rotate(180deg);
+          }
+
           .mobile-services-dropdown {
+            width: 100%;
             display: flex;
             flex-direction: column;
             gap: 10px;
-            padding-left: 20px;
-            margin-top: 8px;
-          }
-
-          .mobile-services-dropdown a {
-            font-size: 16px;
-            color: white; /* Submenu links are white */
-            text-decoration: none;
-            transition: none;
-          }
-          .mobile-services-dropdown.closed {
-            display: none;
+            padding: 10px 0;
+            background: rgba(255, 255, 255, 0.1);
+            transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
           }
           
-          .mobile-services-dropdown a:hover {
-            color: #007bff; /* Submenu links turn blue on hover */
+          .mobile-services-dropdown.open {
+            max-height: 500px; /* Adjust this value as needed */
+            opacity: 1;
           }
+          
+          .mobile-services-dropdown a {
+            font-size: 16px;
+            color: white;
+            text-decoration: none;
+            padding: 10px 0;
+            transition: color 0.3s;
+            text-align: center;
+          }
+          
+          .mobile-services-dropdown a:hover,
+          .mobile-services-dropdown a.active {
+            color: #007bff;
+          }
+
+          .mobile-get-started {
+            margin-top: 20px;
+            padding: 12px 24px;
+            border-radius: 30px;
+            background: #007bff;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.3s ease;
+          }
+          
+          .mobile-get-started:hover {
+            background: #0056b3;
+          }
+
 
           /* Responsive */
           @media (max-width: 768px) {
@@ -255,6 +300,7 @@ const Navbar = () => {
             }
             .custom-menu-button {
               display: block;
+              z-index: 60;
             }
             .custom-logo img {
               height: 80px;
@@ -297,18 +343,13 @@ const Navbar = () => {
                 Services
               </Link>
               <div className="custom-dropdown-menu">
-                <Link to="/services/software-development" onClick={closeMenu}>Software Development</Link>
-                <Link to="/services/website" onClick={closeMenu}>Website Development</Link>
-                <Link to="/services/mobile" onClick={closeMenu}>Mobile App Development</Link>
-                <Link to="/services/marketing" onClick={closeMenu}>Digital Marketing</Link>
-                <Link to="/services/graphics" onClick={closeMenu}>Graphics Design</Link>
-                <Link to="/services/domain" onClick={closeMenu}>Domain & Hosting</Link>
-                <Link to="/services/erp-crm" onClick={closeMenu}>ERP & CRM Development</Link>
-                <Link to="/services/maintenance" onClick={closeMenu}>Maintenance Services</Link>
-                <Link to="/services/more" onClick={closeMenu}>Explore More Services</Link>
+                {serviceItems.map((item) => (
+                  <Link key={item.path} to={item.path} onClick={closeMenu}>
+                    {item.name}
+                  </Link>
+                ))}
               </div>
             </div>
-
             <Link to="/contact" className="custom-get-started">
               Grow My Brand
             </Link>
@@ -326,7 +367,7 @@ const Navbar = () => {
             <Link
               key={item.path}
               to={item.path}
-              className={`custom-nav-link ${
+              className={`mobile-menu-item ${
                 location.pathname === item.path ? "active" : ""
               }`}
               onClick={closeMenu}
@@ -335,26 +376,35 @@ const Navbar = () => {
             </Link>
           ))}
           {/* Mobile services dropdown */}
-          <div>
+          <div className="mobile-menu-item">
             <button
               onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-              className="custom-nav-link"
+              className={mobileServicesOpen ? "active" : ""}
             >
-              Services <ChevronDown size={16} />
+              Services <ChevronDown size={16} className="chevron" />
             </button>
-            <div className={`mobile-services-dropdown ${mobileServicesOpen ? "" : "closed"}`}>
-              <Link to="/services/softwar-development" onClick={closeMenu}>Software Development</Link>
-              <Link to="/services/website" onClick={closeMenu}>Website Development</Link>
-              <Link to="/services/mobile" onClick={closeMenu}>Mobile App Development</Link>
-              <Link to="/services/marketing" onClick={closeMenu}>Digital Marketing</Link>
-              <Link to="/services/graphics" onClick={closeMenu}>Graphics Design</Link>
-              <Link to="/services/domain" onClick={closeMenu}>Domain & Hosting</Link>
-              <Link to="/services/erp-crm" onClick={closeMenu}>ERP & CRM Development</Link>
-              <Link to="/services/maintenance" onClick={closeMenu}>Maintenance Services</Link>
-              <Link to="/services/more" onClick={closeMenu}>Explore More Services</Link>
+            <div
+              className={`mobile-services-dropdown ${
+                mobileServicesOpen ? "open" : ""
+              }`}
+            >
+              {serviceItems.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={location.pathname === item.path ? "active" : ""}
+                  onClick={closeMenu}
+                >
+                  {item.name}
+                </Link>
+              ))}
             </div>
           </div>
-          <Link to="/contact" className="custom-get-started" onClick={closeMenu}>
+          <Link
+            to="/contact"
+            className="mobile-get-started"
+            onClick={closeMenu}
+          >
             Grow My Brand
           </Link>
         </div>
