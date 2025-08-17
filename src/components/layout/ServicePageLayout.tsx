@@ -10,6 +10,8 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/ui/SectionHeading";
+import { softwareIconMap } from "@/data/softwareData";
+
 import Navbar from '../layout/Navbar';
 import Footer from '../layout/Footer';
 
@@ -247,24 +249,32 @@ const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
                 {section.content}
               </p>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
-                {softwareTypes.map((type, i) => (
-                  <motion.div
-                    key={i}
-                    whileHover={{ scale: 1.04 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="group relative p-8 rounded-3xl bg-gradient-to-br from-[#f0f5ff] via-white to-[#e6ecff] border border-[#e6ecff] transition-all cursor-pointer overflow-hidden transform"
-                  >
-                    {/* Glowing light effect on hover */}
-                    <div className="absolute inset-0 bg-[#6B8DFF] opacity-0 group-hover:opacity-20 transition-opacity duration-300 transform scale-150 rounded-full blur-2xl"></div>
+                {softwareTypes.map((type, i) => {
+                  const IconName = softwareIconMap[type.split(" ")[0]] || "HardDrive";
+                  const IconComponent = (Icons as any)[IconName];
+                  return (
+                    <motion.div
+                      key={i}
+                      whileHover={{ scale: 1.04 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="group relative p-8 rounded-3xl bg-gradient-to-br from-[#f0f5ff] via-white to-[#e6ecff] border border-[#e6ecff] transition-all cursor-pointer overflow-hidden transform"
+                    >
+                      {/* Glowing light effect on hover */}
+                      <div className="absolute inset-0 bg-[#6B8DFF] opacity-0 group-hover:opacity-20 transition-opacity duration-300 transform scale-150 rounded-full blur-2xl"></div>
 
-                    <div className="w-16 h-16 flex items-center justify-center rounded-full bg-[#E5F0FF] group-hover:bg-[#2562EA] transition-colors mb-5 z-10">
-                      {getIcon(type.split(" ")[0], Icons.HardDrive)} {/* Use HardDrive as a fallback */}
-                    </div>
-                    <p className="text-lg font-semibold text-gray-800 group-hover:text-white text-center transition-colors">
-                      {type}
-                    </p>
-                  </motion.div>
-                ))}
+                      <div className="w-16 h-16 flex items-center justify-center rounded-full bg-[#E5F0FF] group-hover:bg-[#2562EA] transition-colors mb-5 z-10">
+                        {IconComponent ? (
+                          <IconComponent className="h-8 w-8 text-[#2562EA] group-hover:text-white" />
+                        ) : (
+                          <Icons.HardDrive className="h-8 w-8 text-[#2562EA] group-hover:text-white" />
+                        )}
+                      </div>
+                      <p className="text-lg font-semibold text-gray-800 transition-colors">
+                        {type}
+                      </p>
+                    </motion.div>
+                  );
+                })}
               </div>
             </section>
           );
