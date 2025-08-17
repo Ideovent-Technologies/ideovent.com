@@ -140,18 +140,18 @@ export const softwareData: ServiceData = {
       image: "https://cdn.pixabay.com/photo/2016/11/29/06/15/analysis-1867008_1280.jpg",
     },
     {
-      heading: "Why Choose Ideovent?",
-      content:
-        "We don’t just build software, we build long-term partnerships. With a focus on innovation and usability, our team ensures you get software that not only works but delights.",
-      items: [
-        "Expert team with 10+ years of experience",
-        "Agile methodology for faster delivery",
-        "Future-ready scalable solutions",
-        "Dedicated support and maintenance",
-        "Custom-tailored solutions for any industry",
-      ],
-      image: "https://www.ideovent.com/ideovent.png",
-    },
+  heading: "Why Work With Us",
+  content:
+    "We combine innovation, expertise, and dedication to deliver results that matter. Here’s why businesses choose Ideovent:",
+  items: [
+    "50+ Projects Delivered – Proven track record of success",
+    "95% Client Satisfaction – Trusted by businesses across industries",
+    "Expert Team – Skilled developers for every stack",
+    "Scalable Solutions – Future-proof your business",
+  ],
+  image: "https://www.ideovent.com/ideovent.png",
+},
+
   ],
 
   faqs: [

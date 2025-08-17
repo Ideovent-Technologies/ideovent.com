@@ -180,7 +180,7 @@ const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
 >
   <div className="relative w-full rounded-3xl overflow-hidden shadow-xl">
     <video
-      src="https://cdn.pixabay.com/video/2019/05/06/23355-334950213_large.mp4"
+      src="https://cdn.pixabay.com/video/2019/03/20/22130-325481645_large.mp4"
       autoPlay
       loop
       muted
@@ -329,62 +329,42 @@ const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
 
         // Default rendering for other ExtraSections (e.g., "Why Choose Ideovent")
         return (
-          <section
-            key={idx}
-            className={`px-6 lg:px-24 py-20 ${
-              idx % 2 === 0 ? "bg-gray-50" : "bg-white"
-            } grid lg:grid-cols-2 gap-16 items-center`}
-          >
-            <motion.div
-              className={cn(idx % 2 !== 0 ? "order-last lg:order-first" : "")}
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-              viewport={{ once: true }}
-            >
-              <SectionHeading
-                text={section.heading}
-                gradientFrom="#2562EA"
-                gradientTo="#6B8DFF"
-                className="mb-8 text-center"
-              />
-              <p className="text-gray-700 mb-6 leading-relaxed">{section.content}</p>
-              {section.items && (
-                <ul className="text-gray-700 space-y-4">
-                  {section.items.map((item, i) => (
-                    <motion.li
-                      key={i}
-                      className="flex items-start gap-3 p-3 rounded-xl bg-gray-100 hover:bg-[#E5F0FF] transition-colors duration-300 transform hover:scale-[1.01]"
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.05, duration: 0.4 }}
-                      viewport={{ once: true }}
-                    >
-                      <Icons.CheckCircle2 className="w-6 h-6 text-[#2562EA] mt-1 flex-shrink-0" />
-                      <span className="font-medium text-gray-800">{item}</span>
-                    </motion.li>
-                  ))}
-                </ul>
-              )}
-            </motion.div>
-            {section.image && (
-              <motion.div
-                className="relative rounded-3xl overflow-hidden group"
-                initial={{ opacity: 0, scale: 0.96 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.7 }}
-                viewport={{ once: true }}
-              >
-                <img
-                  src={section.image}
-                  alt={section.heading}
-                  className="w-full object-cover rounded-3xl transform group-hover:scale-105 transition-transform duration-500"
-                />
-                {/* Image overlay effect on hover */}
-                <div className="absolute inset-0 bg-[#2562EA] opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-3xl"></div>
-              </motion.div>
-            )}
-          </section>
+           <section key={idx} className="px-6 lg:px-24 py-20 bg-white">
+    <SectionHeading
+      text={section.heading}
+      gradientFrom="#2562EA"
+      gradientTo="#6B8DFF"
+      className="mb-12 text-center"
+    />
+
+    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {section.items?.map((item, i) => (
+        <motion.div
+          key={i}
+          className="bg-gradient-to-br from-[#f0f5ff] via-white to-[#e6ecff] rounded-3xl shadow-md p-8 flex flex-col items-center text-center transition-transform hover:scale-105 hover:shadow-xl group"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: i * 0.1, duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          {/* Icon */}
+          <div className="w-16 h-16 flex items-center justify-center rounded-full bg-[#E5F0FF] group-hover:bg-[#2562EA] mb-5 transition-colors">
+            <Icons.CheckCircle2 className="w-8 h-8 text-[#2562EA] group-hover:text-white" />
+          </div>
+
+          {/* Number / Statistic */}
+          <h3 className="text-3xl font-extrabold text-[#2562EA] mb-2">
+            {item.split("–")[0].trim()}
+          </h3>
+
+          {/* Short Punchy Benefit */}
+          <p className="text-gray-700 font-medium">
+            {item.split("–")[1]?.trim() || ""}
+          </p>
+        </motion.div>
+      ))}
+    </div>
+  </section>
         );
       })}
 
