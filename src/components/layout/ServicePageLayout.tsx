@@ -9,7 +9,7 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion"; // Assuming shadcn/ui components are available
 import { Button } from "@/components/ui/button"; // Assuming shadcn/ui Button is available
-import SectionHeading from "@/components/ui/heading"; // Assuming SectionHeading component is available
+import SectionHeading from "@/components/ui/SectionHeading"; // Assuming SectionHeading component is available
 
 // Importing Navbar and Footer components
 import Navbar from '../layout/Navbar';
