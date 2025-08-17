@@ -1,4 +1,4 @@
-// D:\WEB DEVELOPMENT\ideovent.com\src\data\softwareData.ts
+import * as Icons from "lucide-react"; // ✅ needed for keyof typeof Icons
 
 export interface ExtraSection {
   heading: string;
@@ -47,8 +47,26 @@ export interface ServiceData {
   extraSections: ExtraSection[];
   faqs?: FAQ[];
   testimonials?: Testimonial[];
-  otherServices: OtherService[]; // ✅ required
+  otherServices: OtherService[];
 }
+
+// 🔹 Add your map here
+export const softwareIconMap: Record<string, keyof typeof Icons> = {
+  School: "School",             // School Management Software
+  Library: "BookOpen",          // Library Management
+  Hotel: "Hotel",               // Hotel Management
+  Gym: "Dumbbell",              // Gym Management
+  Billing: "FileText",          // Billing & Invoicing
+  Pathology: "TestTube",        // Pathology & Lab
+  Restaurant: "Utensils",       // Restaurant & POS
+  Inventory: "Boxes",           // Inventory & Warehouse
+  Garments: "Shirt",            // Garments & Textile
+  GST: "FileSpreadsheet",       // GST & Taxation
+  Vehicle: "ParkingCircle",     // Vehicle Standing
+  CarShowroom: "Car",              // Car/Bike Showroom CRM
+  RealEstate: "Building",       // Real Estate CRM
+  Hospital: "Hospital",   
+};
 
 export const otherServicesList: OtherService[] = [
   { name: "Website Development", path: "/services/website" },
@@ -64,32 +82,29 @@ export const softwareData: ServiceData = {
   title: "Custom Software Solutions",
   subtitle: "Tailored to Empower Your Business",
   description:
-    "At Ideovent, we craft tailored software solutions that help your business scale, automate processes, and achieve its full potential. From conception to deployment, we’re with you every step of the way. Our bespoke software is designed to solve complex business challenges and provide a competitive edge.",
+    "At Ideovent, we craft tailored software solutions that help your business scale, automate processes, and achieve its full potential...",
   image:
     "https://cdn.pixabay.com/photo/2022/01/29/13/08/programming-6977450_1280.jpg",
 
   bulletPoints: [
-    { text: "Strategic Planning & Analysis to define a clear roadmap and business goals.", icon: "CheckCircle" },
-    { text: "Creative UI/UX Design & Prototyping for an intuitive and engaging user experience.", icon: "Palette" },
-    { text: "Robust Implementation and coding with modern, scalable technology stacks.", icon: "Code2" },
-    { text: "Rigorous Integration & Testing to ensure a flawless, bug-free final product.", icon: "ShieldCheck" },
-    { text: "Dedicated Maintenance & Support for long-term reliability and continuous improvement.", icon: "Wrench" },
+    { text: "Strategic Planning & Analysis...", icon: "CheckCircle" },
+    { text: "Creative UI/UX Design & Prototyping...", icon: "Palette" },
+    { text: "Robust Implementation...", icon: "Code2" },
+    { text: "Rigorous Integration & Testing...", icon: "ShieldCheck" },
+    { text: "Dedicated Maintenance & Support...", icon: "Wrench" },
   ],
 
   cta: {
     text: "Let’s Build Your Custom Software",
     link: "/contact",
-    secondary: {
-      text: "Explore Our Portfolio",
-      link: "/portfolio",
-    },
+    secondary: { text: "Explore Our Portfolio", link: "/portfolio" },
   },
 
   extraSections: [
     {
       heading: "Which Types of Software We Provide",
       content:
-        "We build industry-ready solutions tailored to your unique needs. Our expertise spans across industries and business processes.",
+        "We build industry-ready solutions tailored to your unique needs...",
       items: [
         "School Management Software",
         "Library Management System",
@@ -106,7 +121,8 @@ export const softwareData: ServiceData = {
         "Real Estate CRM",
         "Hospital Management Systems",
       ],
-      image: "https://cdn.pixabay.com/photo/2018/01/16/07/00/software-3084200_1280.jpg",
+      image:
+        "https://cdn.pixabay.com/photo/2018/01/16/07/00/software-3084200_1280.jpg",
     },
     {
       heading: "The Software Development Lifecycle",
