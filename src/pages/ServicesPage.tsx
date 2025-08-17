@@ -4,38 +4,21 @@ import {
   Code, PenTool, Globe, ShoppingCart, Monitor, ArrowUpRight, Smartphone, Database, Server,
   Rocket, Lightbulb, Cloud, Shield
 } from 'lucide-react';
-import { Link } from 'react-router-dom'; // Assuming you are using React Router for navigation
-import { cn } from '@/lib/utils'; // Assuming a utility for class merging
+import { Link } from 'react-router-dom';
+import { cn } from '@/lib/utils';
 
-// A simple mock for a reusable Button component
-const Button = ({ children, className, variant = 'default', ...props }) => {
-  const baseClasses = 'px-6 py-3 rounded-full font-medium transition-all duration-300';
-  const variants = {
-    default: 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg',
-    outline: 'bg-transparent text-blue-600 border-2 border-blue-600 hover:bg-blue-50'
-  };
-  return (
-    <button className={cn(baseClasses, variants[variant], className)} {...props}>
-      {children}
-    </button>
-  );
-};
+import Navbar from '@/components/layout/Navbar';
+import Footer from '@/components/layout/Footer';
+import { Button } from '@/components/ui/button';
 
-// A simple mock for a ParallaxSection component
-const ParallaxSection = ({ children, bgImage, className, height = 'min-h-[60vh]' }) => {
-  return (
-    <div
-      className={cn("relative overflow-hidden bg-cover bg-fixed bg-center", height, className)}
-      style={{ backgroundImage: `url(${bgImage})` }}
-    >
-      {children}
-    </div>
-  );
-};
-
-// A simple mock for the Navbar and Footer components
-const Navbar = () => <div className="p-4 bg-white/30 backdrop-blur-sm fixed w-full z-50 shadow-md"></div>;
-const Footer = () => <div className="py-12 bg-gray-900 text-gray-50 text-center">Footer Content</div>;
+const ParallaxSection = ({ children, bgImage, className, height = 'min-h-[60vh]' }) => (
+  <div
+    className={cn("relative overflow-hidden bg-cover bg-fixed bg-center", height, className)}
+    style={{ backgroundImage: `url(${bgImage})` }}
+  >
+    {children}
+  </div>
+);
 
 const ServicesPage = () => {
   const [activeSection, setActiveSection] = useState('web');
@@ -45,7 +28,6 @@ const ServicesPage = () => {
     document.title = "Our Services - Ideovent Technologies";
   }, []);
 
-  // Updated and expanded services data
   const services = {
     web: [
       {
@@ -342,26 +324,10 @@ const ServicesPage = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
-                {
-                  step: "01",
-                  title: "Discovery",
-                  description: "We start by understanding your business, goals, and requirements in detail."
-                },
-                {
-                  step: "02",
-                  title: "Planning",
-                  description: "We create a comprehensive plan outlining the scope, timeline, and deliverables."
-                },
-                {
-                  step: "03",
-                  title: "Execution",
-                  description: "Our team works diligently to bring your project to life with regular updates."
-                },
-                {
-                  step: "04",
-                  title: "Delivery & Support",
-                  description: "We launch your project and provide ongoing support to ensure its success."
-                }
+                { step: "01", title: "Discovery", description: "We start by understanding your business, goals, and requirements in detail." },
+                { step: "02", title: "Planning", description: "We create a comprehensive plan outlining the scope, timeline, and deliverables." },
+                { step: "03", title: "Execution", description: "Our team works diligently to bring your project to life with regular updates." },
+                { step: "04", title: "Delivery & Support", description: "We launch your project and provide ongoing support to ensure its success." }
               ].map((step, index) => (
                 <motion.div
                   key={index}
