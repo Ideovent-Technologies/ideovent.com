@@ -16,30 +16,30 @@ import Navbar from '../layout/Navbar';
 import Footer from '../layout/Footer';
 
 // --- Interfaces (unchanged from original) ---
-interface BulletPoint {
+export interface BulletPoint {
   text: string;
   icon?: string;
 }
 
-interface ExtraSection {
+export interface ExtraSection {
   heading: string;
   content: string;
   items?: string[];
   image?: string;
 }
 
-interface FAQ {
+export interface FAQ {
   question: string;
   answer: string;
 }
 
-interface Testimonial {
+export interface Testimonial {
   name: string;
   role: string;
   feedback: string;
 }
 
-interface CTA {
+export interface CTA {
   text: string;
   link: string;
   secondary?: {
@@ -48,22 +48,29 @@ interface CTA {
   };
 }
 
-interface OtherService {
+export interface OtherService {
   name: string;
   path: string;
 }
 
-export interface ServicePageLayoutProps {
+export interface ServiceData {
   title: string;
   subtitle?: string;
   description: string;
   image: string;
   bulletPoints: BulletPoint[];
+  cta: CTA;
   extraSections: ExtraSection[];
   faqs?: FAQ[];
   testimonials?: Testimonial[];
-  cta: CTA;
   otherServices: OtherService[];
+}
+
+export interface ServiceCard {
+  title: string;
+  subtitle: string;
+  image: string;
+  icon?: string;
 }
 
 const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
@@ -113,88 +120,85 @@ const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
       <Navbar />
 
       {/* HERO SECTION */}
+      <section className="relative w-full min-h-screen px-4 sm:px-6 lg:px-24 py-16 lg:py-24 bg-gradient-to-br from-[#f0f5ff] to-[#e6ecff] rounded-3xl overflow-hidden flex flex-col lg:flex-row items-center">
+        {/* Left Content */}
+        <div className="relative z-10 w-full lg:w-1/2 mb-10 lg:mb-0">
+          {/* Animated Heading */}
+          <motion.h1
+            initial={{ opacity: 0, y: 50, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-gray-900 leading-tight mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#2562EA] to-[#6B8DFF]"
+          >
+            Tailored Software Solutions That Drive Growth
+          </motion.h1>
 
-<section className="relative w-full min-h-screen px-4 sm:px-6 lg:px-24 py-16 lg:py-24 bg-gradient-to-br from-[#f0f5ff] to-[#e6ecff] rounded-3xl overflow-hidden flex flex-col lg:flex-row items-center">
-  {/* Left Content */}
-  <div className="relative z-10 w-full lg:w-1/2 mb-10 lg:mb-0">
-    {/* Animated Heading */}
-    <motion.h1
-      initial={{ opacity: 0, y: 50, scale: 0.95 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-gray-900 leading-tight mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#2562EA] to-[#6B8DFF]"
-    >
-      Tailored Software Solutions That Drive Growth
-    </motion.h1>
+          {/* Subtitle */}
+          {subtitle && (
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.7 }}
+              className="text-xl sm:text-2xl lg:text-3xl font-semibold text-[#2562EA] mb-6"
+            >
+              {subtitle}
+            </motion.h2>
+          )}
 
-    {/* Subtitle */}
-    {subtitle && (
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.7 }}
-        className="text-xl sm:text-2xl lg:text-3xl font-semibold text-[#2562EA] mb-6"
-      >
-        {subtitle}
-      </motion.h2>
-    )}
+          {/* Description */}
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.7 }}
+            className="text-base sm:text-lg lg:text-xl text-gray-700 mb-8 max-w-full sm:max-w-xl leading-relaxed"
+          >
+            {description}
+          </motion.p>
 
-    {/* Description */}
-    <motion.p
-      initial={{ opacity: 0, y: 15 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.5, duration: 0.7 }}
-      className="text-base sm:text-lg lg:text-xl text-gray-700 mb-8 max-w-full sm:max-w-xl leading-relaxed"
-    >
-      {description}
-    </motion.p>
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.7, duration: 0.6 }}
+            className="flex flex-wrap gap-4 sm:gap-6"
+          >
+            <a
+              href="/contact"
+              className="px-6 py-3 sm:px-8 sm:py-4 rounded-3xl bg-gradient-to-r from-[#2562EA] to-[#6B8DFF] text-white font-semibold text-lg sm:text-xl transform hover:-translate-y-1 hover:scale-105 transition-all duration-300"
+            >
+              Get Started
+            </a>
+            <a
+              href="/consultation"
+              className="px-6 py-3 sm:px-8 sm:py-4 rounded-3xl bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold text-lg sm:text-xl transform hover:-translate-y-1 hover:scale-105 transition-all duration-300"
+            >
+              Get a Free Software Consultation
+            </a>
+          </motion.div>
+        </div>
 
-    {/* CTA Buttons */}
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 0.7, duration: 0.6 }}
-      className="flex flex-wrap gap-4 sm:gap-6"
-    >
-      <a
-        href="/contact"
-        className="px-6 py-3 sm:px-8 sm:py-4 rounded-3xl bg-gradient-to-r from-[#2562EA] to-[#6B8DFF] text-white font-semibold text-lg sm:text-xl transform hover:-translate-y-1 hover:scale-105 transition-all duration-300"
-      >
-        Get Started
-      </a>
-      <a
-        href="/consultation"
-        className="px-6 py-3 sm:px-8 sm:py-4 rounded-3xl bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold text-lg sm:text-xl transform hover:-translate-y-1 hover:scale-105 transition-all duration-300"
-      >
-        Get a Free Software Consultation
-      </a>
-    </motion.div>
-  </div>
-
-  {/* Right Image Carousel */}
-  <motion.div
-  className="w-full lg:w-1/2 relative"
-  initial={{ opacity: 0, x: 50, scale: 0.95 }}
-  animate={{ opacity: 1, x: 0, scale: 1 }}
-  transition={{ duration: 0.8, ease: "easeOut" }}
->
-  <div className="relative w-full rounded-3xl overflow-hidden shadow-xl">
-    <video
-      src="https://cdn.pixabay.com/video/2019/03/20/22130-325481645_large.mp4"
-      autoPlay
-      loop
-      muted
-      playsInline
-      className="w-full h-full object-cover rounded-3xl"
-    />
-    {/* Subtle Glow */}
-    <div className="absolute -top-10 -left-10 w-32 h-32 bg-[#6B8DFF] rounded-full opacity-20 blur-3xl animate-blob"></div>
-    <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-[#2562EA] rounded-full opacity-20 blur-3xl animate-blob animation-delay-2000"></div>
-  </div>
-</motion.div>
-
-</section>
-
+        {/* Right Image Carousel */}
+        <motion.div
+          className="w-full lg:w-1/2 relative"
+          initial={{ opacity: 0, x: 50, scale: 0.95 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <div className="relative w-full rounded-3xl overflow-hidden shadow-xl">
+            <video
+              src="https://cdn.pixabay.com/video/2019/03/20/22130-325481645_large.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover rounded-3xl"
+            />
+            {/* Subtle Glow */}
+            <div className="absolute -top-10 -left-10 w-32 h-32 bg-[#6B8DFF] rounded-full opacity-20 blur-3xl animate-blob"></div>
+            <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-[#2562EA] rounded-full opacity-20 blur-3xl animate-blob animation-delay-2000"></div>
+          </div>
+        </motion.div>
+      </section>
 
       {/* BULLET POINTS SECTION */}
       <section className="px-6 lg:px-24 py-20 bg-gray-50">
@@ -257,28 +261,67 @@ const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
               </p>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
                 {softwareTypes.map((type, i) => {
-                  const IconName = softwareIconMap[type.split(" ")[0]] || "HardDrive";
-                  const IconComponent = (Icons as any)[IconName];
+                  let key;
+                  if (type.includes("Car/Bike Showroom")) {
+                    key = "CarShowroom";
+                  } else if (type.includes("Real Estate")) {
+                    key = "RealEstate";
+                  } else if (type.includes("Restaurant")) {
+                    key = "Restaurant";
+                  } else if (type.includes("GST")) {
+                    key = "GST";
+                  } else if (type.includes("Pathology")) {
+                    key = "Pathology";
+                  } else if (type.includes("Inventory")) {
+                    key = "Inventory";
+                  } else if (type.includes("Garments")) {
+                    key = "Garments";
+                  } else if (type.includes("Vehicle")) {
+                    key = "Vehicle";
+                  } else if (type.includes("Billing")) {
+                    key = "Billing";
+                  } else {
+                    key = type.split(" ")[0];
+                  }
+
+                  const softwareData = softwareIconMap[key] || {
+                    icon: "HardDrive",
+                    image: "https://cdn.pixabay.com/photo/2023/11/24/16/09/ai-8410298_1280.jpg",
+                    subtitle: "Innovative Solutions"
+                  };
+                  const IconComponent = (Icons as any)[softwareData.icon];
+
                   return (
                     <motion.div
                       key={i}
                       whileHover={{ scale: 1.04 }}
                       whileTap={{ scale: 0.98 }}
-                      className="group relative p-8 rounded-3xl bg-gradient-to-br from-[#f0f5ff] via-white to-[#e6ecff] border border-[#e6ecff] transition-all cursor-pointer overflow-hidden transform"
+                      className="group relative rounded-3xl bg-white border border-[#e6ecff] overflow-hidden transition-all cursor-pointer transform"
                     >
-                      {/* Glowing light effect on hover */}
-                      <div className="absolute inset-0 bg-[#6B8DFF] opacity-0 group-hover:opacity-20 transition-opacity duration-300 transform scale-150 rounded-full blur-2xl"></div>
-
-                      <div className="w-16 h-16 flex items-center justify-center rounded-full bg-[#E5F0FF] group-hover:bg-[#2562EA] transition-colors mb-5 z-10">
-                        {IconComponent ? (
-                          <IconComponent className="h-8 w-8 text-[#2562EA] group-hover:text-white" />
-                        ) : (
-                          <Icons.HardDrive className="h-8 w-8 text-[#2562EA] group-hover:text-white" />
-                        )}
+                      <div className="relative w-full h-48 sm:h-56 overflow-hidden">
+                        <motion.img
+                          src={softwareData.image}
+                          alt={type}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-black bg-opacity-30 transition-opacity duration-300 group-hover:bg-opacity-10"></div>
                       </div>
-                      <p className="text-lg font-semibold text-gray-800 transition-colors">
-                        {type}
-                      </p>
+
+                      <div className="p-8">
+                        <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#E5F0FF] group-hover:bg-[#2562EA] transition-colors mb-4 z-10">
+                          {IconComponent ? (
+                            <IconComponent className="h-6 w-6 text-[#2562EA] group-hover:text-white" />
+                          ) : (
+                            <Icons.HardDrive className="h-6 w-6 text-[#2562EA] group-hover:text-white" />
+                          )}
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-800 transition-colors mb-1">
+                          {type}
+                        </h3>
+                        <p className="text-gray-600">
+                          {softwareData.subtitle}
+                        </p>
+                      </div>
                     </motion.div>
                   );
                 })}
@@ -310,9 +353,7 @@ const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
                     transition={{ delay: i * 0.1, duration: 0.5 }}
                     viewport={{ once: true }}
                   >
-                    {/* Animated ring background */}
                     <div className="absolute inset-0 rounded-3xl border-4 border-transparent group-hover:border-[#6B8DFF] transition-all duration-500 transform scale-100 group-hover:scale-105"></div>
-
                     <div className="relative w-24 h-24 flex items-center justify-center rounded-full bg-[#1c48a8] mb-5 group-hover:rotate-6 transition-transform duration-500">
                       {getFlowchartIcon(i + 1)}
                       <div className="absolute -top-4 -right-4 w-9 h-9 flex items-center justify-center rounded-full bg-[#6B8DFF] text-white text-lg font-bold">
@@ -327,44 +368,37 @@ const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
           );
         }
 
-        // Default rendering for other ExtraSections (e.g., "Why Choose Ideovent")
         return (
-           <section key={idx} className="px-6 lg:px-24 py-20 bg-white">
-    <SectionHeading
-      text={section.heading}
-      gradientFrom="#2562EA"
-      gradientTo="#6B8DFF"
-      className="mb-12 text-center"
-    />
-
-    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-      {section.items?.map((item, i) => (
-        <motion.div
-          key={i}
-          className="bg-gradient-to-br from-[#f0f5ff] via-white to-[#e6ecff] rounded-3xl shadow-md p-8 flex flex-col items-center text-center transition-transform hover:scale-105 hover:shadow-xl group"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: i * 0.1, duration: 0.5 }}
-          viewport={{ once: true }}
-        >
-          {/* Icon */}
-          <div className="w-16 h-16 flex items-center justify-center rounded-full bg-[#E5F0FF] group-hover:bg-[#2562EA] mb-5 transition-colors">
-            <Icons.CheckCircle2 className="w-8 h-8 text-[#2562EA] group-hover:text-white" />
-          </div>
-
-          {/* Number / Statistic */}
-          <h3 className="text-3xl font-extrabold text-[#2562EA] mb-2">
-            {item.split("–")[0].trim()}
-          </h3>
-
-          {/* Short Punchy Benefit */}
-          <p className="text-gray-700 font-medium">
-            {item.split("–")[1]?.trim() || ""}
-          </p>
-        </motion.div>
-      ))}
-    </div>
-  </section>
+          <section key={idx} className="px-6 lg:px-24 py-20 bg-white">
+            <SectionHeading
+              text={section.heading}
+              gradientFrom="#2562EA"
+              gradientTo="#6B8DFF"
+              className="mb-12 text-center"
+            />
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {section.items?.map((item, i) => (
+                <motion.div
+                  key={i}
+                  className="bg-gradient-to-br from-[#f0f5ff] via-white to-[#e6ecff] rounded-3xl shadow-md p-8 flex flex-col items-center text-center transition-transform hover:scale-105 hover:shadow-xl group"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1, duration: 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="w-16 h-16 flex items-center justify-center rounded-full bg-[#E5F0FF] group-hover:bg-[#2562EA] mb-5 transition-colors">
+                    <Icons.CheckCircle2 className="w-8 h-8 text-[#2562EA] group-hover:text-white" />
+                  </div>
+                  <h3 className="text-3xl font-extrabold text-[#2562EA] mb-2">
+                    {item.split("–")[0].trim()}
+                  </h3>
+                  <p className="text-gray-700 font-medium">
+                    {item.split("–")[1]?.trim() || ""}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </section>
         );
       })}
 
@@ -394,7 +428,6 @@ const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
                   <AccordionTrigger className="flex justify-between items-center text-lg lg:text-xl font-semibold text-gray-800 p-6 pr-4 hover:bg-gradient-to-r hover:from-[#2562EA]/10 hover:to-[#6B8DFF]/10 transition-all duration-300 rounded-3xl group">
                     {faq.question}
                   </AccordionTrigger>
-
                   <AccordionContent className="text-gray-700 p-6 border-t border-gray-100 bg-[#f0f5ff] text-base leading-relaxed rounded-b-3xl">
                     {faq.answer}
                   </AccordionContent>
@@ -414,7 +447,6 @@ const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
             gradientTo="#6B8DFF"
             className="mb-12 text-center text-3xl"
           />
-
           <div className="grid md:grid-cols-2 gap-10">
             {testimonials.map((t, idx) => (
               <motion.div
@@ -428,9 +460,7 @@ const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
                 transition={{ duration: 0.7, delay: idx * 0.1 }}
                 viewport={{ once: true }}
               >
-                {/* Large quote icon in background */}
                 <Icons.Quote className="absolute top-8 right-8 w-24 h-24 text-[#E5F0FF] opacity-70 rotate-180 -z-0 transform group-hover:scale-110 transition-transform duration-500" />
-
                 <div className="relative z-10">
                   <div className="flex items-center space-x-1 mb-4">
                     {[...Array(5)].map((_, i) => (
@@ -458,7 +488,6 @@ const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
           gradientTo="#6B8DFF"
           className="mb-10 text-center text-3xl"
         />
-
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {otherServices.map((service, idx) => (
             <motion.a
@@ -473,10 +502,7 @@ const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
               <p className="text-[#2562EA] font-semibold text-lg relative z-10 group-hover:text-white transition-colors duration-300">
                 {service.name}
               </p>
-              {/* Sliding arrow icon on hover */}
               <Icons.ArrowRight className="absolute right-4 top-1/2 -translate-y-1/2 text-[#2562EA] opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300 z-10" />
-
-              {/* Background gradient on hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-[#2562EA] to-[#6B8DFF] opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-x-0 group-hover:scale-x-100 transform origin-left"></div>
             </motion.a>
           ))}
