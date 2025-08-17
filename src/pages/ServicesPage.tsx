@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Code, PenTool, Globe, ShoppingCart, Monitor, ArrowUpRight, Smartphone, Database, Server } from 'lucide-react';
+import {
+  Code, PenTool, Globe, ShoppingCart, Monitor, ArrowUpRight, Smartphone, Database, Server,
+  Rocket, Lightbulb, Cloud, Shield
+} from 'lucide-react';
+import { Link } from 'react-router-dom'; // Assuming you are using React Router for navigation
 import { cn } from '@/lib/utils'; // Assuming a utility for class merging
 
 // A simple mock for a reusable Button component
@@ -41,25 +45,36 @@ const ServicesPage = () => {
     document.title = "Our Services - Ideovent Technologies";
   }, []);
 
+  // Updated and expanded services data
   const services = {
     web: [
       {
         icon: <Code size={28} />,
         title: "Website Development",
-        description: "Custom websites built with React.js, WordPress, or other technologies tailored to your needs. We focus on creating fast, responsive, and user-friendly websites that drive results.",
-        features: ["Responsive Web Design", "E-commerce Solutions", "Progressive Web Apps", "CMS Integration", "Performance Optimization"]
+        description: "Custom websites built with React.js, WordPress, or other technologies tailored to your needs. We create fast, responsive, and user-friendly websites that drive results.",
+        features: ["Responsive Web Design", "E-commerce Solutions", "Progressive Web Apps", "CMS Integration", "Performance Optimization"],
+        link: "/services/website"
       },
       {
         icon: <Server size={28} />,
         title: "Web Application Development",
         description: "Powerful web applications that solve complex business problems and streamline operations. We use modern frameworks and technologies to build scalable solutions.",
-        features: ["Custom Dashboard Development", "Real-time Applications", "Enterprise Solutions", "Database Design & Integration", "API Development"]
+        features: ["Custom Dashboard Development", "Real-time Applications", "Enterprise Solutions", "Database Design & Integration", "API Development"],
+        link: "/services/software-development"
       },
       {
         icon: <Database size={28} />,
-        title: "CMS Development",
-        description: "Custom content management systems that make it easy to update and manage your website. We build solutions that are tailored to your specific needs.",
-        features: ["WordPress Development", "Headless CMS Solutions", "Custom CMS Development", "CMS Migration", "Content Strategy"]
+        title: "ERP & CRM Development",
+        description: "Develop and integrate custom ERP and CRM systems to manage your business processes efficiently and automate workflows.",
+        features: ["Sales & Marketing Automation", "Customer Support Systems", "Inventory Management", "Human Resources Systems", "Custom Reporting"],
+        link: "/services/erp-crm"
+      },
+      {
+        icon: <Cloud size={28} />,
+        title: "Domain & Hosting",
+        description: "Secure and reliable domain registration and hosting services to ensure your website is always up and running smoothly.",
+        features: ["High-speed Hosting", "SSL Certificates", "24/7 Support", "Email Services", "Domain Management"],
+        link: "/services/domain"
       }
     ],
     design: [
@@ -67,27 +82,31 @@ const ServicesPage = () => {
         icon: <PenTool size={28} />,
         title: "UI/UX Design",
         description: "User-centered design that enhances user experience and engagement with your brand. We create intuitive interfaces that keep users coming back.",
-        features: ["User Research", "Wireframing & Prototyping", "Interface Design", "Usability Testing", "Design Systems"]
+        features: ["User Research", "Wireframing & Prototyping", "Interface Design", "Usability Testing", "Design Systems"],
+        link: "/services/graphics"
       },
       {
         icon: <Monitor size={28} />,
         title: "Brand Identity",
         description: "Comprehensive brand identity design that helps you stand out in the market. We create cohesive brand experiences across all customer touchpoints.",
-        features: ["Logo Design", "Visual Identity", "Brand Guidelines", "Marketing Collateral", "Brand Strategy"]
+        features: ["Logo Design", "Visual Identity", "Brand Guidelines", "Marketing Collateral", "Brand Strategy"],
+        link: "/services/graphics"
       }
     ],
     marketing: [
       {
         icon: <Globe size={28} />,
-        title: "SEO & Digital Marketing",
+        title: "Digital Marketing",
         description: "Optimize your online presence and reach your target audience effectively. We help you get found by the right people at the right time.",
-        features: ["Search Engine Optimization", "Content Marketing", "Social Media Strategy", "Email Marketing", "Analytics & Reporting"]
+        features: ["Search Engine Optimization", "Content Marketing", "Social Media Strategy", "Email Marketing", "Analytics & Reporting"],
+        link: "/services/marketing"
       },
       {
         icon: <ShoppingCart size={28} />,
         title: "E-Commerce Marketing",
         description: "Specialized marketing strategies for online stores that drive traffic and increase conversions. We help you sell more products online.",
-        features: ["Conversion Rate Optimization", "Product Listing Optimization", "Shopping Feed Management", "Abandoned Cart Recovery", "Customer Retention"]
+        features: ["Conversion Rate Optimization", "Product Listing Optimization", "Shopping Feed Management", "Abandoned Cart Recovery", "Customer Retention"],
+        link: "/services/marketing"
       }
     ],
     mobile: [
@@ -95,10 +114,35 @@ const ServicesPage = () => {
         icon: <Smartphone size={28} />,
         title: "Mobile App Development",
         description: "Native and cross-platform mobile applications that provide seamless experiences on iOS and Android devices. We build apps that users love.",
-        features: ["iOS & Android Development", "React Native Apps", "Mobile UI/UX Design", "App Store Optimization", "App Maintenance & Support"]
+        features: ["iOS & Android Development", "React Native Apps", "Mobile UI/UX Design", "App Store Optimization", "App Maintenance & Support"],
+        link: "/services/mobile"
+      }
+    ],
+    other: [
+      {
+        icon: <Shield size={28} />,
+        title: "Maintenance Services",
+        description: "Keep your digital products secure, up-to-date, and performing optimally with our comprehensive maintenance and support packages.",
+        features: ["Security Monitoring", "Performance Audits", "Bug Fixing", "Feature Updates", "Technical Support"],
+        link: "/services/maintenance"
+      },
+      {
+        icon: <Lightbulb size={28} />,
+        title: "Explore More Services",
+        description: "Have a unique project in mind? Our team is ready to provide custom solutions tailored to your specific business needs and challenges.",
+        features: ["IT Consulting", "Cloud Solutions", "API Integration", "Custom Software", "IT Infrastructure"],
+        link: "/services/more"
       }
     ]
   };
+
+  const serviceCategories = [
+    { id: 'web', label: 'Web Development' },
+    { id: 'design', label: 'Design & Graphics' },
+    { id: 'marketing', label: 'Digital Marketing' },
+    { id: 'mobile', label: 'Mobile Apps' },
+    { id: 'other', label: 'Other Services' }
+  ];
 
   return (
     <div className="bg-gray-50 font-[Inter] min-h-screen flex flex-col">
@@ -161,14 +205,9 @@ const ServicesPage = () => {
               </motion.p>
             </div>
 
-            {/* Service Categories (Improved) */}
+            {/* Service Categories */}
             <div className="flex flex-wrap justify-center gap-4 mb-12">
-              {[
-                { id: 'web', label: 'Web Development' },
-                { id: 'design', label: 'Design' },
-                { id: 'marketing', label: 'Marketing' },
-                { id: 'mobile', label: 'Mobile Apps' }
-              ].map((category) => (
+              {serviceCategories.map((category) => (
                 <motion.button
                   key={category.id}
                   className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2
@@ -185,7 +224,7 @@ const ServicesPage = () => {
               ))}
             </div>
 
-            {/* Service Cards (Glassmorphism & Animated) */}
+            {/* Service Cards */}
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeSection}
@@ -228,10 +267,13 @@ const ServicesPage = () => {
                       ))}
                     </div>
                     <div className="pt-4 border-t border-gray-100 w-full">
-                      <a href="#" className="inline-flex items-center text-blue-600 font-semibold group-hover:text-blue-700 transition-colors">
+                      <Link
+                        to={service.link}
+                        className="inline-flex items-center text-blue-600 font-semibold group-hover:text-blue-700 transition-colors"
+                      >
                         Learn More
                         <ArrowUpRight className="ml-2 h-4 w-4 transform transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                      </a>
+                      </Link>
                     </div>
                   </motion.div>
                 ))}
