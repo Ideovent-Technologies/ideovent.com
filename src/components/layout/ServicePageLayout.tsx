@@ -121,7 +121,7 @@ const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
             initial={{ opacity: 0, y: 50, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-gray-900 leading-tight mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#2562EA] to-[#6B8DFF]"
+            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#2562EA] to-[#2562EA]"
           >
             {title}
           </motion.h1>
@@ -132,7 +132,7 @@ const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.7 }}
-              className="text-xl sm:text-2xl lg:text-3xl font-semibold text-[#2562EA] mb-6"
+              className="text-xl sm:text-2xl lg:text-3xl font-semibold text-[#2562AA] mb-6"
             >
               {subtitle}
             </motion.h2>
