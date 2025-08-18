@@ -101,7 +101,7 @@ const ComparisonSection = () => {
     <section className="relative min-h-screen flex items-center justify-center p-4 bg-blue-50 overflow-hidden">
       <motion.div className="relative w-full max-w-7xl bg-white/20 backdrop-blur-lg rounded-2xl shadow-lg p-4 sm:p-6 md:p-8 overflow-hidden">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 text-center mb-6 sm:mb-8">
-          Why Choose <span className="text-primary">{`Ideovent Technologies?`}</span>
+          How <span className="text-primary">Ideovent Technologies</span> Stands Apart
         </h2>
 
         <div className="grid lg:grid-cols-2 gap-4 lg:gap-6">

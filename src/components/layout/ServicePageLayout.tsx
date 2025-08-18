@@ -1,3 +1,5 @@
+// src/components/layout/ServicePageLayout.tsx
+
 import React from "react";
 import { motion } from "framer-motion";
 import * as Icons from "lucide-react";
@@ -14,6 +16,7 @@ import { softwareIconMap } from "@/data/softwareData";
 
 import Navbar from '../layout/Navbar';
 import Footer from '../layout/Footer';
+import SubNavbar from '../layout/SubNavbar'; // Import the new component
 
 // --- Interfaces (unchanged from original) ---
 export interface BulletPoint {
@@ -72,6 +75,7 @@ export interface ServiceCard {
   image: string;
   icon?: string;
 }
+type ServicePageLayoutProps = ServiceData;
 
 const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
   title,
@@ -85,6 +89,18 @@ const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
   cta,
   otherServices,
 }) => {
+  // Define sections for the Sub-navbar
+  const sections = [
+    { id: "what-we-deliver", name: "What We Deliver" },
+    ...extraSections.map((section, idx) => ({
+      id: `section-${idx}`,
+      name: section.heading,
+    })),
+    ...(faqs && faqs.length > 0 ? [{ id: "faqs", name: "FAQs" }] : []),
+    ...(testimonials && testimonials.length > 0 ? [{ id: "testimonials", name: "Testimonials" }] : []),
+    { id: "other-services", name: "Other Services" },
+  ];
+
   // Helper function to dynamically get Lucide icons
   const getIcon = (iconName: string, defaultIcon?: React.ElementType) => {
     const IconComponent = (Icons as any)[iconName];
@@ -118,9 +134,10 @@ const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
   return (
     <div className="flex flex-col font-['Inter'] antialiased">
       <Navbar />
+      
 
       {/* HERO SECTION */}
-      <section className="relative w-full min-h-screen px-4 sm:px-6 lg:px-24 py-16 lg:py-24 bg-gradient-to-br from-[#f0f5ff] to-[#e6ecff] rounded-3xl overflow-hidden flex flex-col lg:flex-row items-center">
+      <section id="hero" className="relative w-full min-h-screen px-4 sm:px-6 lg:px-24 py-16 lg:py-24 bg-gradient-to-br from-[#f0f5ff] to-[#e6ecff] rounded-3xl overflow-hidden flex flex-col lg:flex-row items-center">
         {/* Left Content */}
         <div className="relative z-10 w-full lg:w-1/2 mb-10 lg:mb-0">
           {/* Animated Heading */}
@@ -201,7 +218,8 @@ const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
       </section>
 
       {/* BULLET POINTS SECTION */}
-      <section className="px-6 lg:px-24 py-20 bg-gray-50">
+      <SubNavbar sections={sections} />
+      <section id="what-we-deliver" className="px-6 lg:px-24 py-20 bg-gray-50">
         <SectionHeading text="What We Deliver" gradientFrom="#2562EA" gradientTo="#6B8DFF" />
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 perspective-1000">
@@ -242,14 +260,16 @@ const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
             );
           })}
         </div>
+        
       </section>
 
       {/* EXTRA SECTIONS */}
       {extraSections.map((section, idx) => {
+        const sectionId = `section-${idx}`;
         if (section.heading.includes("Which Types of Software")) {
           const softwareTypes = section.items || [];
           return (
-            <section key={idx} className="px-6 lg:px-24 py-20 bg-white">
+            <section key={idx} id={sectionId} className="px-6 lg:px-24 py-20 bg-white">
               <SectionHeading
                 text={section.heading}
                 gradientFrom="#2562EA"
@@ -333,7 +353,7 @@ const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
         if (section.heading.includes("The Software Development Lifecycle")) {
           const steps = section.items || [];
           return (
-            <section key={idx} className="px-6 lg:px-24 py-20 bg-gray-50">
+            <section key={idx} id={sectionId} className="px-6 lg:px-24 py-20 bg-gray-50">
               <SectionHeading
                 text={section.heading}
                 gradientFrom="#2562EA"
@@ -369,7 +389,7 @@ const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
         }
 
         return (
-          <section key={idx} className="px-6 lg:px-24 py-20 bg-white">
+          <section key={idx} id={sectionId} className="px-6 lg:px-24 py-20 bg-white">
             <SectionHeading
               text={section.heading}
               gradientFrom="#2562EA"
@@ -404,7 +424,7 @@ const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
 
       {/* FAQ SECTION */}
       {faqs && faqs.length > 0 && (
-        <section className="px-6 lg:px-24 py-20 bg-gray-50">
+        <section id="faqs" className="px-6 lg:px-24 py-20 bg-gray-50">
           <SectionHeading
             text="Frequently Asked Questions"
             gradientFrom="#2562EA"
@@ -440,7 +460,7 @@ const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
 
       {/* TESTIMONIALS SECTION */}
       {testimonials && testimonials.length > 0 && (
-        <section className="px-6 lg:px-24 py-16 bg-white">
+        <section id="testimonials" className="px-6 lg:px-24 py-16 bg-white">
           <SectionHeading
             text="What Our Clients Say"
             gradientFrom="#2562EA"
@@ -481,7 +501,7 @@ const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
       )}
 
       {/* OTHER SERVICES SECTION */}
-      <section className="px-6 lg:px-24 pb-24">
+      <section id="other-services" className="px-6 lg:px-24 pb-24">
         <SectionHeading
           text="Explore Other Services"
           gradientFrom="#2562EA"
