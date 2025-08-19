@@ -8,6 +8,7 @@ import Footer from '../components/layout/Footer';
 import ComparisonSection from '../components/sections/ComparisonSection';
 import ServicesSection from "../components/sections/ServicesSection";
 import WhyChooseUs from "../components/sections/WhyChooseUs";
+import FloatingCTA from '@/components/sections/FloatingCTA';
 
 const Index = () => {
   useEffect(() => {
@@ -26,6 +27,7 @@ const Index = () => {
         <WhyChooseUs />
         <Testimonials />
         <ContactForm />
+        <FloatingCTA />
       </main>
       <Footer />
     </div>
