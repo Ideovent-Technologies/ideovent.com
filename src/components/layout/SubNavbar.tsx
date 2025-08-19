@@ -11,7 +11,7 @@ const SubNavbar: React.FC<SubNavbarProps> = ({ sections }) => {
   const [active, setActive] = useState<string>("");
   const [navTop, setNavTop] = useState<number>(72); // default fallback
 
-  // 🔹 Measure navbar height dynamically (responsive)
+  // 🔹 Measure main navbar height dynamically
   useEffect(() => {
     const measure = () => {
       const navbar = document.querySelector<HTMLElement>(".custom-navbar");
@@ -30,7 +30,7 @@ const SubNavbar: React.FC<SubNavbarProps> = ({ sections }) => {
     };
   }, []);
 
-  // 🔹 Highlight active section on scroll (accounts for navbar height)
+  // 🔹 Highlight active section on scroll
   useEffect(() => {
     const handleScroll = () => {
       let current = "";
@@ -52,30 +52,41 @@ const SubNavbar: React.FC<SubNavbarProps> = ({ sections }) => {
   }, [sections, navTop]);
 
   return (
-    <nav className="sticky top-0 z-30 backdrop-blur-md bg-white/70 border-b border-gray-200/50 shadow-sm">
+    <nav
+      className="z-30 backdrop-blur-md bg-white/70 border-b border-gray-200/50 shadow-sm"
+      style={{ position: "sticky", top: navTop }} // ✅ sticks below main navbar
+    >
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="
-      flex flex-wrap items-center justify-center
-      gap-4 sm:gap-6 md:gap-10
-      px-4 sm:px-6 md:px-8
-      py-2 sm:py-3
-    "
+          flex overflow-x-auto no-scrollbar
+          items-center justify-center
+          gap-4 sm:gap-6 md:gap-10
+          px-4 sm:px-6 md:px-8
+          py-2 sm:py-3
+        "
       >
         {sections.map((section) => (
           <a
             key={section.id}
             href={`#${section.id}`}
             className={cn(
-              "relative whitespace-nowrap text-sm sm:text-base font-medium transition-all duration-300",
+              "group relative whitespace-nowrap text-sm sm:text-base font-medium transition-all duration-300 px-3 py-2 rounded-md",
               active === section.id
-                ? "text-[#2562EA]"
-                : "text-gray-600 hover:text-[#2562EA] hover:scale-105"
+                ? "text-[#2562EA] bg-blue-50 shadow-sm"
+                : "text-gray-600 hover:text-[#2562EA] hover:bg-blue-50/40"
             )}
           >
             {section.name}
+
+            {/* 🔹 Hover underline animation */}
+            <span
+              className="absolute left-1/2 bottom-1 h-[2px] w-0 bg-gradient-to-r from-[#2562EA] to-[#4f8efc] rounded-full transition-all duration-300 group-hover:w-full group-hover:left-0"
+            />
+
+            {/* 🔹 Active underline */}
             {active === section.id && (
               <motion.div
                 layoutId="underline"
