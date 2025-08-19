@@ -14,8 +14,7 @@ const teamData = {
     {
       name: "Animesh Raturi",
       role: "Co-Founder & CEO",
-      image:
-        "animeshprofile.jpeg", // replace with his real photo if you want
+      image: "animeshprofile.jpeg", // replace with his real photo if you want
       socials: { linkedin: "#", twitter: "#" },
     },
     {
@@ -33,6 +32,7 @@ const teamData = {
       socials: { linkedin: "#", facebook: "#" },
     },
   ],
+  // Add more sections and their respective data here 
   "Product & Management": [],
   Developers: [],
   "Operations & Support": [],
