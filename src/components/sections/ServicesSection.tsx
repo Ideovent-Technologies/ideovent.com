@@ -29,7 +29,7 @@ const services = [
     title: "Website Development",
     desc: "We provide website design & development to make your business online to drive more customers and sales.",
     icon: <Globe size={28} />,
-    path: "/services/website"
+    path: "/services/website-development"
   },
   {
     title: "Mobile App Development",
