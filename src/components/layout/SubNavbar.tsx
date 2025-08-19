@@ -53,51 +53,53 @@ const SubNavbar: React.FC<SubNavbarProps> = ({ sections }) => {
 
   return (
     <nav
-      className="z-30 backdrop-blur-md bg-white/70 border-b border-gray-200/50 shadow-sm"
-      style={{ position: "sticky", top: navTop }} // ✅ sticks below main navbar
-    >
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="
-          flex overflow-x-auto no-scrollbar
-          items-center justify-center
-          gap-4 sm:gap-6 md:gap-10
-          px-4 sm:px-6 md:px-8
-          py-2 sm:py-3
-        "
+  className="z-30 backdrop-blur-md bg-white/70 border-b border-gray-200/50 shadow-sm"
+  style={{ position: "sticky", top: navTop }}
+>
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.6, ease: "easeOut" }}
+    className="
+      flex overflow-x-auto no-scrollbar
+      items-center justify-start
+      gap-3 sm:gap-6 md:gap-10
+      px-4 sm:px-6 md:px-8
+      py-2 sm:py-3
+      snap-x snap-mandatory
+    "
+  >
+    {sections.map((section) => (
+      <a
+        key={section.id}
+        href={`#${section.id}`}
+        className={cn(
+          "group relative whitespace-nowrap text-sm sm:text-base md:text-lg font-medium transition-all duration-300 px-3 py-2 rounded-md min-h-[44px] flex items-center justify-center snap-start",
+          active === section.id
+            ? "text-[#2562EA] bg-blue-50 shadow-sm"
+            : "text-gray-600 hover:text-[#2562EA] hover:bg-blue-50/40"
+        )}
       >
-        {sections.map((section) => (
-          <a
-            key={section.id}
-            href={`#${section.id}`}
-            className={cn(
-              "group relative whitespace-nowrap text-sm sm:text-base font-medium transition-all duration-300 px-3 py-2 rounded-md",
-              active === section.id
-                ? "text-[#2562EA] bg-blue-50 shadow-sm"
-                : "text-gray-600 hover:text-[#2562EA] hover:bg-blue-50/40"
-            )}
-          >
-            {section.name}
+        {section.name}
 
-            {/* 🔹 Hover underline animation */}
-            <span
-              className="absolute left-1/2 bottom-1 h-[2px] w-0 bg-gradient-to-r from-[#2562EA] to-[#4f8efc] rounded-full transition-all duration-300 group-hover:w-full group-hover:left-0"
-            />
+        {/* Hover underline animation */}
+        <span
+          className="absolute left-1/2 bottom-1 h-[2px] w-0 bg-gradient-to-r from-[#2562EA] to-[#4f8efc] rounded-full transition-all duration-300 group-hover:w-full group-hover:left-0"
+        />
 
-            {/* 🔹 Active underline */}
-            {active === section.id && (
-              <motion.div
-                layoutId="underline"
-                transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                className="absolute left-0 -bottom-1 h-[3px] w-full rounded-full bg-gradient-to-r from-[#2562EA] to-[#4f8efc]"
-              />
-            )}
-          </a>
-        ))}
-      </motion.div>
-    </nav>
+        {/* Active underline */}
+        {active === section.id && (
+          <motion.div
+            layoutId="underline"
+            transition={{ type: "spring", stiffness: 500, damping: 30 }}
+            className="absolute left-0 -bottom-1 h-[3px] w-full rounded-full bg-gradient-to-r from-[#2562EA] to-[#4f8efc]"
+          />
+        )}
+      </a>
+    ))}
+  </motion.div>
+</nav>
+
   );
 };
 
