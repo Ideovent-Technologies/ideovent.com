@@ -19,7 +19,7 @@ import InternshipPage from "./pages/InternshipPage";
 const queryClient = new QueryClient();
 
 import SoftwareDevelopment from "./pages/services/SoftwareDevelopment";
-// import WebsiteDevelopment from "./pages/services/WebsiteDevelopment";
+import WebsiteDevelopment from "./pages/services/WebsiteDevelopment";
 // import MobileAppDevelopment from "./pages/services/MobileAppDevelopment";
 // import DigitalMarketing from "./pages/services/DigitalMarketing";
 // import GraphicsDesign from "./pages/services/GraphicsDesign";
@@ -49,7 +49,8 @@ const App = () => (
           <Route path="/admin/qrcodes" element={<QRCodeList />} />
 
           <Route path="/services/software-development" element={<SoftwareDevelopment />} />
-{/* <Route path="/services/website-development" element={<WebsiteDevelopment />} />
+          <Route path="/services/website-development" element={<WebsiteDevelopment />} />
+{/* 
 <Route path="/services/mobile-app-development" element={<MobileAppDevelopment />} />
 <Route path="/services/digital-marketing" element={<DigitalMarketing />} />
 <Route path="/services/graphics-design" element={<GraphicsDesign />} />
