@@ -35,7 +35,7 @@ const ServicesPage = () => {
         title: "Website Development",
         description: "Custom websites built with React.js, WordPress, or other technologies tailored to your needs. We create fast, responsive, and user-friendly websites that drive results.",
         features: ["Responsive Web Design", "E-commerce Solutions", "Progressive Web Apps", "CMS Integration", "Performance Optimization"],
-        link: "/services/website"
+        link: "/services/website-development"
       },
       {
         icon: <Server size={28} />,
