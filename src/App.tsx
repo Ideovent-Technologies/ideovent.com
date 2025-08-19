@@ -20,6 +20,7 @@ const queryClient = new QueryClient();
 
 import SoftwareDevelopment from "./pages/services/SoftwareDevelopment";
 import WebsiteDevelopment from "./pages/services/WebsiteDevelopment";
+import FloatingCTA from "./components/sections/FloatingCTA";
 // import MobileAppDevelopment from "./pages/services/MobileAppDevelopment";
 // import DigitalMarketing from "./pages/services/DigitalMarketing";
 // import GraphicsDesign from "./pages/services/GraphicsDesign";
@@ -60,6 +61,7 @@ const App = () => (
 <Route path="/services/explore-more" element={<ExploreMoreServices />} /> */}
 
         </Routes>
+        <FloatingCTA />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
