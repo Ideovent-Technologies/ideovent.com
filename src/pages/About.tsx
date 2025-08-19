@@ -13,28 +13,32 @@ import SubNavbar from '../components/layout/SubNavbar';
 import TeamSection from '../components/sections/TeamSection';
 
 const About = () => {
+  // Scrolls to the top of the page when the component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  // Defines the sections for the SubNavbar
   const sections = [
     { id: 'overview', name: 'Overview' },
+    { id: 'team', name: 'Team' },
+    { id: 'services', name: 'Services' }, // Corrected ID to match the section below
     { id: 'milestones', name: 'Milestones' },
     { id: 'comparison', name: 'Comparison' },
     { id: 'why-choose-us', name: 'Why Choose Us' },
     { id: 'testimonials', name: 'Testimonials' },
     { id: 'contact', name: 'Contact' },
-    { id: 'team', name: 'Team' },
   ];
 
   return (
+    // Main container uses flexbox for a full-height, flexible layout
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
         <AboutHero />
         <SubNavbar sections={sections} />
 
-        {/* Sections with matching IDs */}
+        {/* Sections with matching IDs for the SubNavbar to link to */}
         <section id="overview">
           <Overview />
         </section>

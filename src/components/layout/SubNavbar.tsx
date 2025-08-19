@@ -9,8 +9,28 @@ interface SubNavbarProps {
 
 const SubNavbar: React.FC<SubNavbarProps> = ({ sections }) => {
   const [active, setActive] = useState<string>("");
+  const [navTop, setNavTop] = useState<number>(72); // default fallback
 
-  // Highlight active section on scroll
+  // 🔹 Measure navbar height dynamically (responsive)
+  useEffect(() => {
+    const measure = () => {
+      const navbar = document.querySelector<HTMLElement>(".custom-navbar");
+      if (navbar) {
+        setNavTop(navbar.offsetHeight);
+      }
+    };
+
+    measure(); // Run once on mount
+    window.addEventListener("resize", measure);
+    window.addEventListener("orientationchange", measure);
+
+    return () => {
+      window.removeEventListener("resize", measure);
+      window.removeEventListener("orientationchange", measure);
+    };
+  }, []);
+
+  // 🔹 Highlight active section on scroll (accounts for navbar height)
   useEffect(() => {
     const handleScroll = () => {
       let current = "";
@@ -18,7 +38,7 @@ const SubNavbar: React.FC<SubNavbarProps> = ({ sections }) => {
         const el = document.getElementById(section.id);
         if (el) {
           const rect = el.getBoundingClientRect();
-          if (rect.top <= 120 && rect.bottom >= 120) {
+          if (rect.top <= navTop + 10 && rect.bottom >= navTop + 10) {
             current = section.id;
           }
         }
@@ -29,22 +49,27 @@ const SubNavbar: React.FC<SubNavbarProps> = ({ sections }) => {
     window.addEventListener("scroll", handleScroll);
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [sections]);
+  }, [sections, navTop]);
 
   return (
-    <motion.nav
-      initial={{ y: -50, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="sticky top-[72px] z-30 backdrop-blur-md bg-white/70 border-b border-gray-200/50 shadow-sm"
-    >
-      <div className="flex items-center justify-center gap-6 sm:gap-10 px-4 sm:px-8 py-3 overflow-x-auto scrollbar-hide">
+    <nav className="sticky top-0 z-30 backdrop-blur-md bg-white/70 border-b border-gray-200/50 shadow-sm">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="
+      flex flex-wrap items-center justify-center
+      gap-4 sm:gap-6 md:gap-10
+      px-4 sm:px-6 md:px-8
+      py-2 sm:py-3
+    "
+      >
         {sections.map((section) => (
           <a
             key={section.id}
             href={`#${section.id}`}
             className={cn(
-              "relative text-sm sm:text-base font-medium transition-all duration-300",
+              "relative whitespace-nowrap text-sm sm:text-base font-medium transition-all duration-300",
               active === section.id
                 ? "text-[#2562EA]"
                 : "text-gray-600 hover:text-[#2562EA] hover:scale-105"
@@ -60,8 +85,8 @@ const SubNavbar: React.FC<SubNavbarProps> = ({ sections }) => {
             )}
           </a>
         ))}
-      </div>
-    </motion.nav>
+      </motion.div>
+    </nav>
   );
 };
 

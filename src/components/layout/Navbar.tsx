@@ -32,7 +32,7 @@ const Navbar = () => {
 
   const serviceItems = [
     { name: "Software Development", path: "/services/software-development" },
-    { name: "Website Development", path: "/services/website" },
+    { name: "Website Development", path: "/services/website-development" },
     { name: "Mobile App Development", path: "/services/mobile" },
     { name: "Digital Marketing", path: "/services/marketing" },
     { name: "Graphics Design", path: "/services/graphics" },
