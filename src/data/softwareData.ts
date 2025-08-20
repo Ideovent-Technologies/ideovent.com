@@ -23,7 +23,7 @@ export const softwareIconMap: Record<
   },
   Gym: {
     icon: "Dumbbell",
-    image: "https://cdn.pixabay.com/photo/2023/09/11/14/19/weights-8246972_1240.jpg",
+    image: "https://cdn.pixabay.com/photo/2022/07/17/19/43/man-7328236_1280.png",
     subtitle: "Manage Memberships & Classes",
   },
   Billing: {

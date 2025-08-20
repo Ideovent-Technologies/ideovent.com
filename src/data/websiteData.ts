@@ -58,37 +58,37 @@ export const websiteCategoryContentMap: Record<
   },
   Ecommerce: {
     icon: "ShoppingCart",
-    image: "https://images.pexels.com/photos/33280388/pexels-photo-33280388.jpeg",
+    image: "https://cdn.pixabay.com/photo/2016/08/17/04/43/template-1599667_1280.png",
     subtitle: "Sell Online with Ease",
   },
   Portfolio: {
     icon: "Image",
-    image: "https://images.pexels.com/photos/33280388/pexels-photo-33280388.jpeg",
+    image: "https://cdn.pixabay.com/photo/2020/04/03/06/35/work-4997565_1280.png",
     subtitle: "Showcase Your Best Work",
   },
   Blog: {
     icon: "Newspaper",
-    image: "https://images.pexels.com/photos/33280388/pexels-photo-33280388.jpeg",
+    image: "https://cdn.pixabay.com/photo/2022/10/01/11/34/youtube-7491354_1280.png",
     subtitle: "Share Insights & Stories",
   },
   LandingPages: {
     icon: "Rocket",
-    image: "https://images.pexels.com/photos/33280388/pexels-photo-33280388.jpeg",
+    image: "https://cdn.pixabay.com/photo/2021/03/29/18/57/social-media-6134993_1280.png",
     subtitle: "High-Converting Campaigns",
   },
   WebApplications: {
     icon: "Code",
-    image: "https://images.pexels.com/photos/33280388/pexels-photo-33280388.jpeg",
+    image: "https://cdn.pixabay.com/photo/2022/07/16/15/12/customer-service-7325332_1280.png",
     subtitle: "Custom & Interactive Solutions",
   },
   Educational: {
     icon: "GraduationCap",
-    image: "https://images.pexels.com/photos/33280388/pexels-photo-33280388.jpeg",
+    image: "https://cdn.pixabay.com/photo/2021/08/20/16/06/distance-learning-6560788_1280.png",
     subtitle: "Informative Learning Platforms",
   },
   NewsMedia: {
     icon: "Rss",
-    image: "https://images.pexels.com/photos/33280388/pexels-photo-33280388.jpeg",
+    image: "https://cdn.pixabay.com/photo/2020/04/04/04/23/media-5000790_1280.png",
     subtitle: "Dynamic Content Delivery",
   },
 };
