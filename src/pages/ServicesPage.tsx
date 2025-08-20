@@ -49,14 +49,14 @@ const ServicesPage = () => {
         title: "ERP & CRM Development",
         description: "Develop and integrate custom ERP and CRM systems to manage your business processes efficiently and automate workflows.",
         features: ["Sales & Marketing Automation", "Customer Support Systems", "Inventory Management", "Human Resources Systems", "Custom Reporting"],
-        link: "/services/erp-crm"
+        link: "/services/erp-crm-development"
       },
       {
         icon: <Cloud size={28} />,
         title: "Domain & Hosting",
         description: "Secure and reliable domain registration and hosting services to ensure your website is always up and running smoothly.",
         features: ["High-speed Hosting", "SSL Certificates", "24/7 Support", "Email Services", "Domain Management"],
-        link: "/services/domain"
+        link: "/services/domain-hosting"
       }
     ],
     design: [
@@ -65,14 +65,14 @@ const ServicesPage = () => {
         title: "UI/UX Design",
         description: "User-centered design that enhances user experience and engagement with your brand. We create intuitive interfaces that keep users coming back.",
         features: ["User Research", "Wireframing & Prototyping", "Interface Design", "Usability Testing", "Design Systems"],
-        link: "/services/graphics"
+        link: "/services/graphics-design"
       },
       {
         icon: <Monitor size={28} />,
         title: "Brand Identity",
         description: "Comprehensive brand identity design that helps you stand out in the market. We create cohesive brand experiences across all customer touchpoints.",
         features: ["Logo Design", "Visual Identity", "Brand Guidelines", "Marketing Collateral", "Brand Strategy"],
-        link: "/services/graphics"
+        link: "/services/graphics-design"
       }
     ],
     marketing: [
@@ -81,14 +81,14 @@ const ServicesPage = () => {
         title: "Digital Marketing",
         description: "Optimize your online presence and reach your target audience effectively. We help you get found by the right people at the right time.",
         features: ["Search Engine Optimization", "Content Marketing", "Social Media Strategy", "Email Marketing", "Analytics & Reporting"],
-        link: "/services/marketing"
+        link: "/services/digital-marketing"
       },
       {
         icon: <ShoppingCart size={28} />,
         title: "E-Commerce Marketing",
         description: "Specialized marketing strategies for online stores that drive traffic and increase conversions. We help you sell more products online.",
         features: ["Conversion Rate Optimization", "Product Listing Optimization", "Shopping Feed Management", "Abandoned Cart Recovery", "Customer Retention"],
-        link: "/services/marketing"
+        link: "/services/digital-marketing"
       }
     ],
     mobile: [
@@ -97,7 +97,7 @@ const ServicesPage = () => {
         title: "Mobile App Development",
         description: "Native and cross-platform mobile applications that provide seamless experiences on iOS and Android devices. We build apps that users love.",
         features: ["iOS & Android Development", "React Native Apps", "Mobile UI/UX Design", "App Store Optimization", "App Maintenance & Support"],
-        link: "/services/mobile"
+        link: "/services/mobile-app-development"
       }
     ],
     other: [
@@ -106,14 +106,14 @@ const ServicesPage = () => {
         title: "Maintenance Services",
         description: "Keep your digital products secure, up-to-date, and performing optimally with our comprehensive maintenance and support packages.",
         features: ["Security Monitoring", "Performance Audits", "Bug Fixing", "Feature Updates", "Technical Support"],
-        link: "/services/maintenance"
+        link: "/services/maintenance-services"
       },
       {
         icon: <Lightbulb size={28} />,
         title: "Explore More Services",
         description: "Have a unique project in mind? Our team is ready to provide custom solutions tailored to your specific business needs and challenges.",
         features: ["IT Consulting", "Cloud Solutions", "API Integration", "Custom Software", "IT Infrastructure"],
-        link: "/services/more"
+        link: "/services/contact"
       }
     ]
   };

@@ -19,17 +19,17 @@ import CertificateVerify from "./pages/CertificateVerify";
 import InternshipPage from "./pages/InternshipPage";
 
 // Importing service pages
-import SoftwareDevelopment from "./pages/services/SoftwareDevelopment";
-import WebsiteDevelopment from "./pages/services/WebsiteDevelopment";
+import SoftwareDevelopment from "./pages/servicesPages/SoftwareDevelopment";
+import WebsiteDevelopment from "./pages/servicesPages/WebsiteDevelopment";
 import FloatingCTA from "./components/sections/FloatingCTA";
 
 // Keep other service imports commented (easy to enable later)
-// import MobileAppDevelopment from "./pages/services/MobileAppDevelopment";
-// import DigitalMarketing from "./pages/services/DigitalMarketing";
-// import GraphicsDesign from "./pages/services/GraphicsDesign";
-// import DomainHosting from "./pages/services/DomainHosting";
-// import ErpCrmDevelopment from "./pages/services/ErpCrmDevelopment";
-// import MaintenanceServices from "./pages/services/MaintenanceServices";
+import MobileAppDevelopment from "./pages/servicesPages/MobileAppDevelopment";
+import DigitalMarketing from "./pages/servicesPages/DigitalMarketing";
+import GraphicsDesign from "./pages/servicesPages/GraphicsDesign";
+import DomainHosting from "./pages/servicesPages/DomainHosting";
+import ErpCrmDevelopment from "./pages/servicesPages/ErpCrmDevelopment";
+import MaintenanceServices from "./pages/servicesPages/MaintenanceServices";
 // import ExploreMoreServices from "./pages/services/ExploreMoreServices";
 
 const queryClient = new QueryClient();
@@ -67,12 +67,12 @@ const AppContent = () => {
         />
 
         {/* Uncomment these whenever you need them */}
-        {/* <Route path="/services/mobile-app-development" element={<MobileAppDevelopment />} /> */}
-        {/* <Route path="/services/digital-marketing" element={<DigitalMarketing />} /> */}
-        {/* <Route path="/services/graphics-design" element={<GraphicsDesign />} /> */}
-        {/* <Route path="/services/domain-hosting" element={<DomainHosting />} /> */}
-        {/* <Route path="/services/erp-crm-development" element={<ErpCrmDevelopment />} /> */}
-        {/* <Route path="/services/maintenance-services" element={<MaintenanceServices />} /> */}
+        <Route path="/services/mobile-app-development" element={<MobileAppDevelopment />} />
+        <Route path="/services/digital-marketing" element={<DigitalMarketing />} />
+        <Route path="/services/graphics-design" element={<GraphicsDesign />} />
+        <Route path="/services/domain-hosting" element={<DomainHosting />} />
+        <Route path="/services/erp-crm-development" element={<ErpCrmDevelopment />} />
+        <Route path="/services/maintenance-services" element={<MaintenanceServices />} />
         {/* <Route path="/services/explore-more" element={<ExploreMoreServices />} /> */}
       </Routes>
 
