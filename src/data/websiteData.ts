@@ -109,7 +109,8 @@ export const websiteData: ServiceData = {
   title: "Professional Website Development Services",
   subtitle: "Building Your Digital Presence, One Site at a Time",
   description:
-    "At Ideovent, we craft stunning, high-performance websites that not only look great but also drive real business results. We focus on creating a seamless user experience, responsive design, and robust functionality, ensuring your online presence is both impactful and effective. We turn your vision into a dynamic and engaging reality.",
+    "At Ideovent, we create high-performance websites with seamless design, responsive layouts, and robust functionality—turning your vision into a powerful online presence.",
+    
   image: "https://cdn.pixabay.com/photo/2015/05/28/14/53/office-788915_1280.jpg",
 
   bulletPoints: [

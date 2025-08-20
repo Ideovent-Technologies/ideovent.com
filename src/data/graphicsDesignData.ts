@@ -17,7 +17,7 @@ import { otherServicesList } from "./softwareData";
 export const graphicsDesignData: ServiceData = {
   title: "Creative Graphics Design Services",
   subtitle: "Bring Your Brand to Life with Stunning Visuals",
-  description: "Our graphics design services are tailored to create compelling visual identities that resonate with your audience. We combine artistic flair with strategic thinking to design everything from logos and branding to marketing materials and digital assets.",
+  description: "We design compelling visuals that bring your brand to life—from logos and branding to marketing materials and digital assets.",
   image: "https://cdn.pixabay.com/photo/2016/11/29/09/25/art-1868512_1280.jpg",
 
   bulletPoints: [

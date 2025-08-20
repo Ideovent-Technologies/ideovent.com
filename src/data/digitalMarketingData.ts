@@ -15,7 +15,7 @@ import { otherServicesList } from "./softwareData";
 export const digitalMarketingData: ServiceData = {
   title: "Integrated Digital Marketing Services",
   subtitle: "Connect with Your Audience and Grow Your Business Online",
-  description: "Our comprehensive digital marketing strategies are designed to boost your online presence, attract qualified leads, and convert them into loyal customers. We specialize in creating data-driven campaigns that deliver measurable results.",
+  description: "We craft data-driven digital marketing strategies that boost your presence, attract leads, and convert them into loyal customers.",
   image: "https://cdn.pixabay.com/photo/2016/11/29/05/45/astronomy-1867616_1280.jpg",
 
   bulletPoints: [

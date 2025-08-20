@@ -21,7 +21,7 @@ import { otherServicesList } from "./softwareData";
 export const maintenanceServicesData: ServiceData = {
   title: "Professional Maintenance & Support Services",
   subtitle: "Ensure Your Systems Run Smoothly and Securely",
-  description: "Our comprehensive maintenance and support services are designed to keep your digital infrastructure in peak condition. We provide proactive monitoring, timely updates, and rapid response to any issues, ensuring your business operations are never interrupted.",
+  description: "We provide maintenance and support to keep your systems secure, updated, and running without interruptions.",
   image: "https://cdn.pixabay.com/photo/2016/11/29/05/45/work-1867187_1280.jpg",
 
   bulletPoints: [

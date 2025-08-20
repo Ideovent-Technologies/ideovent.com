@@ -15,7 +15,7 @@ import { otherServicesList } from "./softwareData";
 export const mobileAppData: ServiceData = {
   title: "Professional Mobile App Development Services",
   subtitle: "Turning Your Ideas into Powerful Mobile Experiences",
-  description: "At Ideovent, we design and build high-performance mobile applications that engage users and drive business growth. Our expertise spans native, hybrid, and cross-platform technologies to deliver scalable and intuitive solutions.",
+  description: "At Ideovent, we build high-performance mobile apps that engage users and fuel growth—delivering scalable, intuitive solutions across native, hybrid, and cross-platform technologies.",
   image: "https://cdn.pixabay.com/photo/2016/11/23/15/34/apple-1853612_1280.jpg",
 
   bulletPoints: [

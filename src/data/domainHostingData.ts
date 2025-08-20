@@ -15,7 +15,7 @@ import { otherServicesList } from "./softwareData";
 export const domainHostingData: ServiceData = {
   title: "Secure Domain & Hosting Services",
   subtitle: "Build Your Online Presence on a Solid Foundation",
-  description: "We provide reliable and secure domain registration and hosting services to ensure your website is always fast, available, and protected. Our solutions are tailored to meet the needs of businesses of all sizes, from small startups to large enterprises.",
+  description:"We offer secure, reliable domain and hosting services to keep your website fast, available, and protected—tailored for businesses of any size.",
   image: "https://cdn.pixabay.com/photo/2016/09/21/04/10/web-1684346_1280.jpg",
 
   bulletPoints: [

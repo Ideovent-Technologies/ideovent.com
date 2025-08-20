@@ -15,7 +15,7 @@ import { otherServicesList } from "./softwareData";
 export const ermCrmData: ServiceData = {
   title: "ERP & CRM Development Services",
   subtitle: "Streamline Your Business Operations and Boost Efficiency",
-  description: "We develop powerful and customized Enterprise Resource Planning (ERP) and Customer Relationship Management (CRM) systems. Our solutions are designed to automate processes, centralize data, and provide valuable insights to help your business grow and succeed.",
+  description: "We build custom ERP and CRM systems that automate processes, centralize data, and deliver insights to drive business growth.",
   image: "https://cdn.pixabay.com/photo/2016/06/01/06/26/analysis-1428307_1280.jpg",
 
   bulletPoints: [
