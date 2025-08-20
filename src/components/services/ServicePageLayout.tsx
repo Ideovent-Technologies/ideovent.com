@@ -20,11 +20,16 @@ const ServicePageLayout: React.FC<ServiceData> = (props) => {
     return heading.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
   };
 
+  // Normalize extraSections IDs for SubNavbar and section rendering
+  const normalizedExtraSections = props.extraSections.map((section) => ({
+    ...section,
+    sectionId: normalizeHeading(section.heading),
+  }));
+
   const sections = [
     { id: "what-we-deliver", name: "What We Deliver" },
-    ...props.extraSections.map((section, idx) => ({
-      // Generate a more stable ID for sub-navigation
-      id: normalizeHeading(section.heading) || `section-${idx}`,
+    ...normalizedExtraSections.map((section, idx) => ({
+      id: section.sectionId || `section-${idx}`,
       name: section.heading,
     })),
     ...(props.faqs && props.faqs.length > 0 ? [{ id: "faqs", name: "FAQs" }] : []),
@@ -47,7 +52,7 @@ const ServicePageLayout: React.FC<ServiceData> = (props) => {
         bulletPoints={props.bulletPoints}
         sectionHeading="What We Deliver"
       />
-      <ExtraSections extraSections={props.extraSections} />
+      <ExtraSections extraSections={normalizedExtraSections} />
       {props.faqs && <FAQSection faqs={props.faqs} />}
       {props.testimonials && <TestimonialsSection testimonials={props.testimonials} />}
       <OtherServicesSection otherServices={props.otherServices} />

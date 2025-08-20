@@ -32,7 +32,10 @@ const GenericExtraSection: React.FC<GenericExtraSectionProps> = ({
 
   return (
     // The main section container. Uses a soft gray background to make the cards pop.
-    <section id={sectionId} className="px-4 sm:px-6 lg:px-24 py-16 sm:py-20 bg-gray-50">
+    <section
+      id={sectionId}
+      className="px-4 sm:px-6 lg:px-24 py-16 sm:py-20 bg-gray-50"
+    >
       {/* The component heading, which uses a gradient text */}
       <SectionHeading
         text={section.heading}
@@ -40,7 +43,7 @@ const GenericExtraSection: React.FC<GenericExtraSectionProps> = ({
         gradientTo={headingGradientTo}
         className="mb-12 text-center"
       />
-      
+
       {/* The grid container for the feature cards */}
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
         {section.items?.map((item, i) => {
@@ -59,12 +62,16 @@ const GenericExtraSection: React.FC<GenericExtraSectionProps> = ({
                 {/* The icon itself, which changes color on card hover */}
                 <Icon className="w-7 h-7 sm:w-8 sm:h-8 text-[#2562EA] group-hover:text-white" />
               </div>
-              
+
               {/* The title of the card */}
-              <h3 className="text-xl sm:text-2xl font-extrabold text-[#2562EA] mb-2">{item.title}</h3>
-              
+              <h3 className="text-xl sm:text-2xl font-extrabold text-[#2562EA] mb-2">
+                {item.title}
+              </h3>
+
               {/* The description text */}
-              <p className="text-gray-700 font-medium text-sm sm:text-base">{item.description}</p>
+              <p className="text-gray-700 font-medium text-sm sm:text-base">
+                {item.description}
+              </p>
             </motion.div>
           );
         })}

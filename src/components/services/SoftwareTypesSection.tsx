@@ -1,4 +1,3 @@
-// services/SoftwareTypesSection.tsx
 import React from "react";
 import { motion } from "framer-motion";
 import * as Icons from "lucide-react";
@@ -63,7 +62,14 @@ const SoftwareTypesSection: React.FC<Props> = ({
       />
       <p className="text-gray-700 text-center max-w-3xl mx-auto mb-16">{section.content}</p>
 
-      <div className={`grid ${gridClasses} gap-8 sm:gap-10`}>
+      {/* This new motion.div wrapper adds the fade-in-on-scroll animation */}
+      <motion.div
+        initial={{ opacity: 0, y: 25 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.2 }} // `amount` controls when the animation triggers
+        className={`grid ${gridClasses} gap-8 sm:gap-10`}
+      >
         {softwareTypes.map((item) => {
           const IconComponent = getIconComponent(item.icon);
 
@@ -97,7 +103,7 @@ const SoftwareTypesSection: React.FC<Props> = ({
             </motion.div>
           );
         })}
-      </div>
+      </motion.div>
     </section>
   );
 };

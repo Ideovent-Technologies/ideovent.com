@@ -1,4 +1,3 @@
-// services/ExtraSections.tsx
 import React from "react";
 import { ExtraSection } from "./types";
 import SoftwareTypesSection from "./SoftwareTypesSection";
@@ -13,18 +12,17 @@ const ExtraSections: React.FC<ExtraSectionsProps> = ({ extraSections }) => {
   return (
     <>
       {extraSections.map((section) => {
-        // Use the stable ID from the data for the key and sectionId
+        // Correctly using the section's unique 'id' for the React key and the sectionId prop.
         const key = section.id;
-        const sectionId = section.id;
-
-        // Use the 'type' discriminator for a type-safe switch statement
+        const sectionId = section.sectionId;
+        // Using a switch statement is a great, type-safe way to render different components.
         switch (section.type) {
           case "types":
             return (
               <SoftwareTypesSection
                 key={key}
-                section={section} // TypeScript knows 'section' is a SoftwareTypesSection here
-                sectionId={sectionId}
+                section={section}
+                sectionId={sectionId} // This prop is correctly passed here.
               />
             );
 
@@ -32,8 +30,8 @@ const ExtraSections: React.FC<ExtraSectionsProps> = ({ extraSections }) => {
             return (
               <SoftwareLifecycleSection
                 key={key}
-                section={section} // TypeScript knows 'section' is a SoftwareLifecycleSection here
-                sectionId={sectionId}
+                section={section}
+                sectionId={sectionId} // This prop needs to be used inside the component.
               />
             );
 
@@ -41,15 +39,14 @@ const ExtraSections: React.FC<ExtraSectionsProps> = ({ extraSections }) => {
             return (
               <GenericExtraSection
                 key={key}
-                section={section} // TypeScript knows 'section' is a GenericExtraSection here
-                sectionId={sectionId}
-                // Optional: Pass an icon name for this generic section if needed
+                section={section}
+                sectionId={sectionId} // This prop also needs to be used.
                 iconName="ThumbsUp" // Example
               />
             );
 
           default:
-            return null; // Return null for any unknown types
+            return null; // Always good to have a fallback for unknown types.
         }
       })}
     </>
