@@ -71,7 +71,7 @@ export const softwareIconMap: Record<
 // -------------------- Other Services (Updated) --------------------
 export const otherServicesList: OtherService[] = [
   { id: "os-1", name: "Website Development", path: "/services/website-development" },
-  { id: "os-2", name: "Mobile App Development", path: "/services/mobile-app" },
+  { id: "os-2", name: "Mobile App Development", path: "/services/mobile-app-development" },
   { id: "os-3", name: "Digital Marketing", path: "/services/digital-marketing" },
   { id: "os-4", name: "Graphics Designing", path: "/services/graphics-design" },
   { id: "os-5", name: "Domain & Hosting", path: "/services/domain-hosting" },

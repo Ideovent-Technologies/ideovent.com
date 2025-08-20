@@ -95,7 +95,7 @@ export const websiteCategoryContentMap: Record<
 
 // -------------------- Other Services (Updated with IDs) --------------------
 export const otherServicesList: OtherService[] = [
-  { id: "os-1", name: "Mobile App Development", path: "/services/mobile-app" },
+  { id: "os-1", name: "Mobile App Development", path: "/services/mobile-app-development" },
   { id: "os-2", name: "Digital Marketing", path: "/services/digital-marketing" },
   { id: "os-3", name: "Graphics Designing", path: "/services/graphics-design" },
   { id: "os-4", name: "Domain & Hosting", path: "/services/domain-hosting" },
