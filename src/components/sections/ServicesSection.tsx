@@ -35,43 +35,43 @@ const services = [
     title: "Mobile App Development",
     desc: "We provide Android & iOS app development. Turn your idea into reality and start your startup with us.",
     icon: <Smartphone size={28} />,
-    path: "/services/mobile"
+    path: "/services/mobile-app-development"
   },
   {
     title: "Digital Marketing",
     desc: "We provide the best digital marketing services to drive more traffic on your mobile app or website.",
     icon: <Megaphone size={28} />,
-    path: "/services/marketing"
+    path: "/services/digital-marketing"
   },
   {
     title: "Graphics Design",
     desc: "We provide graphics design to stay connected with your customers using banners, offers & more.",
     icon: <Image size={28} />,
-    path: "/services/graphics"
+    path: "/services/graphics-design"
   },
   {
     title: "Domain & Hosting",
     desc: "We provide domain, hosting and reliable servers to never let your business down.",
     icon: <Server size={28} />,
-    path: "/services/domain"
+    path: "/services/domain-hosting"
   },
   {
     title: "ERP & CRM Development",
     desc: "We provide ERP & CRM to automate your business with fast execution and precise strategies.",
     icon: <Layers size={28} />,
-    path: "/services/erp-crm"
+    path: "/services/erp-crm-development"
   },
   {
     title: "Maintenance Services",
     desc: "We provide annual maintenance services for websites, software, ERP, CRM & mobile apps.",
     icon: <Wrench size={28} />,
-    path: "/services/maintenance"
+    path: "/services/maintenance-services"
   },
   {
     title: "Explore More Services",
     desc: "We provide IT training, internships, MLM software and many more services to discover.",
     icon: <Boxes size={28} />,
-    path: "/services/more"
+    path: "/services/contact"
   },
 ];
 

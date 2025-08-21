@@ -11,6 +11,7 @@ import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import SubNavbar from '../components/layout/SubNavbar';
 import TeamSection from '../components/sections/TeamSection';
+import TechStackSection from '@/components/sections/TechStackSection';
 
 const About = () => {
   // Scrolls to the top of the page when the component mounts
@@ -21,6 +22,7 @@ const About = () => {
   // Defines the sections for the SubNavbar
   const sections = [
     { id: 'overview', name: 'Overview' },
+    { id: 'tech-stack', name: 'Tech Stack' },
     { id: 'team', name: 'Team' },
     { id: 'services', name: 'Services' }, // Corrected ID to match the section below
     { id: 'milestones', name: 'Milestones' },
@@ -41,6 +43,10 @@ const About = () => {
         {/* Sections with matching IDs for the SubNavbar to link to */}
         <section id="overview">
           <Overview />
+        </section>
+
+        <section id="tech-stack">
+          <TechStackSection />
         </section>
 
         <section id="team">
@@ -70,6 +76,7 @@ const About = () => {
         <section id="contact">
           <ContactForm />
         </section>
+        
       </main>
       <Footer />
     </div>

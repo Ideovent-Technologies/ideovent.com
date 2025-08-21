@@ -4,7 +4,8 @@ import { Link } from "react-router-dom"; // Ensure react-router-dom is installed
 // Basic Button Component - This is included to resolve the import error.
 // In a real project, this would typically be in its own file at ../ui/button.jsx
 const Button = ({ children, size, variant, className, ...props }) => {
-  let baseStyles = "inline-flex items-center justify-center font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2";
+  let baseStyles =
+    "inline-flex items-center justify-center font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2";
   let sizeStyles = "";
   let variantStyles = "";
 
@@ -21,7 +22,8 @@ const Button = ({ children, size, variant, className, ...props }) => {
 
   switch (variant) {
     case "outline":
-      variantStyles = "bg-transparent border border-blue-500 text-blue-600 hover:bg-blue-50 hover:text-blue-700";
+      variantStyles =
+        "bg-transparent border border-blue-500 text-blue-600 hover:bg-blue-50 hover:text-blue-700";
       break;
     case "ghost":
       variantStyles = "bg-transparent text-blue-600 hover:bg-blue-50";
@@ -31,12 +33,16 @@ const Button = ({ children, size, variant, className, ...props }) => {
   }
 
   return (
-    <button className={`${baseStyles} ${sizeStyles} ${variantStyles} ${className || ''} rounded-full`} {...props}>
+    <button
+      className={`${baseStyles} ${sizeStyles} ${variantStyles} ${
+        className || ""
+      } rounded-full`}
+      {...props}
+    >
       {children}
     </button>
   );
 };
-
 
 const heroImages = [
   "https://cdn.pixabay.com/photo/2023/05/24/17/48/ai-generated-8015423_1280.jpg",
@@ -63,8 +69,8 @@ const Hero = () => {
 
   return (
     <section className="min-h-screen flex items-center pt-20 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-blue-100 -z-10" /> {/* Changed accent/background to consistent blues */}
-
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-blue-100 -z-10" />{" "}
+      {/* Changed accent/background to consistent blues */}
       {/* Floating background elements */}
       <div className="absolute inset-0 overflow-hidden -z-10">
         {Array.from({ length: 20 }).map((_, i) => (
@@ -83,43 +89,63 @@ const Hero = () => {
           />
         ))}
       </div>
-
-      <div className="container mx-auto relative z-10"> {/* Ensure container is above background elements */}
+      <div className="container mx-auto relative z-10">
+        {" "}
+        {/* Ensure container is above background elements */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
             <div className="space-y-2">
               <div
-                className={`inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium transition-all duration-700 transform ${ // Changed colors for consistency
-                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                className={`inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium transition-all duration-700 transform ${
+                  // Changed colors for consistency
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-10"
                 }`}
               >
                 Welcome to Ideovent Technologies
               </div>
               <h1
-                className={`transition-all duration-700 delay-100 transform text-gray-900 ${ // Ensured main heading is dark
-                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                className={`transition-all duration-700 delay-100 transform text-gray-900 ${
+                  // Ensured main heading is dark
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-10"
                 }`}
               >
                 Digital Solutions <br />
-                <span className="text-blue-700">for Businesses</span> {/* Consistent primary blue */}
+                <span className="text-blue-700">for Businesses</span>{" "}
+                {/* Consistent primary blue */}
               </h1>
               <p
-                className={`text-lg text-gray-700 md:text-xl max-w-2xl transition-all duration-700 delay-200 transform ${ // Consistent text color
-                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                className={`text-lg text-gray-700 md:text-xl max-w-2xl transition-all duration-700 delay-200 transform ${
+                  // Consistent text color
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-10"
                 }`}
               >
-                We craft innovative digital experiences that transform businesses
-                and drive growth through cutting-edge technology and design.
+                We craft innovative digital experiences that transform
+                businesses and drive growth through cutting-edge technology and
+                design.
               </p>
             </div>
 
             <div
               className={`flex flex-wrap gap-4 transition-all duration-700 delay-300 transform ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-10"
               }`}
             >
               <Link to="/contact">
-                < Button  variant size="lg" className="rounded-full shadow-lg shadow-blue-600/20"> {/* Shadow color adjustment */}
+                <Button
+                  variant
+                  size="lg"
+                  className="rounded-full shadow-lg shadow-blue-600/20"
+                >
+                  {" "}
+                  {/* Shadow color adjustment */}
                   Get a Free Consultation
                 </Button>
               </Link>
@@ -132,7 +158,9 @@ const Hero = () => {
 
             <div
               className={`flex items-center gap-6 transition-all duration-700 delay-400 transform ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-10"
               }`}
             >
               <div className="flex -space-x-4">
@@ -153,35 +181,51 @@ const Hero = () => {
                 />
               </div>
               <div>
-                <div className="font-medium text-gray-800">Your Trusted Partner</div> {/* Consistent text color */}
-                <div className="text-sm text-gray-600">in Digital Innovation</div> {/* Consistent text color */}
+                <div className="font-medium text-gray-800">
+                  Your Trusted Partner
+                </div>{" "}
+                {/* Consistent text color */}
+                <div className="text-sm text-gray-600">
+                  in Digital Innovation
+                </div>{" "}
+                {/* Consistent text color */}
               </div>
             </div>
           </div>
 
           <div
             className={`aspect-square max-w-md mx-auto lg:max-w-none transition-all duration-1000 transform relative ${
-              isVisible ? "opacity-100 translate-y-0 rotate-0" : "opacity-0 translate-y-20 rotate-12"
+              isVisible
+                ? "opacity-100 translate-y-0 rotate-0"
+                : "opacity-0 translate-y-20 rotate-12"
             }`}
           >
             <div className="relative w-full h-full">
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/20 to-blue-500/5 rounded-3xl transform rotate-6 animate-pulse-soft" /> {/* Colors adjusted */}
-              <img
-                key={currentImageIndex} // Key to force re-render and trigger transition
-                src={heroImages[currentImageIndex]}
-                alt="Digital Solutions"
-                className="rounded-3xl object-cover w-full h-full shadow-2xl transition-opacity duration-1000" // Added transition for fade
-              />
-              <div className="absolute -bottom-6 -right-6 bg-white rounded-xl p-4 shadow-xl border border-blue-100"> {/* Added border for consistency */}
-                <div className="text-sm font-medium text-gray-800">Client Satisfaction</div> {/* Consistent text color */}
-                <div className="text-2xl font-bold text-blue-700">98%</div> {/* Consistent primary blue */}
+              <div className="w-full h-full overflow-hidden rounded-3xl">
+                <img
+                  key={currentImageIndex}
+                  src={heroImages[currentImageIndex]}
+                  alt="Digital Solutions"
+                  className="object-cover w-full h-full animate-zoom"
+                  style={{ animationDuration: "5s", transformOrigin: "center" }}
+                />
+              </div>
+              <div className="absolute -bottom-6 -right-6 bg-white rounded-xl p-4 shadow-xl border border-blue-100">
+                {" "}
+                {/* Added border for consistency */}
+                <div className="text-sm font-medium text-gray-800">
+                  Client Satisfaction
+                </div>{" "}
+                {/* Consistent text color */}
+                <div className="text-2xl font-bold text-blue-700">98%</div>{" "}
+                {/* Consistent primary blue */}
               </div>
             </div>
           </div>
         </div>
       </div>
-       {/* Global styles for animations, if not already in a CSS file */}
-       <style>
+      {/* Global styles for animations, if not already in a CSS file */}
+      <style>
         {`
         @keyframes float {
           0% { transform: translateY(0px) rotate(0deg); }
@@ -203,6 +247,19 @@ const Hero = () => {
         .animate-pulse-soft {
           animation: pulse-soft 4s ease-in-out infinite;
         }
+          @keyframes zoom {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1); /* slight zoom */
+  }
+}
+
+.animate-zoom {
+  animation: zoom 5s ease-in-out forwards;
+}
+
         `}
       </style>
     </section>

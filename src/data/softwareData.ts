@@ -1,64 +1,7 @@
-import * as Icons from "lucide-react"; // ✅ for keyof typeof Icons
+import * as Icons from "lucide-react";
+import { ServiceData, OtherService, Testimonial, BulletPoint, ExtraSection, FAQ } from "../components/services/types";
 
-// -------------------- Interfaces --------------------
-export interface ExtraSection {
-  heading: string;
-  content: string;
-  items?: string[];
-  image?: string;
-}
-
-export interface FAQ {
-  question: string;
-  answer: string;
-}
-
-export interface Testimonial {
-  name: string;
-  role: string;
-  feedback: string;
-}
-
-export interface BulletPoint {
-  text: string;
-  icon?: string;
-}
-
-export interface CTA {
-  text: string;
-  link: string;
-  secondary?: {
-    text: string;
-    link: string;
-  };
-}
-
-export interface OtherService {
-  name: string;
-  path: string;
-}
-
-export interface ServiceData {
-  title: string;
-  subtitle?: string;
-  description: string;
-  image: string;
-  bulletPoints: BulletPoint[];
-  cta: CTA;
-  extraSections: ExtraSection[];
-  faqs?: FAQ[];
-  testimonials?: Testimonial[];
-  otherServices: OtherService[];
-}
-
-export interface ServiceCard {
-  title: string;
-  subtitle: string;
-  image: string;
-  icon?: string;
-}
-
-// -------------------- Icon Map --------------------
+// -------------------- Icon Map (Remains unchanged as it's a lookup) --------------------
 export const softwareIconMap: Record<
   string,
   { icon: keyof typeof Icons; image: string; subtitle: string }
@@ -80,7 +23,7 @@ export const softwareIconMap: Record<
   },
   Gym: {
     icon: "Dumbbell",
-    image: "https://cdn.pixabay.com/photo/2023/09/11/14/19/weights-8246972_1280.jpg",
+    image: "https://cdn.pixabay.com/photo/2022/07/17/19/43/man-7328236_1280.png",
     subtitle: "Manage Memberships & Classes",
   },
   Billing: {
@@ -110,7 +53,7 @@ export const softwareIconMap: Record<
   },
   CarShowroom: {
     icon: "Car",
-    image: "https://cdn.pixabay.com/photo/2019/11/02/19/24/car-4597207_1280.jpg",
+    image: "https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg",
     subtitle: "Boost Sales & Customer Relations",
   },
   RealEstate: {
@@ -125,32 +68,30 @@ export const softwareIconMap: Record<
   },
 };
 
-// -------------------- Other Services --------------------
+// -------------------- Other Services (Updated) --------------------
 export const otherServicesList: OtherService[] = [
-  { name: "Website Development", path: "/services/website-development" },
-  { name: "Mobile App Development", path: "/services/mobile-app" },
-  { name: "Digital Marketing", path: "/services/digital-marketing" },
-  { name: "Graphics Designing", path: "/services/graphics-design" },
-  { name: "Domain & Hosting", path: "/services/domain-hosting" },
-  { name: "ERP & CRM Development", path: "/services/erp-crm" },
-  { name: "Maintenance Services", path: "/services/maintenance" },
+  { id: "os-1", name: "Website Development", path: "/services/website-development" },
+  { id: "os-2", name: "Mobile App Development", path: "/services/mobile-app-development" },
+  { id: "os-3", name: "Digital Marketing", path: "/services/digital-marketing" },
+  { id: "os-4", name: "Graphics Designing", path: "/services/graphics-design" },
+  { id: "os-5", name: "Domain & Hosting", path: "/services/domain-hosting" },
+  { id: "os-6", name: "ERP & CRM Development", path: "/services/erp-crm-development" },
+  { id: "os-7", name: "Maintenance Services", path: "/services/maintenance-services" },
 ];
 
-// -------------------- Service Data --------------------
+// -------------------- Service Data (Updated) --------------------
 export const softwareData: ServiceData = {
   title: "Tailored Software Solutions That Drive Growth",
   subtitle: "Tailored to Empower Your Business",
-  description:
-    "At Ideovent, we craft tailored software solutions that help your business scale, automate processes, and achieve its full potential...",
-  image:
-    "https://cdn.pixabay.com/photo/2022/01/29/13/08/programming-6977450_1280.jpg",
+  description: "At Ideovent, we craft tailored software solutions that help your business scale, automate processes, and achieve its full potential...",
+  image: "https://cdn.pixabay.com/photo/2022/01/29/13/08/programming-6977450_1280.jpg",
 
   bulletPoints: [
-    { text: "Strategic Planning & Analysis...", icon: "CheckCircle" },
-    { text: "Creative UI/UX Design & Prototyping...", icon: "Palette" },
-    { text: "Robust Implementation...", icon: "Code2" },
-    { text: "Rigorous Integration & Testing...", icon: "ShieldCheck" },
-    { text: "Dedicated Maintenance & Support...", icon: "Wrench" },
+    { id: "bp-1", text: "Strategic Planning & Analysis...", icon: "CheckCircle" },
+    { id: "bp-2", text: "Creative UI/UX Design & Prototyping...", icon: "Palette" },
+    { id: "bp-3", text: "Robust Implementation...", icon: "Code2" },
+    { id: "bp-4", text: "Rigorous Integration & Testing...", icon: "ShieldCheck" },
+    { id: "bp-5", text: "Dedicated Maintenance & Support...", icon: "Wrench" },
   ],
 
   cta: {
@@ -161,86 +102,86 @@ export const softwareData: ServiceData = {
 
   extraSections: [
     {
+      id: "es-1",
+      type: "types",
       heading: "Which Types of Software We Provide",
-      content:
-        "We build industry-ready solutions tailored to your unique needs...",
+      content: "We build industry-ready solutions tailored to your unique needs...",
       items: [
-        "School Management Software",
-        "Library Management System",
-        "Hotel Management Software",
-        "Gym Management Software",
-        "Billing & Invoicing Solutions",
-        "Pathology & Lab Management",
-        "Inventory & Warehouse Management",
-        "GST & Taxation Software",
-        "Vehicle Stand Management",
-        "Car/Bike Showroom CRM",
-        "Real Estate CRM",
-        "Hospital Management Systems",
+        { id: "type-1", title: "School Management Software", subtitle: "Simplify Academic & Admin Tasks", icon: "School", image: softwareIconMap.School.image },
+        { id: "type-2", title: "Library Management System", subtitle: "Organize Resources & Catalogs", icon: "BookOpen", image: softwareIconMap.Library.image },
+        { id: "type-3", title: "Hotel Management Software", subtitle: "Optimize Bookings & Guest Services", icon: "Hotel", image: softwareIconMap.Hotel.image },
+        { id: "type-4", title: "Gym Management Software", subtitle: "Manage Memberships & Classes", icon: "Dumbbell", image: softwareIconMap.Gym.image },
+        { id: "type-5", title: "Billing & Invoicing Solutions", subtitle: "Automate Invoicing & Payments", icon: "FileText", image: softwareIconMap.Billing.image },
+        { id: "type-6", title: "Pathology & Lab Management", subtitle: "Streamline Lab Operations & Reports", icon: "TestTube", image: softwareIconMap.Pathology.image },
+        { id: "type-7", title: "Inventory & Warehouse Management", subtitle: "Track Stock & Optimize Supply", icon: "Boxes", image: softwareIconMap.Inventory.image },
+        { id: "type-8", title: "GST & Taxation Software", subtitle: "Ensure Tax Compliance & Reporting", icon: "FileSpreadsheet", image: softwareIconMap.GST.image },
+        { id: "type-9", title: "Vehicle Stand Management", subtitle: "Manage Parking & Vehicle Entry", icon: "ParkingCircle", image: softwareIconMap.Vehicle.image },
+        { id: "type-10", title: "Car/Bike Showroom CRM", subtitle: "Boost Sales & Customer Relations", icon: "Car", image: softwareIconMap.CarShowroom.image },
+        { id: "type-11", title: "Real Estate CRM", subtitle: "Track Leads & Manage Properties", icon: "Building", image: softwareIconMap.RealEstate.image },
+        { id: "type-12", title: "Hospital Management Systems", subtitle: "Streamline Patient Care & Records", icon: "Hospital", image: softwareIconMap.Hospital.image },
       ],
-      image:
-        "https://cdn.pixabay.com/photo/2018/01/16/07/00/software-3084200_1280.jpg",
     },
     {
+      id: "es-2",
+      type: "lifecycle",
       heading: "The Software Development Lifecycle",
-      content:
-        "Our systematic approach ensures a high-quality product. We follow a core set of activities that ensure scalability, performance, and reliability.",
+      content: "Our systematic approach ensures a high-quality product. We follow a core set of activities that ensure scalability, performance, and reliability.",
       items: [
-        "Planning & Roadmap",
-        "Requirement Analysis",
-        "UI/UX Designing",
-        "Implementation & Coding",
-        "Integration & API Development",
-        "Rigorous Testing & QA",
-        "Deployment & Maintenance",
+        { id: "lc-1", step: "Planning & Roadmap", icon: "Lightbulb" },
+        { id: "lc-2", step: "Requirement Analysis", icon: "FileText" },
+        { id: "lc-3", step: "UI/UX Designing", icon: "Code" },
+        { id: "lc-4", step: "Implementation & Coding", icon: "ShieldCheck" },
+        { id: "lc-5", step: "Integration & API Development", icon: "Rocket" },
+        { id: "lc-6", step: "Rigorous Testing & QA", icon: "Wrench" },
+        { id: "lc-7", step: "Deployment & Maintenance", icon: "Circle" },
       ],
-      image:
-        "https://cdn.pixabay.com/photo/2016/11/29/06/15/analysis-1867008_1280.jpg",
     },
     {
+      id: "es-3",
+      type: "generic",
       heading: "Why Work With Us",
-      content:
-        "We combine innovation, expertise, and dedication to deliver results that matter. Here’s why businesses choose Ideovent:",
+      content: "We combine innovation, expertise, and dedication to deliver results that matter. Here’s why businesses choose Ideovent:",
       items: [
-        "50+ Projects Delivered – Proven track record of success",
-        "95% Client Satisfaction – Trusted by businesses across industries",
-        "Expert Team – Skilled developers for every stack",
-        "Scalable Solutions – Future-proof your business",
+        { id: "why-1", title: "50+ Projects Delivered", description: "Proven track record of success" },
+        { id: "why-2", title: "95% Client Satisfaction", description: "Trusted by businesses across industries" },
+        { id: "why-3", title: "Expert Team", description: "Skilled developers for every stack" },
+        { id: "why-4", title: "Scalable Solutions", description: "Future-proof your business" },
       ],
-      image: "https://www.ideovent.com/ideovent.png",
     },
   ],
 
   faqs: [
     {
+      id: "faq-1",
       question: "How long does it take to develop custom software?",
-      answer:
-        "The timeline depends on the complexity and scale of the project. Typically, small apps may take 4–8 weeks, while enterprise solutions can take several months.",
+      answer: "The timeline depends on the complexity and scale of the project. Typically, small apps may take 4–8 weeks, while enterprise solutions can take several months.",
     },
     {
+      id: "faq-2",
       question: "Do you provide post-deployment support?",
-      answer:
-        "Yes, we provide ongoing maintenance, updates, and technical support to ensure your software runs smoothly.",
+      answer: "Yes, we provide ongoing maintenance, updates, and technical support to ensure your software runs smoothly.",
     },
     {
+      id: "faq-3",
       question: "Which technologies do you use?",
-      answer:
-        "We leverage modern stacks such as React, Node.js, Python, Java, .NET, MongoDB, and cloud-native solutions like AWS and Azure.",
+      answer: "We leverage modern stacks such as React, Node.js, Python, Java, .NET, MongoDB, and cloud-native solutions like AWS and Azure.",
     },
   ],
 
   testimonials: [
     {
+      id: "test-1",
       name: "Rahul Sharma",
       role: "CTO, EduTech",
-      feedback:
-        "Ideovent built our custom school management system, and it transformed the way we operate. Amazing support and smooth delivery!",
+      feedback: "Ideovent built our custom school management system, and it transformed the way we operate. Amazing support and smooth delivery!",
+      rating: 5,
     },
     {
+      id: "test-2",
       name: "Priya Mehta",
       role: "Founder, RetailX",
-      feedback:
-        "The billing and inventory software from Ideovent saved us countless hours. Highly recommend their expertise.",
+      feedback: "The billing and inventory software from Ideovent saved us countless hours. Highly recommend their expertise.",
+      rating: 5,
     },
   ],
 
