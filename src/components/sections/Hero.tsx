@@ -201,15 +201,15 @@ const Hero = () => {
             }`}
           >
             <div className="relative w-full h-full">
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/20 to-blue-500/5 rounded-3xl transform rotate-6 animate-pulse-soft" />{" "}
-              {/* Colors adjusted */}
-              <img
-                key={currentImageIndex}
-                src={heroImages[currentImageIndex]}
-                alt="Digital Solutions"
-                className="rounded-3xl object-cover w-full h-full shadow-2xl transition-opacity duration-1000 animate-zoom"
-                style={{ animationDuration: "5s" }} // matches the interval time
-              />
+              <div className="w-full h-full overflow-hidden rounded-3xl">
+                <img
+                  key={currentImageIndex}
+                  src={heroImages[currentImageIndex]}
+                  alt="Digital Solutions"
+                  className="object-cover w-full h-full animate-zoom"
+                  style={{ animationDuration: "5s", transformOrigin: "center" }}
+                />
+              </div>
               <div className="absolute -bottom-6 -right-6 bg-white rounded-xl p-4 shadow-xl border border-blue-100">
                 {" "}
                 {/* Added border for consistency */}

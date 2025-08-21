@@ -48,26 +48,28 @@ const CarouselHero: React.FC<CarouselHeroProps> = ({
   }, [images]);
 
   return (
-    <div className="relative w-full h-full aspect-square max-w-md mx-auto lg:max-w-none overflow-hidden rounded-3xl shadow-2xl">
+    <div className="relative w-full h-full aspect-square max-w-md mx-auto lg:max-w-none rounded-3xl shadow-2xl">
       {/* Background gradient pulse */}
       <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/20 to-blue-500/5 rounded-3xl transform rotate-6 animate-pulse-soft" />
 
-      {/* Images with fade + zoom */}
-      {images.map((src, index) => (
-        <img
-          key={index}
-          src={src}
-          alt="Visual showcasing our services"
-          className={`absolute inset-0 w-full h-full object-cover rounded-3xl transition-opacity duration-1000 ${
-            index === currentImageIndex
-              ? "opacity-100 animate-zoom"
-              : "opacity-0"
-          }`}
-          style={{ animationDuration: "5s" }}
-        />
-      ))}
+      {/* Images with fade + zoom inside an overflow-hidden wrapper */}
+      <div className="absolute inset-0 overflow-hidden rounded-3xl">
+        {images.map((src, index) => (
+          <img
+            key={index}
+            src={src}
+            alt="Visual showcasing our services"
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+              index === currentImageIndex
+                ? "opacity-100 animate-zoom"
+                : "opacity-0"
+            }`}
+            style={{ animationDuration: "5s", transformOrigin: "center" }}
+          />
+        ))}
+      </div>
 
-      {/* Metric overlay card */}
+      {/* Metric overlay card (never clipped now) */}
       <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 bg-white rounded-xl p-3 sm:p-4 shadow-xl border border-blue-100">
         <div className="text-sm font-medium text-gray-800">{metric.label}</div>
         <div className="text-xl sm:text-2xl font-bold text-blue-700">
