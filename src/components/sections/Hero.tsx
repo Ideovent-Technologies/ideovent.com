@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom"; // Ensure react-router-dom is installed and used
 
-// Basic Button Component - This is included to resolve the import error.
-// In a real project, this would typically be in its own file at ../ui/button.jsx
+// Basic Button Component
 const Button = ({ children, size, variant, className, ...props }) => {
   let baseStyles =
     "inline-flex items-center justify-center font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2";
@@ -28,7 +27,7 @@ const Button = ({ children, size, variant, className, ...props }) => {
     case "ghost":
       variantStyles = "bg-transparent text-blue-600 hover:bg-blue-50";
       break;
-    default: // default primary button
+    default: // primary
       variantStyles = "bg-blue-600 text-white hover:bg-blue-700";
   }
 
@@ -44,12 +43,10 @@ const Button = ({ children, size, variant, className, ...props }) => {
   );
 };
 
-// CarouselHero Component (moved here for a single file example)
-// In a real project, this should be in its own file, e.g., components/CarouselHero.jsx
+// CarouselHero Component
 const CarouselHero = ({ images, metric }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Floating circle background (pre-calculated styles)
   const [floatingCircleStyles] = useState(() =>
     Array.from({ length: 8 }).map(() => ({
       width: `${Math.random() * 200 + 50}px`,
@@ -62,7 +59,6 @@ const CarouselHero = ({ images, metric }) => {
     }))
   );
 
-  // Auto-change image every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) =>
@@ -74,10 +70,8 @@ const CarouselHero = ({ images, metric }) => {
 
   return (
     <div className="relative w-full h-full aspect-square max-w-md mx-auto lg:max-w-none rounded-3xl shadow-2xl">
-      {/* Background gradient pulse */}
       <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/20 to-blue-500/5 rounded-3xl transform rotate-6 animate-pulse-soft" />
 
-      {/* Images with fade + zoom inside an overflow-hidden wrapper */}
       <div className="absolute inset-0 overflow-hidden rounded-3xl">
         {images.map((src, index) => (
           <img
@@ -94,7 +88,6 @@ const CarouselHero = ({ images, metric }) => {
         ))}
       </div>
 
-      {/* Metric overlay card (never clipped now) */}
       <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 bg-white rounded-xl p-3 sm:p-4 shadow-xl border border-blue-100">
         <div className="text-sm font-medium text-gray-800">{metric.label}</div>
         <div className="text-xl sm:text-2xl font-bold text-blue-700">
@@ -102,7 +95,6 @@ const CarouselHero = ({ images, metric }) => {
         </div>
       </div>
 
-      {/* Floating circles */}
       {floatingCircleStyles.map((style, i) => (
         <div
           key={i}
@@ -118,13 +110,11 @@ const CarouselHero = ({ images, metric }) => {
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
 
-  // Define the images and metric for the carousel
   const carouselImages = [
     "https://images.pexels.com/photos/6153344/pexels-photo-6153344.jpeg",
     "https://images.pexels.com/photos/9783375/pexels-photo-9783375.jpeg",
     "https://images.pexels.com/photos/5473956/pexels-photo-5473956.jpeg",
-    "https://images.pexels.com/photos/12935074/pexels-photo-12935074.jpeg"
-    ,
+    "https://images.pexels.com/photos/12935074/pexels-photo-12935074.jpeg",
   ];
   const carouselMetric = { label: "Client Satisfaction", value: "98%" };
 
@@ -135,18 +125,12 @@ const Hero = () => {
   return (
     <section className="min-h-screen flex items-center pt-20 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-blue-100 -z-10" />
-      {/* Floating background elements */}
-      <div className="absolute inset-0 overflow-hidden -z-10">
-        {/*
-          The floating circles animation is already handled inside CarouselHero,
-          so we can remove them from here to avoid duplication.
-          I'll leave this div here in case you want other background effects.
-        */}
-      </div>
+
       <div className="container mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
             <div className="space-y-2">
+              {/* Badge */}
               <div
                 className={`inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium transition-all duration-700 transform ${
                   isVisible
@@ -156,8 +140,10 @@ const Hero = () => {
               >
                 Welcome to Ideovent Technologies
               </div>
+
+              {/* Main Heading */}
               <h1
-                className={`transition-all duration-700 delay-100 transform text-gray-900 ${
+                className={`text-4xl md:text-5xl font-bold transition-all duration-700 delay-100 transform text-gray-900 ${
                   isVisible
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-10"
@@ -166,8 +152,10 @@ const Hero = () => {
                 Digital Solutions <br />
                 <span className="text-blue-700">for Businesses</span>
               </h1>
+
+              {/* Paragraph */}
               <p
-                className={`text-lg text-gray-700 md:text-xl max-w-2xl transition-all duration-700 delay-200 transform ${
+                className={`text-base md:text-lg text-gray-700 leading-relaxed max-w-2xl transition-all duration-700 delay-200 transform ${
                   isVisible
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-10"
@@ -179,6 +167,7 @@ const Hero = () => {
               </p>
             </div>
 
+            {/* Buttons */}
             <div
               className={`flex flex-wrap gap-4 transition-all duration-700 delay-300 transform ${
                 isVisible
@@ -202,6 +191,7 @@ const Hero = () => {
               </Link>
             </div>
 
+            {/* Testimonial mini-block */}
             <div
               className={`flex items-center gap-6 transition-all duration-700 delay-400 transform ${
                 isVisible
@@ -227,15 +217,17 @@ const Hero = () => {
                 />
               </div>
               <div>
-                <div className="font-medium text-gray-800">
+                <div className="text-base font-medium text-gray-800">
                   Your Trusted Partner
                 </div>
-                <div className="text-sm text-gray-600">in Digital Innovation</div>
+                <div className="text-sm text-gray-600">
+                  in Digital Innovation
+                </div>
               </div>
             </div>
           </div>
 
-          {/* This is the new part: using the CarouselHero component */}
+          {/* Carousel */}
           <div
             className={`transition-all duration-1000 transform ${
               isVisible
@@ -247,6 +239,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
+
       <style>
         {`
           @keyframes float {

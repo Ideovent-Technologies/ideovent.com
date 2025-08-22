@@ -100,7 +100,8 @@ const ComparisonSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center p-4 bg-blue-50 overflow-hidden">
       <motion.div className="relative w-full max-w-7xl bg-white/20 backdrop-blur-lg rounded-2xl shadow-lg p-4 sm:p-6 md:p-8 overflow-hidden">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 text-center mb-6 sm:mb-8">
+        {/* Heading */}
+        <h2 className="text-h2 text-gray-900 text-center mb-6 sm:mb-8 font-extrabold">
           How <span className="text-primary">Ideovent Technologies</span> Stands Apart
         </h2>
 
@@ -116,10 +117,10 @@ const ComparisonSection = () => {
                 whileInView="visible"
                 viewport={{ once: true }}
               >
-                <h4 className="font-semibold text-sm sm:text-base mb-2">{row.title}</h4>
+                <h4 className="text-h4 mb-2 font-semibold">{row.title}</h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   <motion.div
-                    className="rounded-lg p-2 flex items-center gap-2 bg-primary text-white text-xs sm:text-sm"
+                    className="rounded-lg p-2 flex items-center gap-2 bg-primary text-white text-small"
                     variants={ideoventCardVariants}
                     initial="hidden"
                     whileInView="visible"
@@ -128,7 +129,7 @@ const ComparisonSection = () => {
                     {row.good}
                   </motion.div>
                   <motion.div
-                    className="rounded-lg p-2 flex items-center gap-2 bg-gray-100 border border-gray-200 text-gray-600 text-xs sm:text-sm"
+                    className="rounded-lg p-2 flex items-center gap-2 bg-gray-100 border border-gray-200 text-gray-600 text-small"
                     variants={othersCardVariants}
                     initial="hidden"
                     whileInView="visible"
@@ -159,10 +160,10 @@ const ComparisonSection = () => {
                       {stat.icon}
                     </div>
                   </div>
-                  <p className="text-lg sm:text-xl font-bold text-primary">
+                  <p className="text-h3 text-primary font-bold">
                     <CountUp end={stat.value} duration={2} />+
                   </p>
-                  <p className="text-gray-700 text-xs sm:text-sm">{stat.label}</p>
+                  <p className="text-small text-gray-700">{stat.label}</p>
                 </motion.div>
               ))}
             </div>
@@ -181,10 +182,10 @@ const ComparisonSection = () => {
                   <div className="flex-shrink-0 flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-primary mb-2 sm:mb-3">
                     {features[activeIndex].icon}
                   </div>
-                  <h3 className="font-bold text-sm sm:text-lg md:text-xl mb-1 text-gray-900">
+                  <h3 className="text-h3 text-gray-900 mb-1 font-bold">
                     {features[activeIndex].title}
                   </h3>
-                  <p className="text-gray-600 text-xs sm:text-sm md:text-base text-center">
+                  <p className="text-p text-gray-600 text-center">
                     {features[activeIndex].desc}
                   </p>
                 </motion.div>
@@ -196,8 +197,8 @@ const ComparisonSection = () => {
         {/* Discover Now Button */}
         <div className="mt-8 flex justify-center">
           <motion.a
-            href="/services" // Connects to the services page
-            className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-white bg-primary hover:bg-blue-600 transition-colors duration-300"
+            href="/services"
+            className="inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-full shadow-lg text-white bg-primary hover:bg-blue-600 transition-colors duration-300 text-p font-medium"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
