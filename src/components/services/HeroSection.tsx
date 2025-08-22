@@ -3,7 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import CarouselHero from "./CarouselHero";
-import { ServiceData, CTA } from "./types";
+import { CTA } from "./types";
 
 interface HeroSectionProps {
   title: string;
@@ -25,8 +25,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   heroMetric,
 }) => {
   return (
-    <section className="relative w-full min-h-screen px-4 sm:px-6 lg:px-24 py-16 lg:py-24 bg-gradient-to-br from-[#f0f5ff] to-[#e6ecff] rounded-3xl overflow-hidden flex flex-col lg:flex-row items-center">
-      <div className="relative z-10 w-full lg:w-1/2 mb-10 lg:mb-0">
+    <section className="relative w-full min-h-screen px-4 sm:px-6 lg:px-20 xl:px-24 py-16 lg:py-24 bg-gradient-to-br from-[#f0f5ff] to-[#e6ecff] rounded-3xl overflow-hidden flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+      {/* LEFT CONTENT */}
+      <div className="relative z-10 w-full lg:w-1/2 flex flex-col max-w-2xl">
         <motion.h1
           initial={{ opacity: 0, y: 50, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -35,24 +36,27 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         >
           {title}
         </motion.h1>
+
         {subtitle && (
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.7 }}
-            className="text-lg sm:text-xl lg:text-3xl font-semibold text-[#2562AA] mb-6"
+            className="text-lg sm:text-xl lg:text-2xl font-semibold text-[#2562AA] mb-6"
           >
             {subtitle}
           </motion.h2>
         )}
+
         <motion.p
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.7 }}
-          className="text-base sm:text-lg lg:text-xl text-gray-700 mb-8 max-w-full sm:max-w-xl leading-relaxed"
+          className="text-base sm:text-lg lg:text-xl text-gray-700 mb-8 leading-relaxed"
         >
           {description}
         </motion.p>
+
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -75,7 +79,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           )}
         </motion.div>
       </div>
-      <div className="w-full lg:w-1/2 relative">
+
+      {/* RIGHT CONTENT → Carousel */}
+      <div className="w-full lg:w-1/2 flex justify-center relative">
         <CarouselHero images={heroImages} metric={heroMetric} />
       </div>
     </section>
