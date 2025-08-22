@@ -38,26 +38,29 @@ const ServicePageLayout: React.FC<ServiceData> = (props) => {
   ];
 
   return (
-    <div className="flex flex-col font-['Inter'] antialiased">
-      <Navbar />
-      <HeroSection
-        title={props.title}
-        subtitle={props.subtitle}
-        description={props.description}
-        primaryCta={props.cta}
-        secondaryCta={props.cta.secondary}
-      />
-      <SubNavbar sections={sections} />
-      <BulletPoints
-        bulletPoints={props.bulletPoints}
-        sectionHeading="What We Deliver"
-      />
-      <ExtraSections extraSections={normalizedExtraSections} />
-      {props.faqs && <FAQSection faqs={props.faqs} />}
-      {props.testimonials && <TestimonialsSection testimonials={props.testimonials} />}
-      <OtherServicesSection otherServices={props.otherServices} />
-      <Footer />
-    </div>
+   <div className="flex flex-col font-sans antialiased">
+  <Navbar />
+  <HeroSection
+    title={props.title}
+    subtitle={props.subtitle}
+    description={props.description}
+    primaryCta={props.cta}
+    secondaryCta={props.cta.secondary}
+  />
+  <SubNavbar sections={sections} />
+  <BulletPoints
+    bulletPoints={props.bulletPoints}
+    sectionHeading="What We Deliver"
+  />
+  <ExtraSections extraSections={normalizedExtraSections} />
+  {props.faqs && <FAQSection faqs={props.faqs} />}
+  {props.testimonials && (
+    <TestimonialsSection testimonials={props.testimonials} />
+  )}
+  <OtherServicesSection otherServices={props.otherServices} />
+  <Footer />
+</div>
+
   );
 };
 

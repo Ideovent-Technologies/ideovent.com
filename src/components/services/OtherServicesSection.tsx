@@ -1,9 +1,9 @@
 // services/OtherServicesSection.tsx
 import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom"; // Import the Link component
+import { Link } from "react-router-dom"; 
 import * as Icons from "lucide-react";
-import { OtherService } from "./types"; // Assuming OtherService is now imported from types.ts
+import { OtherService } from "./types";
 
 interface OtherServicesSectionProps {
   otherServices: OtherService[];
@@ -14,13 +14,14 @@ const OtherServicesSection: React.FC<OtherServicesSectionProps> = ({ otherServic
 
   return (
     <section id="other-services" className="px-4 sm:px-6 lg:px-24 pb-16 sm:pb-24">
-      <h2 className="text-xl sm:text-3xl font-bold text-center mb-8 sm:mb-10 text-transparent bg-clip-text bg-gradient-to-r from-[#2562EA] to-[#6B8DFF]">
+      {/* Section Heading */}
+      <h2 className="text-2xl sm:text-3xl font-bold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-[#2562EA] to-[#6B8DFF]">
         Explore Other Services
       </h2>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+      {/* Services Grid */}
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {otherServices.map((service, idx) => {
-          // Create a stable key from the service name and index
           const stableKey = `${service.name.replace(/\s+/g, '-')}-${idx}`;
 
           return (
@@ -34,10 +35,10 @@ const OtherServicesSection: React.FC<OtherServicesSectionProps> = ({ otherServic
             >
               <Link
                 to={service.path}
-                className="block p-4 sm:p-6 rounded-2xl border border-gray-200 bg-white hover:border-[#6B8DFF] transition-all duration-300 text-center relative z-10 hover:shadow-lg"
+                className="block p-6 rounded-2xl border border-gray-200 bg-white hover:border-[#6B8DFF] transition-all duration-300 text-center relative z-10 hover:shadow-md"
                 aria-label={`Learn more about ${service.name}`}
               >
-                <p className="text-[#2562EA] font-semibold text-base sm:text-lg relative z-10 group-hover:text-white transition-colors duration-300">
+                <p className="text-base sm:text-lg font-medium text-[#2562EA] relative z-10 group-hover:text-white transition-colors duration-300">
                   {service.name}
                 </p>
                 <Icons.ArrowRight className="absolute right-4 top-1/2 -translate-y-1/2 text-[#2562EA] opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300 z-10" />

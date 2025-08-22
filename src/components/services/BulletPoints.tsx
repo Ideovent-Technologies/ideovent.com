@@ -5,7 +5,6 @@ import * as Icons from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { BulletPoint } from "./types";
 
-// Updated props interface to make the component more reusable
 interface BulletPointsProps {
   bulletPoints: BulletPoint[];
   sectionHeading?: string;
@@ -15,12 +14,10 @@ interface BulletPointsProps {
 
 const BulletPoints: React.FC<BulletPointsProps> = ({
   bulletPoints,
-  // Set default values for new props
   sectionHeading = "What We Deliver",
   gradientFrom = "#2562EA",
   gradientTo = "#6B8DFF",
 }) => {
-  // A slightly more robust way to get the icon component
   const getIcon = (iconName?: string) => {
     if (!iconName || !(iconName in Icons)) {
       return Icons.CheckCircle;
@@ -29,7 +26,10 @@ const BulletPoints: React.FC<BulletPointsProps> = ({
   };
 
   return (
-    <section id="what-we-deliver" className="px-4 sm:px-6 lg:px-24 py-16 sm:py-20 bg-gray-50">
+    <section
+      id="what-we-deliver"
+      className="px-4 sm:px-6 lg:px-24 py-16 sm:py-20 bg-gray-50"
+    >
       <SectionHeading
         text={sectionHeading}
         gradientFrom={gradientFrom}
@@ -38,9 +38,10 @@ const BulletPoints: React.FC<BulletPointsProps> = ({
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 perspective-1000">
         {bulletPoints.map((point) => {
-          // Use a unique, stable identifier for the key, if available.
-          // Fallback to text if id isn't present, and only use index as a last resort.
-          const key = point.id || point.text || `bullet-point-${point.text.replace(/\s+/g, '-')}`;
+          const key =
+            point.id ||
+            point.text ||
+            `bullet-point-${point.text.replace(/\s+/g, "-")}`;
           const Icon = getIcon(point.icon);
 
           return (
@@ -50,7 +51,7 @@ const BulletPoints: React.FC<BulletPointsProps> = ({
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.1, duration: 0.7 }} // Removed index from delay for a smoother staggered animation
+              transition={{ delay: 0.1, duration: 0.7 }}
               whileHover={{
                 scale: 1.05,
                 rotateY: 10,
@@ -67,7 +68,8 @@ const BulletPoints: React.FC<BulletPointsProps> = ({
                     <Icon className="w-6 h-6 sm:w-8 sm:h-8" />
                   </div>
                 </div>
-                <p className="text-gray-800 text-base lg:text-lg font-medium relative z-10">
+                {/* ✅ Standard font for paragraph */}
+                <p className="text-p font-medium relative z-10">
                   {point.text}
                 </p>
               </div>

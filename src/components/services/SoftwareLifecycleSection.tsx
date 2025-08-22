@@ -37,7 +37,7 @@ const SoftwareLifecycleSection: React.FC<Props> = ({
   gradientFrom = "#2562EA",
   gradientTo = "#6B8DFF",
 }) => {
-  const steps = section.items;
+  const steps = section.items ?? [];
 
   return (
     <section id={sectionId} className="px-4 sm:px-6 lg:px-24 py-16 sm:py-20 bg-gray-50">
@@ -47,7 +47,7 @@ const SoftwareLifecycleSection: React.FC<Props> = ({
         gradientTo={gradientTo}
         className="mb-8 text-center"
       />
-      <p className="text-gray-700 text-center max-w-3xl mx-auto mb-16">
+      <p className="text-gray-700 text-center max-w-3xl mx-auto mb-16 text-base sm:text-lg leading-relaxed">
         {section.content}
       </p>
 
@@ -64,9 +64,22 @@ const SoftwareLifecycleSection: React.FC<Props> = ({
             >
               <div className="w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center rounded-full bg-[#E5F0FF] mb-4 sm:mb-5 group-hover:bg-[#2562EA] transition-colors duration-500 relative">
                 {getFlowchartIcon(i + 1)}
-                <div className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 w-7 h-7 sm:w-9 sm:h-9 flex items-center justify-center rounded-full bg-[#6B8DFF] text-white text-base sm:text-lg font-bold">{i + 1}</div>
+                <div className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 w-7 h-7 sm:w-9 sm:h-9 flex items-center justify-center rounded-full bg-[#6B8DFF] text-white text-base sm:text-lg font-bold">
+                  {i + 1}
+                </div>
               </div>
-              <h3 className="text-xl sm:text-2xl font-extrabold text-[#2562EA] mb-2">{item.step}</h3>
+
+              {/* Step Title */}
+              <h3 className="text-lg sm:text-xl font-semibold text-[#2562EA] mb-2">
+                {item.step}
+              </h3>
+
+              {/* Step Description */}
+              {item.description && (
+                <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                  {item.description}
+                </p>
+              )}
             </motion.div>
           );
         })}

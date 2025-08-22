@@ -5,7 +5,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import { SoftwareTypesSection as SoftwareTypesSectionType } from "./types";
 
 interface Props {
-  section: SoftwareTypesSectionType; // Use the specific type from the union
+  section: SoftwareTypesSectionType;
   sectionId: string;
 
   // Optional customizations
@@ -44,8 +44,6 @@ const SoftwareTypesSection: React.FC<Props> = ({
   tapScale = 0.98,
 }) => {
   const softwareTypes = section.items;
-
-  // Map prop values to a static Tailwind class string for JIT compatibility
   const gridClasses = `sm:grid-cols-${gridColsSm} lg:grid-cols-${gridColsLg}`;
 
   const getIconComponent = (iconName: string) => {
@@ -53,21 +51,25 @@ const SoftwareTypesSection: React.FC<Props> = ({
   };
 
   return (
-    <section id={sectionId} className={`${paddingX} ${paddingY} bg-white`}>
+    <section
+      id={sectionId}
+      className={`${paddingX} ${paddingY} bg-white font-sans`} // ✅ standard font
+    >
       <SectionHeading
         text={section.heading}
         gradientFrom={headingGradientFrom}
         gradientTo={headingGradientTo}
         className="mb-8 text-center"
       />
-      <p className="text-gray-700 text-center max-w-3xl mx-auto mb-16">{section.content}</p>
+      <p className="text-gray-700 text-center max-w-3xl mx-auto mb-16">
+        {section.content}
+      </p>
 
-      {/* This new motion.div wrapper adds the fade-in-on-scroll animation */}
       <motion.div
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.2 }} // `amount` controls when the animation triggers
+        viewport={{ once: true, amount: 0.2 }}
         className={`grid ${gridClasses} gap-8 sm:gap-10`}
       >
         {softwareTypes.map((item) => {
@@ -78,7 +80,7 @@ const SoftwareTypesSection: React.FC<Props> = ({
               key={item.id}
               whileHover={{ scale: hoverScale }}
               whileTap={{ scale: tapScale }}
-              className="group relative rounded-3xl bg-gradient-to-br from-[#f0f5ff] to-white overflow-hidden transition-all cursor-pointer transform hover:shadow-xl"
+              className="group relative rounded-3xl bg-gradient-to-br from-[#f0f5ff] to-white overflow-hidden transition-all cursor-pointer transform hover:shadow-xl font-sans" // ✅ enforce font
             >
               <div className="relative w-full h-40 sm:h-56 overflow-hidden">
                 <motion.img
@@ -93,12 +95,14 @@ const SoftwareTypesSection: React.FC<Props> = ({
                 <div
                   className={`w-12 h-12 flex items-center justify-center rounded-full mb-4 z-10 transition-colors bg-[#E5F0FF] group-hover:bg-[#2562EA]`}
                 >
-                  <IconComponent
-                    className="h-6 w-6 transition-colors text-[#2562EA] group-hover:text-white"
-                  />
+                  <IconComponent className="h-6 w-6 transition-colors text-[#2562EA] group-hover:text-white" />
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-gray-800 transition-colors mb-1">{item.title}</h3>
-                <p className="text-gray-600">{item.subtitle || fallbackSubtitle}</p>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-800 transition-colors mb-1">
+                  {item.title}
+                </h3>
+                <p className="text-gray-600">
+                  {item.subtitle || fallbackSubtitle}
+                </p>
               </div>
             </motion.div>
           );
