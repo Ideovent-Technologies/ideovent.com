@@ -32,14 +32,17 @@ const Navbar = () => {
 
   const serviceItems = [
     { name: "Software Development", path: "/services/software-development" },
-    { name: "Website Development", path: "/services/website" },
-    { name: "Mobile App Development", path: "/services/mobile" },
-    { name: "Digital Marketing", path: "/services/marketing" },
-    { name: "Graphics Design", path: "/services/graphics" },
-    { name: "Domain & Hosting", path: "/services/domain" },
-    { name: "ERP & CRM Development", path: "/services/erp-crm" },
-    { name: "Maintenance Services", path: "/services/maintenance" },
-    { name: "Explore More Services", path: "/services/more" },
+    { name: "Website Development", path: "/services/website-development" },
+    {
+      name: "Mobile App Development",
+      path: "/services/mobile-app-development",
+    },
+    { name: "Digital Marketing", path: "/services/digital-marketing" },
+    { name: "Graphics Design", path: "/services/graphics-design" },
+    { name: "Domain & Hosting", path: "/services/domain-hosting" },
+    { name: "ERP & CRM Development", path: "/services/erp-crm-development" },
+    { name: "Maintenance Services", path: "/services/maintenance-services" },
+    { name: "Explore More Services", path: "/contact" },
   ];
 
   return (
