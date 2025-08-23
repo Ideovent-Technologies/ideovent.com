@@ -12,17 +12,16 @@ const ExtraSections: React.FC<ExtraSectionsProps> = ({ extraSections }) => {
   return (
     <>
       {extraSections.map((section) => {
-        // Correctly using the section's unique 'id' for the React key and the sectionId prop.
         const key = section.id;
         const sectionId = section.sectionId;
-        // Using a switch statement is a great, type-safe way to render different components.
+
         switch (section.type) {
           case "types":
             return (
               <SoftwareTypesSection
                 key={key}
                 section={section}
-                sectionId={sectionId} // This prop is correctly passed here.
+                sectionId={sectionId}
               />
             );
 
@@ -31,7 +30,7 @@ const ExtraSections: React.FC<ExtraSectionsProps> = ({ extraSections }) => {
               <SoftwareLifecycleSection
                 key={key}
                 section={section}
-                sectionId={sectionId} // This prop needs to be used inside the component.
+                sectionId={sectionId}
               />
             );
 
@@ -40,13 +39,13 @@ const ExtraSections: React.FC<ExtraSectionsProps> = ({ extraSections }) => {
               <GenericExtraSection
                 key={key}
                 section={section}
-                sectionId={sectionId} // This prop also needs to be used.
-                iconName="ThumbsUp" // Example
+                sectionId={sectionId}
+                iconName="ThumbsUp"
               />
             );
 
           default:
-            return null; // Always good to have a fallback for unknown types.
+            return null;
         }
       })}
     </>

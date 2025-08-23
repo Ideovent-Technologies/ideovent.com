@@ -8,13 +8,13 @@ const teamData = {
       name: "Abhishek Tiwari",
       role: "Director & Founder",
       image:
-        "https://cdn.pixabay.com/photo/2023/09/01/14/24/boy-avtar-8227084_1280.png", // replace with actual photo if available
+        "https://cdn.pixabay.com/photo/2023/09/01/14/24/boy-avtar-8227084_1280.png",
       socials: { linkedin: "#", facebook: "#" },
     },
     {
       name: "Animesh Raturi",
       role: "Co-Founder & CEO",
-      image: "animeshprofile.jpeg", // replace with his real photo if you want
+      image: "animeshprofile.jpeg",
       socials: { linkedin: "#", twitter: "#" },
     },
     {
@@ -32,7 +32,6 @@ const teamData = {
       socials: { linkedin: "#", facebook: "#" },
     },
   ],
-  // Add more sections and their respective data here 
   "Product & Management": [],
   Developers: [],
   "Operations & Support": [],
@@ -40,73 +39,44 @@ const teamData = {
 
 const teamTabs = Object.keys(teamData);
 
-// Animation variants for the heading and subheading
-const headingVariants = {
-  hidden: { opacity: 0, y: -50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-      ease: "easeOut",
-    },
-  },
-};
-
-const subheadingVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-      delay: 0.3,
-      ease: "easeOut",
-    },
-  },
-};
-
 const TeamSection = () => {
   const [activeTab, setActiveTab] = useState("Our Leadership");
 
   return (
-    <section className="bg-white py-20 text-gray-900">
-      {/* Animated Heading and Subtitle */}
-      {/* Animated Heading and Subtitle */}
-<div className="text-center mb-12 px-4 overflow-hidden">
-  <motion.h2
-    className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-6"
-    initial={{ opacity: 0, y: -30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.8, ease: "easeOut" }}
-    viewport={{ once: true }}
-  >
-    Reach out to the world’s most reliable{" "}
-    <span className="relative inline-block text-blue-600">
-      IT services.
-      {/* underline animation */}
-      <motion.span
-        className="absolute left-0 -bottom-1 h-[3px] w-full bg-blue-600 rounded-full"
-        initial={{ scaleX: 0 }}
-        whileInView={{ scaleX: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-        viewport={{ once: true }}
-      />
-    </span>
-  </motion.h2>
+    <section className="bg-white py-20 text-gray-900 font-sans">
+      {/* Heading */}
+      <div className="text-center mb-12 px-4 overflow-hidden">
+        <motion.h2
+          className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-6"
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
+          Reach out to the world’s most reliable{" "}
+          <span className="relative inline-block text-blue-600">
+            IT services.
+            <motion.span
+              className="absolute left-0 -bottom-1 h-[3px] w-full bg-blue-600 rounded-full"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+              viewport={{ once: true }}
+            />
+          </span>
+        </motion.h2>
 
-  <motion.p
-    className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed"
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-    viewport={{ once: true }}
-  >
-    Ideovent's leadership team has a long history of success in technology,
-    business management, and franchising.
-  </motion.p>
-</div>
-
+        <motion.p
+          className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
+          Ideovent's leadership team has a long history of success in technology,
+          business management, and franchising.
+        </motion.p>
+      </div>
 
       {/* Tabs */}
       <div className="flex justify-center flex-wrap gap-4 md:gap-8 border-b border-gray-200 pb-3 mb-10 px-4">
@@ -114,7 +84,7 @@ const TeamSection = () => {
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`pb-2 font-medium transition-colors ${
+            className={`pb-2 font-medium text-base transition-colors ${
               activeTab === tab
                 ? "text-blue-600 border-b-2 border-blue-600"
                 : "text-gray-500 hover:text-blue-600"
@@ -132,14 +102,14 @@ const TeamSection = () => {
             key={idx}
             className="group relative bg-white border border-gray-200 shadow-md rounded-xl overflow-hidden transition hover:shadow-xl"
           >
-            {/* Image with hover effect */}
+            {/* Image */}
             <div className="relative overflow-hidden">
               <img
                 src={member.image}
                 alt={member.name}
                 className="w-full h-80 object-cover grayscale group-hover:grayscale-0 transition duration-500"
               />
-              {/* Social icons overlay */}
+              {/* Social icons */}
               <div className="absolute inset-0 flex items-center justify-center gap-3 bg-blue-600/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                 {member.socials.linkedin && (
                   <a

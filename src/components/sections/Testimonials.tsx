@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 
@@ -8,11 +7,11 @@ const Testimonials = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
-  
+
   const testimonials = [
     {
       text: "Ideovent transformed our online presence completely. Their team delivered a website that not only looks stunning but also performs exceptionally well. The attention to detail and user experience focus has resulted in a 40% increase in our conversion rate.",
-      name: "kavita Prem",
+      name: "Kavita Prem",
       position: "CEO, TechStart Inc.",
       image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4A8PhcI7V3miXTmY26npWgI2nFvNxDRs_bg&s"
     },
@@ -39,78 +38,39 @@ const Testimonials = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting) {
-          setIsVisible(true);
-        }
+        if (entries[0].isIntersecting) setIsVisible(true);
       },
       { threshold: 0.1 }
     );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
     };
   }, []);
 
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
-  };
+  const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  const goToSlide = (index: number) => setCurrentIndex(index);
 
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length);
-  };
-
-  const goToSlide = (index: number) => {
-    setCurrentIndex(index);
-  };
-
-  // Touch event handlers for mobile swiping
   const handleTouchStart = (e: React.TouchEvent | React.MouseEvent) => {
     setIsDragging(true);
-    if ('touches' in e) {
-      setStartX(e.touches[0].clientX);
-    } else {
-      setStartX(e.clientX);
-    }
+    setStartX('touches' in e ? e.touches[0].clientX : e.clientX);
   };
 
   const handleTouchMove = (e: React.TouchEvent | React.MouseEvent) => {
     if (!isDragging) return;
-    
-    let currentX;
-    if ('touches' in e) {
-      currentX = e.touches[0].clientX;
-    } else {
-      currentX = e.clientX;
-    }
-    
+    const currentX = 'touches' in e ? e.touches[0].clientX : e.clientX;
     const diff = startX - currentX;
-    
     if (Math.abs(diff) > 50) {
-      if (diff > 0) {
-        nextSlide();
-      } else {
-        prevSlide();
-      }
+      diff > 0 ? nextSlide() : prevSlide();
       setIsDragging(false);
     }
   };
 
-  const handleTouchEnd = () => {
-    setIsDragging(false);
-  };
+  const handleTouchEnd = () => setIsDragging(false);
 
-  // For automatic sliding (optional)
   useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 6000);
-    
+    const interval = setInterval(nextSlide, 6000);
     return () => clearInterval(interval);
   }, [currentIndex]);
 
@@ -127,49 +87,39 @@ const Testimonials = () => {
       onMouseLeave={handleTouchEnd}
     >
       <div className="container">
+        {/* Heading */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4">
+          <div className={`inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4`}>
             Testimonials
           </div>
-          <h2>What Our <span className="text-primary">Clients Say</span></h2>
-          <p className="text-lg text-muted-foreground mt-4">
+          <h2 className="text-h2 font-medium">
+            What Our <span className="text-primary">Clients Say</span>
+          </h2>
+          <p className="text-p text-muted-foreground mt-4">
             Don't just take our word for it. Here's what our clients have to say about our work.
           </p>
         </div>
 
+        {/* Carousel */}
         <div className="relative max-w-4xl mx-auto overflow-hidden">
           <div 
-            className="transition-all duration-500 ease-in-out"
-            style={{ 
-              transform: `translateX(-${currentIndex * 100}%)`,
-              display: 'flex' 
-            }}
+            className="transition-all duration-500 ease-in-out flex"
+            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
             {testimonials.map((testimonial, index) => (
-              <div 
-                key={index} 
-                className="min-w-full px-4"
-              >
-                <div 
-                  className={`bg-white rounded-2xl shadow-lg p-8 transition-all duration-700 transform ${
-                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                  }`}
-                >
+              <div key={index} className="min-w-full px-4">
+                <div className={`bg-white rounded-2xl shadow-lg p-8 transition-all duration-700 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                   <div className="flex items-center mb-6">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" />
                     ))}
                   </div>
-                  <p className="text-lg mb-6">{testimonial.text}</p>
+                  <p className="text-p mb-6">{testimonial.text}</p>
                   <div className="flex items-center">
-                    <img 
-                      src={testimonial.image} 
-                      alt={testimonial.name} 
-                      className="w-12 h-12 rounded-full object-cover mr-4"
-                    />
+                    <img src={testimonial.image} alt={testimonial.name} className="w-12 h-12 rounded-full object-cover mr-4"/>
                     <div>
-                      <div className="font-medium">{testimonial.name}</div>
-                      {/* <div className="text-sm text-muted-foreground">{testimonial.position}</div> */}
+                      <div className="font-medium text-p">{testimonial.name}</div>
+                      <div className="text-small text-muted-foreground">{testimonial.position}</div>
                     </div>
                   </div>
                 </div>
@@ -178,16 +128,10 @@ const Testimonials = () => {
           </div>
 
           {/* Navigation Arrows */}
-          <button 
-            onClick={prevSlide}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg text-primary hover:bg-primary hover:text-white transition-colors z-10"
-          >
+          <button onClick={prevSlide} className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg text-primary hover:bg-primary hover:text-white transition-colors z-10">
             <ChevronLeft className="w-6 h-6" />
           </button>
-          <button 
-            onClick={nextSlide}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg text-primary hover:bg-primary hover:text-white transition-colors z-10"
-          >
+          <button onClick={nextSlide} className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg text-primary hover:bg-primary hover:text-white transition-colors z-10">
             <ChevronRight className="w-6 h-6" />
           </button>
         </div>
@@ -198,9 +142,7 @@ const Testimonials = () => {
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all ${
-                index === currentIndex ? 'bg-primary w-6' : 'bg-gray-300'
-              }`}
+              className={`w-3 h-3 rounded-full transition-all ${index === currentIndex ? 'bg-primary w-6' : 'bg-gray-300'}`}
             />
           ))}
         </div>

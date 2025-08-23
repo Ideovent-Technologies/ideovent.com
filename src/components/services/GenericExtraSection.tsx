@@ -31,12 +31,11 @@ const GenericExtraSection: React.FC<GenericExtraSectionProps> = ({
   const Icon = getIcon(iconName);
 
   return (
-    // The main section container. Uses a soft gray background to make the cards pop.
     <section
       id={sectionId}
       className="px-4 sm:px-6 lg:px-24 py-16 sm:py-20 bg-gray-50"
     >
-      {/* The component heading, which uses a gradient text */}
+      {/* Section heading with gradient */}
       <SectionHeading
         text={section.heading}
         gradientFrom={headingGradientFrom}
@@ -44,11 +43,10 @@ const GenericExtraSection: React.FC<GenericExtraSectionProps> = ({
         className="mb-12 text-center"
       />
 
-      {/* The grid container for the feature cards */}
+      {/* Grid of feature cards */}
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
         {section.items?.map((item, i) => {
           return (
-            // Individual card container with animation and modern styling
             <motion.div
               key={item.id}
               className="bg-white rounded-3xl shadow-lg p-6 sm:p-8 flex flex-col items-center text-center transition-transform hover:scale-105 hover:shadow-2xl group"
@@ -57,21 +55,16 @@ const GenericExtraSection: React.FC<GenericExtraSectionProps> = ({
               transition={{ delay: i * 0.1, duration: 0.5 }}
               viewport={{ once: true }}
             >
-              {/* Icon container with a color-inversion hover effect */}
+              {/* Icon container */}
               <div className="w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center rounded-full bg-[#E5F0FF] group-hover:bg-[#2562EA] mb-4 sm:mb-5 transition-colors">
-                {/* The icon itself, which changes color on card hover */}
                 <Icon className="w-7 h-7 sm:w-8 sm:h-8 text-[#2562EA] group-hover:text-white" />
               </div>
 
-              {/* The title of the card */}
-              <h3 className="text-xl sm:text-2xl font-extrabold text-[#2562EA] mb-2">
-                {item.title}
-              </h3>
+              {/* Title using standard font class */}
+              <h3 className="text-h3 text-[#2562EA] mb-2">{item.title}</h3>
 
-              {/* The description text */}
-              <p className="text-gray-700 font-medium text-sm sm:text-base">
-                {item.description}
-              </p>
+              {/* Description using standard font class */}
+              <p className="text-p text-gray-700">{item.description}</p>
             </motion.div>
           );
         })}

@@ -7,7 +7,7 @@ import {
   TooltipContent,
   TooltipProvider,
 } from "@/components/ui/tooltip";
-import Tilt from "react-parallax-tilt"; // 3D hover effect
+import Tilt from "react-parallax-tilt";
 
 interface TechItem {
   name: string;
@@ -116,7 +116,7 @@ const TechStackSection: React.FC = () => {
     <TooltipProvider delayDuration={200}>
       <section
         id="tech-stack"
-        className="relative w-full bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-950 dark:to-gray-800 py-24 px-6 lg:px-24 overflow-hidden"
+        className="relative w-full bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-950 dark:to-gray-800 py-24 px-6 lg:px-24 overflow-hidden font-sans"
       >
         {/* Background blobs */}
         <div className="absolute -top-32 -right-32 w-96 h-96 bg-[#2562EA]/10 rounded-full blur-3xl animate-blob animation-delay-2000" />
@@ -129,7 +129,7 @@ const TechStackSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-extrabold text-gray-900 dark:text-gray-100"
+            className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100"
           >
             Our <span className="text-[#2562EA]">Tech Stack</span>
           </motion.h2>
@@ -153,12 +153,7 @@ const TechStackSection: React.FC = () => {
               viewport={{ once: true }}
               variants={cardVariants}
             >
-              <Tilt
-                glareEnable={true}
-                glareMaxOpacity={0.2}
-                scale={1.05}
-                transitionSpeed={250}
-              >
+              <Tilt glareEnable glareMaxOpacity={0.2} scale={1.05} transitionSpeed={250}>
                 <div
                   className="
                     flex flex-col items-start text-left
@@ -167,7 +162,7 @@ const TechStackSection: React.FC = () => {
                     hover:shadow-2xl hover:-translate-y-2 transition-all duration-300
                   "
                 >
-                  <h3 className="text-2xl font-bold mb-6 text-[#2562EA] dark:text-[#6C63FF]">
+                  <h3 className="text-xl font-semibold mb-6 text-[#2562EA] dark:text-[#6C63FF]">
                     {category.category}
                   </h3>
                   <div className="flex flex-wrap gap-6">

@@ -30,6 +30,7 @@ export interface SoftwareLifecycleSection {
   items?: {
     id: string;
     step: string;
+    description?: string;  // ✅ add this
     icon?: string;
   }[];
   sectionId?: string; // <-- added
