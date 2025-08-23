@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom"; // Ensure react-router-dom is installed and used
+import { Link } from "react-router-dom";
 
 // Basic Button Component
 const Button = ({ children, size, variant, className, ...props }) => {
@@ -79,9 +79,7 @@ const CarouselHero = ({ images, metric }) => {
             src={src}
             alt="Visual showcasing our services"
             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-              index === currentImageIndex
-                ? "opacity-100 animate-zoom"
-                : "opacity-0"
+              index === currentImageIndex ? "opacity-100 animate-zoom" : "opacity-0"
             }`}
             style={{ animationDuration: "5s", transformOrigin: "center" }}
           />
@@ -133,9 +131,7 @@ const Hero = () => {
               {/* Badge */}
               <div
                 className={`inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium transition-all duration-700 transform ${
-                  isVisible
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-10"
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
               >
                 Welcome to Ideovent Technologies
@@ -144,21 +140,19 @@ const Hero = () => {
               {/* Main Heading */}
               <h1
                 className={`text-4xl md:text-5xl font-bold transition-all duration-700 delay-100 transform text-gray-900 ${
-                  isVisible
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-10"
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
               >
                 Digital Solutions <br />
-                <span className="text-blue-700">for Businesses</span>
+                <span className="text-blue-700" style={{ fontSize: "inherit" }}>
+                  for Businesses
+                </span>
               </h1>
 
               {/* Paragraph */}
               <p
                 className={`text-base md:text-lg text-gray-700 leading-relaxed max-w-2xl transition-all duration-700 delay-200 transform ${
-                  isVisible
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-10"
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
               >
                 We craft innovative digital experiences that transform
@@ -170,9 +164,7 @@ const Hero = () => {
             {/* Buttons */}
             <div
               className={`flex flex-wrap gap-4 transition-all duration-700 delay-300 transform ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-10"
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
               }`}
             >
               <Link to="/contact">
@@ -194,9 +186,7 @@ const Hero = () => {
             {/* Testimonial mini-block */}
             <div
               className={`flex items-center gap-6 transition-all duration-700 delay-400 transform ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-10"
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
               }`}
             >
               <div className="flex -space-x-4">
@@ -230,9 +220,7 @@ const Hero = () => {
           {/* Carousel */}
           <div
             className={`transition-all duration-1000 transform ${
-              isVisible
-                ? "opacity-100 translate-y-0 rotate-0"
-                : "opacity-0 translate-y-20 rotate-12"
+              isVisible ? "opacity-100 translate-y-0 rotate-0" : "opacity-0 translate-y-20 rotate-12"
             }`}
           >
             <CarouselHero images={carouselImages} metric={carouselMetric} />
@@ -240,6 +228,7 @@ const Hero = () => {
         </div>
       </div>
 
+      {/* Animations */}
       <style>
         {`
           @keyframes float {

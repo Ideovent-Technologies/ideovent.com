@@ -59,15 +59,29 @@
     scrollbar-width: none;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-medium tracking-tight;
+  /* Standardized font sizes for all text elements */
+  h1 { @apply text-h1 font-medium tracking-tight; }
+  h2 { @apply text-h2 font-medium tracking-tight; }
+  h3 { @apply text-h3 font-medium tracking-tight; }
+  h4 { @apply text-h4 font-medium tracking-tight; }
+  h5 { @apply text-h4 font-medium tracking-tight; }
+  h6 { @apply text-small font-medium tracking-tight; }
+
+  /* Make all inline elements inside headings inherit size and weight */
+  h1 span, h2 span, h3 span, h4 span, h5 span, h6 span,
+  h1 strong, h2 strong, h3 strong, h4 strong, h5 strong, h6 strong,
+  h1 em, h2 em, h3 em, h4 em, h5 em, h6 em {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
   }
 
-  h1 { @apply text-4xl sm:text-5xl md:text-6xl; }
-  h2 { @apply text-3xl sm:text-4xl; }
-  h3 { @apply text-2xl sm:text-3xl; }
-  h4 { @apply text-xl sm:text-2xl; }
+  p { @apply text-p; }
+  small { @apply text-small; }
+
+  a, span, li { @apply font-sans text-p; }
 }
+
 
 @layer components {
   .container {
