@@ -8,6 +8,7 @@ import Footer from '../components/layout/Footer';
 import ComparisonSection from '../components/sections/ComparisonSection';
 import ServicesSection from "../components/sections/ServicesSection";
 import WhyChooseUs from "../components/sections/WhyChooseUs";
+import ReviewPopup from '@/components/common/ReviewPopup';
 
 
 const Index = () => {
@@ -28,6 +29,7 @@ const Index = () => {
         <Testimonials />
         <ContactForm />
       </main>
+      <ReviewPopup />
       <Footer />
     </div>
   );
